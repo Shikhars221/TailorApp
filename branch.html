@@ -150,7 +150,7 @@
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                         <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
-                        <a class="collapse-item" href="hsn.html">HSN</a>
+                        <a class="collapse-item" href="hsn.html">HSN/SAC Code</a>
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
                         <a class="collapse-item" href="customerflag.html">Customer Flag</a>
@@ -854,9 +854,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addcity">City</label>
-                                                <input type="text" class="form-control" id="addcity">
-                                                <div class="invalid-feedback" id="city_val">
+                                                <label for="addcountry">Country</label>
+                                                <input type="text" class="form-control" id="addcountry">
+                                                <div class="invalid-feedback" id="Country_val">
 
                                                 </div>
                                             </div>
@@ -868,6 +868,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="addcity">City</label>
+                                                <input type="text" class="form-control" id="addcity">
+                                                <div class="invalid-feedback" id="city_val">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="addpincode">Pincode</label>
                                                 <input type="text" class="form-control" id="addpincode">
                                                 <div class="invalid-feedback" id="pincode_val">
@@ -875,18 +882,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addcountry">Country</label>
-                                                <input type="text" class="form-control" id="addcountry">
-                                                <div class="invalid-feedback" id="Country_val">
-
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="addgstcode">GST State Code</label>
                                                 <input type="text" class="form-control" id="addgstcode">
                                                 <div class="invalid-feedback" id="gstcode_val">
-
-                                                </div>
+                                            </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="addgstNo">GST Number</label>
@@ -962,19 +961,19 @@
                                                 <div class="invalid-feedback" id="contact_val"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editAdd1">Add 1</label>
+                                                <label for="editAdd1">Address Line 1</label>
                                                 <input type="text" class="form-control" id="editAdd1">
                                                 <div class="invalid-feedback" id="Add1_val"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editAdd2">Add 2</label>
+                                                <label for="editAdd2">Address Line 2</label>
                                                 <input type="text" class="form-control" id="editAdd2">
                                                 <div class="invalid-feedback" id="Add2_val"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editCity">City</label>
-                                                <input type="text" class="form-control" id="editCity">
-                                                <div class="invalid-feedback" id="city_val"></div>
+                                                <label for="editCountry">Country</label>
+                                                <input type="text" class="form-control" id="editCountry">
+                                                <div class="invalid-feedback" id="Country_val"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="editState">State</label>
@@ -982,14 +981,14 @@
                                                 <div class="invalid-feedback" id="state_val"></div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="editCity">City</label>
+                                                <input type="text" class="form-control" id="editCity">
+                                                <div class="invalid-feedback" id="city_val"></div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="editPincode">Pincode</label>
                                                 <input type="text" class="form-control" id="editPincode">
                                                 <div class="invalid-feedback" id="pincode_val"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="editCountry">Country</label>
-                                                <input type="text" class="form-control" id="editCountry">
-                                                <div class="invalid-feedback" id="Country_val"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="editGstCode">GST State Code</label>
@@ -1001,7 +1000,6 @@
                                                 <input type="text" class="form-control" id="editGstNo">
                                                 <div class="invalid-feedback" id="gstNo_val"></div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label for="editStatus">Status</label>
                                                 <select class="form-control" id="editStatus" required>
