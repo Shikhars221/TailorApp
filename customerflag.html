@@ -165,7 +165,7 @@
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="product.html">Product</a>
                         <a class="collapse-item" href="product_group.html">Product Group</a>
-                        <a class="collapse-item">Area</a>
+                        <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         <a class="collapse-item">City</a>
                         <a class="collapse-item">Client</a>
@@ -176,15 +176,15 @@
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
                         <a class="collapse-item active" href="customerflag.html">Customer Flag</a>
-                        <a class="collapse-item">Designation</a>
+                        <!-- <a class="collapse-item">Designation</a> -->
                         <a class="collapse-item">Process</a>
                         <a class="collapse-item" href="Role.html">Role</a>
                         <a class="collapse-item">State</a>
-                        <a class="collapse-item">Style Additional Parameter</a>
-                        <a class="collapse-item">Style Parameter Master</a>
-                        <a class="collapse-item">Style Rate Chart</a>
+                        <a class="collapse-item" href="user.html">User</a>
+                        <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
+                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
                         <a class="collapse-item">User</a>
-                        <a class="collapse-item">User Rights</a>
+                        <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
             </li>
@@ -525,7 +525,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">
-                        Customer Flag
+                        Customer Tag
 
                     </h1>
                     <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -534,14 +534,14 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <button class="btn btn-primary ml-auto" style="float:right" onclick="openAddModal()">Add Customer Flags</button>
+                            <button class="btn btn-primary ml-auto" style="float:right" onclick="openAddModal()">Add Customer Tag</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Customer Flag Name</th>
+                                            <th>Customer Tag Name</th>
                                             <th>Status</th>
                                             <th style="width:5%">Actions</th>
                                         </tr>
@@ -663,7 +663,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addRoleModalLabel">Add Customer Flag</h5>
+                                        <h5 class="modal-title" id="addRoleModalLabel">Add Customer Tag</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -671,7 +671,7 @@
                                     <div class="modal-body">
                                         <form id="addRoleForm">
                                             <div class="form-group">
-                                                <label for="addRoleName">Falg Name</label>
+                                                <label for="addRoleName">Customer Tag Name</label>
                                                 <input type="text" class="form-control" id="addRoleName" required>
                                                 <div class="invalid-feedback" id="addcustomerFlagError">
                                                     Name cannot be empty.
@@ -705,7 +705,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editRoleModalLabel">Edit Customer Flag</h5>
+                                        <h5 class="modal-title" id="editRoleModalLabel">Edit Customer Tag</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -713,7 +713,7 @@
                                     <div class="modal-body">
                                         <form id="editRoleForm">
                                             <div class="form-group">
-                                                <label for="editRoleName">Customer Flag Name</label>
+                                                <label for="editRoleName">Customer Tag Name</label>
                                                 <input type="text" class="form-control" id="editRoleName" required>
                                                 <div class="invalid-feedback" id="editcustomerFlagError">
                                                     Name cannot be empty.
@@ -747,13 +747,13 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Delete Product Group</h5>
+                                        <h5 class="modal-title" id="deleteModalLabel">Delete Customer Tag</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete this Customer Flag?
+                                        Are you sure you want to delete this Customer Tag?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -962,7 +962,7 @@
 
             // Validate Sales Name
             if (!flagName) {
-                flagGroup.setCustomValidity("Please enter a Flag Name.");
+                flagGroup.setCustomValidity("Please enter a Customer Tag.");
                 flagGroup.classList.add("is-invalid");
                 isValid = false;
             }
@@ -1038,19 +1038,19 @@
             const statusValue = status.value.trim();
 
             if (!customerNameValue) {
-                customerFlag.setCustomValidity("Please enter a Customer Flag Name.");
+                customerFlag.setCustomValidity("Please enter a Customer Tag Name.");
                 customerFlag.classList.add("is-invalid");
-                customerElement.innerHTML = "Please enter a Customer Flag Name.";
+                customerElement.innerHTML = "Please enter a Customer Tag Name.";
                 isValid = false;
             } else if (customerNameValue.length > 30) {
-                customerFlag.setCustomValidity("Customer Flag Name cannot be more than 30 characters.");
+                customerFlag.setCustomValidity("Customer Tag Name cannot be more than 30 characters.");
                 customerFlag.classList.add("is-invalid");
-                customerElement.innerHTML = "Customer Flag Name cannot be more than 30 characters.";
+                customerElement.innerHTML = "Customer Tag Name cannot be more than 30 characters.";
                 isValid = false;
             } else if (isDuplicateValue(customerNameValue)) {
-                customerFlag.setCustomValidity("Customer Flag Name already exists in the table.");
+                customerFlag.setCustomValidity("Customer Tag Name already exists in the table.");
                 customerFlag.classList.add("is-invalid");
-                customerElement.innerHTML = "Customer Flag Name already exists in the table.";
+                customerElement.innerHTML = "Customer Tag Name already exists in the table.";
                 isValid = false;
             } else {
                 customerFlag.setCustomValidity("");

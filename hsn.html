@@ -154,7 +154,7 @@
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="product.html">Product</a>
                         <a class="collapse-item" href="product_group.html">Product Group</a>
-                        <a class="collapse-item">Area</a>
+                        <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         <a class="collapse-item">City</a>
                         <a class="collapse-item">Client</a>
@@ -165,15 +165,15 @@
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
                         <a class="collapse-item" href="customerflag.html">Customer Flag</a>
-                        <a class="collapse-item">Designation</a>
+                        <!-- <a class="collapse-item">Designation</a> -->
                         <a class="collapse-item">Process</a>
                         <a class="collapse-item" href="Role.html">Role</a>
                         <a class="collapse-item">State</a>
-                        <a class="collapse-item">Style Additional Parameter</a>
-                        <a class="collapse-item">Style Parameter Master</a>
-                        <a class="collapse-item">Style Rate Chart</a>
+                        <a class="collapse-item" href="user.html">User</a>
+                        <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
+                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
                         <a class="collapse-item">User</a>
-                        <a class="collapse-item">User Rights</a>
+                        <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
             </li>
@@ -530,7 +530,7 @@
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0" data-paging='false'>
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>HSN Code</th>
+                                            <th>HSN/SAC Code</th>
                                             <th>Description</th>
                                             <th style="width:30%">GST Details</th>
                                             <th style="width:10%">Action</th>
@@ -579,7 +579,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addModalLabel">Add HSN</h5>
+                                        <h5 class="modal-title" id="addModalLabel">Add HSN/SAC Code</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -587,7 +587,7 @@
                                     <div class="modal-body">
                                         <form id="hsnForm">
                                             <div class="form-group">
-                                                <label for="addSalesName">HSN Code</label>
+                                                <label for="addSalesName">HSN/SAC Code</label>
                                                 <input type="text" class="form-control" id="hsnCode" required maxlength="30">
                                                 <div class="invalid-feedback">
                                                     Name must be at least 30 characters long, and unique.
@@ -664,7 +664,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel">Edit HSN</h5>
+                                        <h5 class="modal-title" id="editModalLabel">Edit HSN/SAC Code</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -672,7 +672,7 @@
                                     <div class="modal-body">
                                         <form id="editHsnForm">
                                             <div class="form-group">
-                                                <label for="editHsnCode">HSN Code</label>
+                                                <label for="editHsnCode">HSN/SAC Code</label>
                                                 <input type="text" class="form-control" id="editHsnCode" required maxlength="30">
                                             </div>
                                             <div class="form-group">

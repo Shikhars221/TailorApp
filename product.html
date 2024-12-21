@@ -138,7 +138,7 @@
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item active" href="product.html">Product</a>
                         <a class="collapse-item" href="product_group.html">Product Group</a>
-                        <a class="collapse-item">Area</a>
+                        <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         <a class="collapse-item">City</a>
                         <a class="collapse-item">Client</a>
@@ -149,15 +149,15 @@
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
                         <a class="collapse-item" href="customerflag.html">Customer Flag</a>
-                        <a class="collapse-item">Designation</a>
+                        <!-- <a class="collapse-item">Designation</a> -->
                         <a class="collapse-item">Process</a>
                         <a class="collapse-item" href="Role.html">Role</a>
                         <a class="collapse-item">State</a>
-                        <a class="collapse-item">Style Additional Parameter</a>
-                        <a class="collapse-item">Style Parameter Master</a>
-                        <a class="collapse-item">Style Rate Chart</a>
+                        <a class="collapse-item" href="user.html">User</a>
+                        <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
+                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
                         <a class="collapse-item">User</a>
-                        <a class="collapse-item">User Rights</a>
+                        <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
             </li>
@@ -498,7 +498,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">
-                        Product Charges (<span id="rowCount">0</span>)
+                        Product Master (<span id="rowCount">0</span>)
 
                     </h1>
                     <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -511,7 +511,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Product Name</th>
@@ -1220,6 +1220,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="addProductDesc">Description</label>
+                                                <input type="text" class="form-control" id="addProductDesc" required>
+                                                <div class="invalid-feedback" id="productDesc_message">
+                                                    Product Description cannot exceed 1000 characters.
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="addStatus">Status</label>
                                                 <select class="form-control" id="addProductStatus" required>
                                                     <option value="" selected disabled>Select</option>
@@ -1287,6 +1294,14 @@
                                                     Please select a Status.
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="editProductDesc">Description</label>
+                                                <input type="text" class="form-control" id="editProductDesc" required>
+                                                <div class="invalid-feedback" id="edit_productDesc_message">
+                                                    Product Description cannot exceed 1000 characters.
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label for="editProductStatus">Status</label>
                                                 <select class="form-control" id="editProductStatus" required>
@@ -1414,10 +1429,10 @@
             const productGroup = document.getElementById('addProductGroup').value.trim();
             const hsnSacCode = document.getElementById('addHsnSacCode').value.trim();
             const status = document.getElementById('addProductStatus').value.trim();
-
+            const desc = document.getElementById('addProductDesc').value.trim();
             // Arrays for validation function
-            const fieldArray = ['addProductName', 'addProductGroup', 'addHsnSacCode', 'addProductStatus'];
-            const messageArray = ['product_message', 'productgroup_message', 'hsn_message', 'status_message'];
+            const fieldArray = ['addProductName', 'addProductGroup', 'addHsnSacCode', 'addProductStatus', 'addProductDesc'];
+            const messageArray = ['product_message', 'productgroup_message', 'hsn_message', 'status_message', 'productDesc_message'];
 
             // Check validation
             if (checkValidation(fieldArray, messageArray) && !isDuplicateValue(productName)) {
@@ -1462,6 +1477,8 @@
             document.getElementById('addProductGroup').value = '';
             document.getElementById('addHsnSacCode').value = '';
             document.getElementById('addProductStatus').selectedIndex = 0;
+            document.getElementById('addProductDesc').value = '';
+            
         }
 
         function updateRowCount() {
@@ -1498,8 +1515,8 @@
 
         function saveProductChanges() {
 
-            const fieldArray = ['editProductName', 'editProductGroup', 'editHsnSacCode', 'editProductStatus'];
-            const messageArray = ['edit_product_message', 'edit_product_group_message', 'edit_hsn_message', 'edit_status_message'];
+            const fieldArray = ['editProductName', 'editProductGroup', 'editHsnSacCode', 'editProductStatus', 'editProductDesc'];
+            const messageArray = ['edit_product_message', 'edit_product_group_message', 'edit_hsn_message', 'edit_status_message', 'edit_productDesc_message'];
 
             // Check validation
             if (checkValidation(fieldArray, messageArray) && !isDuplicateValue(productName)) {
@@ -1530,21 +1547,23 @@
         }
 
         function checkValidation(productGroupArray, statusArray) {
-            const [productId, productGroupId, hsnId, statusId] = productGroupArray;
-            const [productMessage, productGroupMessage, hsnMessage, statusMessage] = statusArray;
+            const [productId, productGroupId, hsnId, statusId, desc] = productGroupArray;
+            const [productMessage, productGroupMessage, hsnMessage, statusMessage, descmessage] = statusArray;
 
             const productElement = document.getElementById(productId);
             const productGroupElement = document.getElementById(productGroupId);
             const hsnElement = document.getElementById(hsnId);
             const statusElement = document.getElementById(statusId);
+            const descElement = document.getElementById(desc);
 
             const productMessageElement = document.getElementById(productMessage);
             const productGroupMessageElement = document.getElementById(productGroupMessage);
             const hsnMessageElement = document.getElementById(hsnMessage);
             const statusMessageElement = document.getElementById(statusMessage);
+            const descMessageElement = document.getElementById(descmessage);
 
-            if (!productElement || !productGroupElement || !hsnElement || !statusElement ||
-                !productMessageElement || !productGroupMessageElement || !hsnMessageElement || !statusMessageElement) {
+            if (!productElement || !productGroupElement || !hsnElement || !statusElement || !descElement ||
+                !productMessageElement || !productGroupMessageElement || !hsnMessageElement || !statusMessageElement || !descMessageElement) {
                 console.error('One or more validation elements not found.');
                 return false;
             }
@@ -1553,6 +1572,7 @@
             const productGroup = productGroupElement.value.trim();
             const hsnSacCode = hsnElement.value.trim();
             const status = statusElement.value.trim();
+            const desccon = descElement.value.trim();
 
             let isValid = true;
 
@@ -1576,7 +1596,18 @@
                 productElement.classList.remove("is-invalid");
                 $(productMessageElement).html(""); // Clear previous message
             }
-
+            if(desccon.length > 1000)
+            {
+                descElement.setCustomValidity("Product Descruption cannot be more than 1000 characters.")
+                descElement.classList.add("is-invalid");
+                $(descMessageElement).html("Product Name cannot be more than 1000 characters.");
+                isValid = false;
+            }
+            else {
+                descElement.setCustomValidity("");
+                descElement.classList.remove("is-invalid");
+                $(descMessageElement).html(""); // Clear previous message
+            }
             if (!productGroup) {
                 productGroupElement.setCustomValidity("Please select a Product Group.");
                 productGroupElement.classList.add("is-invalid");
@@ -1628,7 +1659,7 @@
         }
 
         function resetValidation() {
-            const inputs = ['addProductName', 'addProductGroup', 'addHsnSacCode', 'addProductStatus'];
+            const inputs = ['addProductName', 'addProductGroup', 'addHsnSacCode', 'addProductStatus', 'addProductDesc'];
             inputs.forEach(id => {
                 const input = document.getElementById(id);
                 input.setCustomValidity("");

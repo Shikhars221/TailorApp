@@ -1,129 +1,118 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>RG Admin - Job Issue / Add</title>
-
-    <!-- Custom fonts for this template-->
+    <title>RG Admin 2 - View Details</title>
+    <!-- Include DataTables CSS from CDN -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<style>
-
-    
-    /* Adjust text size for table headers */
-    #dataTable thead th {
-        font-size: 14px; /* Adjust the font size as needed */
-    }
-
-    /* Adjust text size for table body cells */
-    #dataTable tbody td {
-        font-size: 12px; /* Adjust the font size as needed */
-    }
-    @media (max-width: 768px) {
-        .col-sm-8 {
-            margin-top: 2%;
-        
-        }
-    }
-    @media(min-width: 769px) {
-        .col-sm-8 {
-            max-width: 73%;
-        }
-    }
-    /* Override Bootstrap's .btn-secondary styles */
-    .btn-secondary {
-        background-color: white !important; /* Set background color */
-        color: #333 !important; /* Set text color */
-    }
-
-        /* Override Bootstrap's .btn-secondary focus and active styles */
-        .btn-secondary:focus,
-        .btn-secondary.focus,
-        .btn-secondary.active,
-        .btn-secondary:active,
-        .show > .btn-secondary.dropdown-toggle:focus {
-            background-color: white !important; /* Set background color */
-            color: #333 !important; /* Set text color */
-            box-shadow: none !important; /* Remove box shadow */
-            outline: none !important; /* Remove outline */
-        }
-
-        /* Ensure consistent appearance on hover */
-        .btn-secondary:hover {
-            background-color: white !important; /* Set hover background color */
-            color: #333 !important; /* Set hover text color */
-        }
-
-        /* Override Bootstrap's disabled state for .btn-secondary */
-        .btn-secondary:disabled {
-            background-color: white !important; /* Set background color */
-            color: #ccc !important; /* Adjust text color for disabled state */
-        }
-
-
-    .col-sm-4 {
-        max-width: 27%;
-        
-    }
-    .row gx-3 {
-    width:100%;
-    }
-
-    .custom-dropdown {
-        position: relative;
-    }
-
-        .custom-dropdown .dropdown-toggle {
-            width: 100%;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-            .custom-dropdown .dropdown-toggle:focus {
-                border-color: #80bdff;
-                outline: 0;
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-                
-            }
-
-        .custom-dropdown .dropdown-menu {
-            width: 100%;
-        }
-    .dropdown-toggle::after {
-        display: inline-block;
-        margin-left: .255em;
-        vertical-align: .255em;
-        content: "";
-        float: right;
-        border-top: .3em solid;
-        border-right: .3em solid transparent;
-        border-bottom: 0;
-        border-left: .3em solid transparent;
-    }
-    
-</style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include DataTables JS from CDN -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body id="page-top">
+    <style>
+        .dropdown-toggle::after {
+            display: none;
+        }
 
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+
+        .form-control.is-valid {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+
+        .dataTables_wrapper {
+            width: 99% !important;
+        }
+
+        /* Adjust the position of the search box */
+        .dataTables_filter {
+            float: right !important;
+            text-align: right !important;
+            margin-right: 20px !important;
+            /* Adjust margin as needed */
+        }
+
+        /* Ensure the table container is responsive */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        /* Adjust the spacing in pagination controls */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.3em 0.1em !important;
+            /* Reduce padding */
+            margin: 0 0.1em !important;
+            /* Reduce margin between buttons */
+            border: 1px solid transparent;
+            /* Remove border by default */
+            border-color: white !important;
+            box-shadow: none !important;
+            background: none !important;
+        }
+
+        /* Remove border on hover and focus of pagination controls */
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+        .dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+            border: none !important;
+            /* Remove border on hover and focus */
+            outline: none !important;
+            /* Remove outline on focus */
+            background-color: white !important;
+            /* Optional: Adjust background color on hover */
+            box-shadow: none !important;
+            background: none !important;
+        }
+
+        /* Ensure active pagination button does not have border */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            border: none !important;
+            /* Remove border from active button */
+            background: none !important;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .dropdown-menu {
+            min-width: auto;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        /* Adjust text size for table headers */
+        #dataTable thead th {
+            font-size: 14px;
+            /* Adjust the font size as needed */
+        }
+
+        /* Adjust text size for table body cells */
+        #dataTable tbody td {
+            font-size: 12px;
+            /* Adjust the font size as needed */
+        }
+    </style>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -155,16 +144,17 @@
 
             <!-- Heading -->
             <!--<div class="sidebar-heading">
-            Master
-        </div>-->
+                Master
+            </div>-->
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster"
-                   aria-expanded="true" aria-controls="collapseMaster">
+                    aria-expanded="true" aria-controls="collapseMaster">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Master</span>
                 </a>
-                <div id="collapseMaster" class="collapse" aria-labelledby="headingMaster" data-parent="#accordionSidebar">
+                <div id="collapseMaster" class="collapse" aria-labelledby="headingMaster"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="product.html">Product</a>
@@ -186,7 +176,7 @@
                         <a class="collapse-item">State</a>
                         <a class="collapse-item" href="user.html">User</a>
                         <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
-                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
+                        <a class="collapse-item active" href="rolewisemenu.html">Role Wise Menu Rights</a>
                         <a class="collapse-item">User</a>
                         <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
@@ -196,16 +186,16 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaction"
-                   aria-expanded="true" aria-controls="collapseUtilities">
+                    aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-money-bill"></i>
                     <span>Transaction</span>
                 </a>
-                <div id="collapseTransaction" class="collapse hide" aria-labelledby="headingTransactions"
-                     data-parent="#accordionSidebar">
+                <div id="collapseTransaction" class="collapse" aria-labelledby="headingTransactions"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
                         <a class="collapse-item">Bulk Order</a>
-                        <a class="collapse-item active" href="JobIssue.html">Job Issue</a>
+                        <a class="collapse-item" href="JobIssue.html">Job Issue</a>
                         <a class="collapse-item">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
@@ -215,12 +205,12 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKarigar"
-                   aria-expanded="true" aria-controls="collapseKarigar">
+                    aria-expanded="true" aria-controls="collapseKarigar">
                     <i class="fas fa-briefcase"></i>
                     <span>Karigar</span>
                 </a>
                 <div id="collapseKarigar" class="collapse" aria-labelledby="headingKarigar"
-                     data-parent="#accordionSidebar">
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item">Karigar Hisab</a>
                         <a class="collapse-item">Karigar View</a>
@@ -231,12 +221,12 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVoucher"
-                   aria-expanded="true" aria-controls="collapseVoucher">
+                    aria-expanded="true" aria-controls="collapseVoucher">
                     <i class="fas fa-scroll"></i>
                     <span>Voucher</span>
                 </a>
                 <div id="collapseVoucher" class="collapse" aria-labelledby="headingVoucher"
-                     data-parent="#accordionSidebar">
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item">Payment</a>
                         <a class="collapse-item">Reciept</a>
@@ -247,12 +237,12 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransfer"
-                   aria-expanded="true" aria-controls="collapseTransfer">
+                    aria-expanded="true" aria-controls="collapseTransfer">
                     <i class="fas fa-exchange-alt"></i>
                     <span>Transfer</span>
                 </a>
                 <div id="collapseTransfer" class="collapse" aria-labelledby="headingTransfer"
-                     data-parent="#accordionSidebar">
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item">Inward</a>
                         <a class="collapse-item">Outward</a>
@@ -263,12 +253,12 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
-                   aria-expanded="true" aria-controls="collapseReport">
+                    aria-expanded="true" aria-controls="collapseReport">
                     <i class="fas fa-file-alt"></i>
                     <span>Report</span>
                 </a>
                 <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
-                     data-parent="#accordionSidebar">
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item">Branch Wise Order</a>
                         <a class="collapse-item">Customer Ledger</a>
@@ -287,12 +277,12 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConversation"
-                   aria-expanded="true" aria-controls="collapseConversation">
+                    aria-expanded="true" aria-controls="collapseConversation">
                     <i class="fas fa-comment"></i>
                     <span>Conversation</span>
                 </a>
                 <div id="collapseConversation" class="collapse" aria-labelledby="headingConversation"
-                     data-parent="#accordionSidebar">
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item">BarCode Conversation</a>
                     </div>
@@ -309,7 +299,6 @@
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
-        
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -324,10 +313,11 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
+                                aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -342,17 +332,17 @@
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                 aria-labelledby="searchDropdown">
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                               placeholder="Search for..." aria-label="Search"
-                                               aria-describedby="basic-addon2">
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -366,14 +356,14 @@
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="alertsDropdown">
+                                aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
@@ -417,21 +407,20 @@
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="messagesDropdown">
+                                aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                             alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -439,13 +428,12 @@
                                             Hi there! I am wondering if you can help me with a
                                             problem I've been having.
                                         </div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        <div class="small text-gray-500">Emily Fowler � 58m</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                             alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -453,13 +441,12 @@
                                             I have the photos that you ordered last month, how
                                             would you like them sent to you?
                                         </div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        <div class="small text-gray-500">Jae Chun � 1d</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                             alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -467,13 +454,13 @@
                                             Last month's report looks great, I am very happy with
                                             the progress so far, keep up the good work!
                                         </div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        <div class="small text-gray-500">Morgan Alvarez � 2d</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                             alt="...">
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -481,7 +468,7 @@
                                             Am I a good boy? The reason I ask is because someone
                                             told me that people say this to all dogs, even if they aren't good...
                                         </div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        <div class="small text-gray-500">Chicken the Dog � 2w</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -493,14 +480,13 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nirav Shah</span>
-                                <img class="img-profile rounded-circle"
-                                     src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -529,241 +515,213 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Transaction - Job Issue / Add</h1>
+                    <h1 class="h3 mb-2 text-gray-800">
+                        Role Wise Menu Rights
 
-                </div>
-                <!-- /.container-fluid -->
-                <div class="container-fluid">
-                    <div class="row gx-3">
-                        <div class="col-sm-4">
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-header">
-                                    Filter
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item" id="li1">
-                                        Process
-                                        <div class="custom-dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="processDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:38px">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="processDropdown">
-
-                                                <a class="dropdown-item" href="#">Alter</a>
-                                                <a class="dropdown-item" href="#">Cutting</a>
-                                                <a class="dropdown-item" href="#">Rework</a>
-                                                <a class="dropdown-item" href="#">Stitching</a>
-                                                <a class="dropdown-item" href="#">Trial</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item" id="li2">
-                                        Job Worker
-                                        <div class="custom-dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="jobWorkerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:38px">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="processDropdown">
-
-                                                <a class="dropdown-item" href="#">Haru Safari</a>
-                                                <a class="dropdown-item" href="#">Javed Safari</a>
-                                                <a class="dropdown-item" href="#">Kausar</a>
-                                                <a class="dropdown-item" href="#">Nadir</a>
-                                                <a class="dropdown-item" href="#">Altaf Coat Maker</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        BarCode
-                                        <div class="custom-dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="processDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:38px">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="barCodeDropdown">
-
-                                                <a class="dropdown-item" href="#"> </a>
-                                                <a class="dropdown-item" href="#">  </a>
-                                                <a class="dropdown-item" href="#">  </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div>
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#jobIssue" role="tab" aria-controls="JobIssue" aria-selected="true">Job Issue</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#jobRecieve" role="tab" aria-controls="JObReceive" aria-selected="false">Job Receive</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="jobIssue" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                Job Issue Details
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>BarCode</th>
-                                                                <th>Apparel</th>
-                                                                <th>Branch</th>
-                                                                <th>Order No.</th>
-                                                                <th>Trial Dt.</th>
-                                                                <th>Makeone Dt.</th>
-                                                                <th>Factory Dt.</th>
-                                                                <th>Job Worker</th>
-                                                                <th>Status</th>
-                                                                <th>Remove</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div style="margin-top:2%">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            Pending Jobs
-                                                            <div class="table-responsive">
-                                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>BarCode</th>
-                                                                            <th>Apparel</th>
-                                                                            <th>Process</th>
-                                                                            <th>Order No.</th>
-                                                                            <th>Created Dt.</th>
-                                                                            <th>Status</th>
-
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="tab-pane fade" id="jobRecieve" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div style="margin-top:2%">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    Pending Jobs
-                                                    <div class="table-responsive">
-                                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>BarCode</th>
-                                                                    <th>Apparel</th>
-                                                                    <th>Branch</th>
-                                                                    <th>Order No.</th>
-                                                                    <th>Trial Dt.</th>
-                                                                    <th>Makeone Dt.</th>
-                                                                    <th>Factory Dt.</th>
-                                                                    <th>Process</th>
-                                                                    <th>Job Worker</th>
-                                                                    <th>Remove</th>
-
-                                                                </tr>
-                                                            </thead>
-
-                                                            <tbody>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
+                    </h1>
+                    <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                    For more information about DataTables, please visit the <a target="_blank"
+                        href="https://datatables.net">official DataTables documentation</a>.</p>-->
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="d-flex align-items-center">
+                                <!-- Dropdown -->
+                                <div class="form-group mb-0" style="flex: 1;">
+                                    <label for="roleSelect">Select Role</label>
+                                    <select class="form-control" id="roleSelect" required style="width: 20%;" onchange="enableCheckboxes()">
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="admin">SuperAdmin</option>
+                                        <option value="manager">Admin</option>
+                                        <option value="editor">Editor</option>
+                                        <option value="viewer">Viewer</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="role_val">
+                                        Please select a role.
                                     </div>
                                 </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <!-- End of Main Content -->
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white" style="margin-top:10%">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2020</span>
+                                <!-- Save Rights Button -->
+                                <button class="btn btn-primary ml-3" onclick="saveRights()">Save Rights</button>
                             </div>
                         </div>
-                    </footer>
-                    <!-- End of Footer -->
-
-                </div>
-                <!-- End of Content Wrapper -->
-
-            </div>
-            <!-- End of Page Wrapper -->
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%"
+                                    cellspacing="0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Page</th>
+                                            <th>View</th>
+                                            <th>Add</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Product</td>
+                                            <td><input type="checkbox" class="checkbox" name="dashboard_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="dashboard_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="dashboard_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="dashboard_delete" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product Group</td>
+                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Branch</td>
+                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>User</td>
+                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sales Price List</td>
+                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>HSN/SAC</td>
+                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer Group</td>
+                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
+                <!--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
+
             </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        </div>
+        <!-- /.container-fluid -->
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    </div>
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2020</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">�</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <script>
-                $(document).ready(function () {
-                    // Show/hide dropdowns based on tab change
-                    $('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                        var target = $(e.target).attr("href"); // activated tab
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                        // Hide dropdown1 and dropdown2 if Job Receive tab is active
-                        if (target === "#jobRecieve") {
-                            $('#li1').hide();
-                            $('#li2').hide();
-                        } else {
-                            $('#li1').show();
-                            $('#li2').show();
-                        }
-                    });
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                    
-                });
-                
-            </script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script>
+        let currentRow; // Variable to store the current row being edited or deleted
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let totalRowCount = document.querySelectorAll('#dataTable tbody tr').length;
+        });
+
+    // Enable checkboxes when a role is selected and hide validation
+    function enableCheckboxes() {
+        const roleSelect = document.getElementById('roleSelect');
+        const feedback = document.getElementById('role_val');
+        const checkboxes = document.querySelectorAll('.checkbox');
+
+        if (roleSelect.value) {
+            // Enable checkboxes
+            checkboxes.forEach(checkbox => checkbox.disabled = false);
+
+            // Hide validation message
+            roleSelect.classList.remove('is-invalid');
+            feedback.style.display = 'none';
+        }
+    }
+
+    // Save rights and validate role selection
+    function saveRights() {
+        const roleSelect = document.getElementById('roleSelect');
+        const feedback = document.getElementById('role_val');
+        
+        // Check if a role is selected
+        if (!roleSelect.value) {
+            roleSelect.classList.add('is-invalid');
+            feedback.style.display = 'block';
+        } else {
+            roleSelect.classList.remove('is-invalid');
+            feedback.style.display = 'none';
+            alert('Rights saved successfully!');
+        }
+    }
+
+    </script>
 
 </body>
 

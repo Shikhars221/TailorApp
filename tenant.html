@@ -144,7 +144,7 @@
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="product.html">Product</a>
                         <a class="collapse-item" href="product_group.html">Product Group</a>
-                        <a class="collapse-item">Area</a>
+                        <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item active" href="branch.html">Branch</a>
                         <a class="collapse-item">City</a>
                         <a class="collapse-item">Client</a>
@@ -155,15 +155,14 @@
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
                         <a class="collapse-item" href="customerflag.html">Customer Flag</a>
-                        <a class="collapse-item">Designation</a>
+                        <!-- <a class="collapse-item">Designation</a> -->
                         <a class="collapse-item">Process</a>
                         <a class="collapse-item" href="Role.html">Role</a>
                         <a class="collapse-item">State</a>
-                        <a class="collapse-item">Style Additional Parameter</a>
-                        <a class="collapse-item">Style Parameter Master</a>
-                        <a class="collapse-item">Style Rate Chart</a>
-                        <a class="collapse-item">User</a>
-                        <a class="collapse-item">User Rights</a>
+                        <a class="collapse-item" href="user.html">User</a>
+                        <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
+                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
+                        <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
             </li>
@@ -1030,8 +1029,8 @@
 
             document.querySelector('#dataTable tbody').insertAdjacentHTML('beforeend', newRow);
             $('#addModal').modal('hide');
-           // totalRowCount++;
-           // document.getElementById('rowCount').innerText = totalRowCount;
+            // totalRowCount++;
+            // document.getElementById('rowCount').innerText = totalRowCount;
             clearModel();
         }
 
@@ -1182,7 +1181,7 @@
             branchElement.reportValidity();
             statusElement.reportValidity();
             branchCodeElement.reportValidity();
-            
+
             return isValid;
         }
 

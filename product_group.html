@@ -145,7 +145,7 @@
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="product.html">Product</a>
                         <a class="collapse-item active" href="product_group.html">Product Group</a>
-                        <a class="collapse-item">Area</a>
+                        <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         <a class="collapse-item">City</a>
                         <a class="collapse-item">Client</a>
@@ -156,15 +156,15 @@
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
                         <a class="collapse-item" href="customerflag.html">Customer Flag</a>
-                        <a class="collapse-item">Designation</a>
+                        <!-- <a class="collapse-item">Designation</a> -->
                         <a class="collapse-item">Process</a>
                         <a class="collapse-item" href="Role.html">Role</a>
                         <a class="collapse-item">State</a>
-                        <a class="collapse-item">Style Additional Parameter</a>
-                        <a class="collapse-item">Style Parameter Master</a>
-                        <a class="collapse-item">Style Rate Chart</a>
+                        <a class="collapse-item" href="user.html">User</a>
+                        <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
+                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
                         <a class="collapse-item">User</a>
-                        <a class="collapse-item">User Rights</a>
+                        <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
             </li>
@@ -505,7 +505,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">
-                        Product Group
+                        Product Group Master
                     </h1>
                     
                     <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -518,7 +518,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Product Group Name</th>
@@ -626,6 +626,13 @@
                                                     
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="addProductDesc">Description</label>
+                                                <input type="text" class="form-control" id="addProductDesc" required>
+                                                <div class="invalid-feedback" id="productDesc_message">
+                                                    Product group Description cannot exceed 1000 characters.
+                                                </div>
+                                            </div>
                                             <div>
                                                 <label for="addStatus">Status</label>
                                                 <select class="form-control" id="addStatus" required>
@@ -665,7 +672,13 @@
                                                 <input type="text" class="form-control" id="editProductGroup" required>
                                                 <div class="invalid-feedback" id="editproduct_val"></div>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label for="editProductDesc">Description</label>
+                                                <input type="text" class="form-control" id="editProductDesc" required>
+                                                <div class="invalid-feedback" id="edit_productDesc_message">
+                                                    Product group Description cannot exceed 1000 characters.
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="editStatus">Status</label>
                                                 <select class="form-control" id="editStatus" required>
@@ -806,9 +819,10 @@
         function addRow() {
             const productGroup = document.getElementById('addProductGroup').value;
             const status = document.getElementById('addStatus').value;
+            const desc = document.getElementById('addProductDesc').value.trim();
 
-            const productGroupArray = ['addProductGroup', 'product_val'];
-            const statusArray = ['addStatus', 'status_val'];
+            const productGroupArray = ['addProductGroup', 'product_val', 'addProductDesc'];
+            const statusArray = ['addStatus', 'status_val', 'productDesc_message'];
 
             if (!checkValidation(productGroupArray, statusArray)) {
                 return;
@@ -848,16 +862,18 @@
     // Clear previous validation messages and states
     document.getElementById('editProductGroup').classList.remove("is-invalid");
     document.getElementById('editStatus').classList.remove("is-invalid");
+    document.getElementById('editProductDesc').classList.remove("is-invalid");
+
     document.getElementById('editproduct_val').innerHTML = "";
     document.getElementById('editstatus_val').innerHTML = "";
-
+    document.getElementById('edit_productDesc_message').innerHTML = "";
     // Show the modal
     $('#editModal').modal('show');
 }
 
 
         function saveChanges() {
-            const productGroupArray = ['editProductGroup', 'editproduct_val'];
+            const productGroupArray = ['editProductGroup', 'editproduct_val', 'addProductDesc', 'productDesc_message'];
             const statusArray = ['editStatus', 'editstatus_val'];
 
             // Perform validation
@@ -901,19 +917,22 @@
 
         function clearModel() {
             document.getElementById('addProductGroup').value = '';
+            document.getElementById('addProductDesc').value = '';
             document.getElementById('addStatus').selectedIndex = 0;
             //document.getElementById('editSalesPrice').value = '';
             //document.getElementById('editStatus').selectedIndex = 0;
         }
 
         function checkValidation(productGroupArray, statusArray) {
-            const [productGroupId, productGroupMessage] = productGroupArray;
+            const [productGroupId, productGroupMessage, descval, descmessage] = productGroupArray;
             const [statusId, statusMessage] = statusArray;
 
             const productGroupElement = document.getElementById(productGroupId);
             const statusElement = document.getElementById(statusId);
             const ProductMessage = document.getElementById(productGroupMessage);
             const status_Message = document.getElementById(statusMessage);
+            const descelement = document.getElementById(descval);
+            const descvalmessage = document.getElementById(descmessage);
 
             let isValid = true;
 
@@ -924,6 +943,7 @@
 
             const productGroupName = productGroupElement.value.trim();
             const status = statusElement.value.trim();
+            const desc = descelement.value.trim();
 
             if (!productGroupName) {
                 productGroupElement.setCustomValidity("Please enter a Product Group Name.");
@@ -945,7 +965,18 @@
                 productGroupElement.classList.remove("is-invalid");
                 $(ProductMessage).html("");
             }
-
+            if(desc.length > 1000)
+            {
+                descelement.setCustomValidity("Product Group Description cannot be more than 50 characters.");
+                descelement.classList.add("is-invalid");
+                $(descvalmessage).html("Product Group Name cannot be more than 50 characters.");
+                isValid = false;
+            }
+            else {
+                descelement.setCustomValidity("");
+                descelement.classList.remove("is-invalid");
+                $(descvalmessage).html("");
+            }
             if (!status) {
                 statusElement.setCustomValidity("Please select a Status.");
                 statusElement.classList.add("is-invalid");
@@ -959,7 +990,7 @@
 
             productGroupElement.reportValidity();
             statusElement.reportValidity();
-
+            descelement.reportValidity();
             return isValid;
         }
 
