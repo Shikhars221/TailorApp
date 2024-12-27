@@ -153,8 +153,7 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Master</span>
                 </a>
-                <div id="collapseMaster" class="collapse" aria-labelledby="headingMaster"
-                    data-parent="#accordionSidebar">
+                <div id="collapseMaster" class="collapse" aria-labelledby="headingMaster" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="product.html">Product</a>
@@ -162,10 +161,10 @@
                         <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         
-                        <a class="collapse-item">Customer</a>
+                        <a class="collapse-item">Customer Tag</a>
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
-                        <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
+                        <a class="collapse-item" href="salespriceList.html">Sales Price List</a>
                         <a class="collapse-item" href="hsn.html">HSN/SAC Code</a>
                         <a class="collapse-item" href="tables.html">Orders</a>
                         <a class="collapse-item" href="customergroup.html">Customer Group</a>
@@ -196,7 +195,7 @@
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
                         
                         <a class="collapse-item" href="JobIssue.html">Job Issue</a>
-                        <a class="collapse-item">Job Recieve</a>
+                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
                     </div>
@@ -545,73 +544,248 @@
                             </div>
                         </div>
                         
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="dataTable" width="100%"
-                                    cellspacing="0">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Page</th>
-                                            <th>View</th>
-                                            <th>Add</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Product</td>
-                                            <td><input type="checkbox" class="checkbox" name="dashboard_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="dashboard_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="dashboard_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="dashboard_delete" disabled></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Product Group</td>
-                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Branch</td>
-                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
-                                        </tr>
-                                        <tr>
-                                            <td>User</td>
-                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sales Price List</td>
-                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
-                                        </tr>
-                                        <tr>
-                                            <td>HSN/SAC</td>
-                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Customer Group</td>
-                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
-                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <div class="container-fluid">
+
+                        <div>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#master" role="tab" aria-controls="Master" aria-selected="true">Masters</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#transaction" role="tab" aria-controls="transaction" aria-selected="false">Job Receive</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="master" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div style="margin-top:2%">
+                                        <div class="card">
+                                            <div class="card-header"> 
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped" id="dataTableMaster" width="100%"
+                                                    cellspacing="0">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Page</th>
+                                                            <th>View</th>
+                                                            <th>Add</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                            <th>Audit</th>
+                                                            <th>Audit2</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Product</td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Product Group</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Branch</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>User</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sales Price List</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>HSN/SAC Code</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Customer Group</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="transaction" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div style="margin-top:2%">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped" id="dataTableTransaction" width="100%"
+                                                    cellspacing="0">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Page</th>
+                                                            <th>View</th>
+                                                            <th>Add</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                            <th>Audit</th>
+                                                            <th>Audit2</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Job Issue</td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Job Receive</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Transfer and Issue Interaction</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Branch Outward</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Branch Inward</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Customer Delivery</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sales Order</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sales Invoice</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Job Work Charges Invoice</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Job Worker Payment</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Barcode</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Date Update Module</td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_view" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_add" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_edit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="users_delete" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit" disabled></td>
+                                                            <td><input type="checkbox" class="checkbox" name="dashboard_Audit2" disabled></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
+                    </div>
+
+
+                        
                     </div>
 
                 </div>
@@ -720,6 +894,46 @@
             alert('Rights saved successfully!');
         }
     }
+
+    $(document).ready(function () {
+        // Function to toggle sidebar visibility
+        function toggleSidebar() {
+            $('#collapseMaster').toggleClass('show');
+
+        }
+
+        // Click event handler for sidebar toggle button
+        $('.navbar-toggler').on('click', function () {
+            toggleSidebar();
+        });
+
+        // Click event handler for document
+        $(document).on('click', function (e) {
+            // Check if sidebar is open and click is outside sidebar on smaller screens
+            if ($(window).width() < 768 && $('#collapseMaster').hasClass('show') && !$(e.target).closest('#collapseMaster').length) {
+                toggleSidebar(); // Close sidebar if open and clicked outside
+            }
+        });
+
+        // Function to initialize sidebar state
+        function initSidebar() {
+            if ($(window).width() < 768) {
+                $('#collapseMaster').removeClass('show'); // Hide sidebar on small screens initially
+            } else {
+                $('#collapseMaster').addClass('show'); // Show sidebar on larger screens initially
+            }
+        }
+
+        // Initialize sidebar state on page load
+        initSidebar();
+
+
+        // Handle window resize events to adjust sidebar behavior
+        $(window).on('resize', function () {
+            initSidebar();
+        });
+
+    });
 
     </script>
 

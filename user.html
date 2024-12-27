@@ -147,7 +147,7 @@
                         <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         
-                        <a class="collapse-item">Customer</a>
+                        <a class="collapse-item">Customer Tag</a>
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                         <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
@@ -162,6 +162,7 @@
                         <a class="collapse-item active" href="user.html">User</a>
                         <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
                         <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
+                        <a class="collapse-item" href="customeraddress.html">Customer Address</a>
                         <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
@@ -180,7 +181,7 @@
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
                         
                         <a class="collapse-item" href="JobIssue.html">Job Issue</a>
-                        <a class="collapse-item">Job Recieve</a>
+                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
                     </div>
@@ -518,10 +519,10 @@
                                     cellspacing="0">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>User Name</th>
+                                            <th>User</th>
                                             <th>Login Id</th>
                                             <th>Job Worker</th>
-                                            <th>Contact Number</th>
+                                            <th>Contact (Mobile)</th>
                                             <th>Email</th>
                                             <th>Status</th>
                                             <th style="width:5%">Actions</th>
@@ -594,7 +595,7 @@
                                         <div class="modal-body">
                                             <form id="addUserForm">
                                                 <div class="form-group">
-                                                    <label for="addUserName">User Name</label>
+                                                    <label for="addUserName">User</label>
                                                     <input type="text" class="form-control" id="addUserName" required>
                                                     <div class="invalid-feedback" id="username_val"></div>
                                                 </div>
@@ -620,9 +621,19 @@
                                                     <div class="invalid-feedback" id="email_val"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="addContact">Contact</label>
+                                                    <label for="addContact">Contact (Mobile)</label>
                                                     <input type="text" class="form-control" id="addContact" required>
                                                     <div class="invalid-feedback" id="contact_val"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="addPassword">Password</label>
+                                                    <input type="password" class="form-control" id="addPassword" required>
+                                                    <div class="invalid-feedback" id="password_val"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="addConfirmPassword">Confirm Password</label>
+                                                    <input type="password" class="form-control" id="addConfirmPassword" required>
+                                                    <div class="invalid-feedback" id="confirmPassword_val"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="addStatus">Status</label>
@@ -656,7 +667,7 @@
                                     <div class="modal-body">
                                         <form id="editUserForm">
                                             <div class="form-group">
-                                                <label for="editUserName">User Name</label>
+                                                <label for="editUserName">User</label>
                                                 <input type="text" class="form-control" id="editUserName" required>
                                                 <div class="invalid-feedback" id="editUsername_val"></div>
                                             </div>
@@ -682,7 +693,7 @@
                                                 <div class="invalid-feedback" id="editEmail_val"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editContact">Contact</label>
+                                                <label for="editContact">Contact (Mobile)</label>
                                                 <input type="text" class="form-control" id="editContact" required>
                                                 <div class="invalid-feedback" id="editContact_val"></div>
                                             </div>
@@ -960,8 +971,8 @@
         }
 
         function addRow() {
-            const addUserArray = ['addUserName', 'addLoginID', 'addJobWorker', 'addStatus'];
-            const addMsgArray = ['username_val', 'Login_val', 'jobWorker_val', 'status_val'];
+            const addUserArray = ['addUserName', 'addLoginID', 'addJobWorker', 'addStatus', 'addPassword', 'addConfirmPassword'];
+            const addMsgArray = ['username_val', 'Login_val', 'jobWorker_val', 'status_val', 'password_val', 'confirmPassword_val'];
 
             if (!checkValidation(addUserArray, addMsgArray, false)) {
                 return;
@@ -972,6 +983,8 @@
             const email = document.getElementById('addEmail').value;
             const contact = document.getElementById('addContact').value;
             const status = document.getElementById('addStatus').value;
+            const password = document.getElementById('addPassword').value;
+            const confirmPassword = document.getElementById('addConfirmPassword').value;
 
             const newRow = `<tr>
                 <td>${userName}</td>
@@ -1057,24 +1070,29 @@
             document.getElementById('editLoginID').value = '';
             document.getElementById('editJobWorker').value = '';
             document.getElementById('editStatus').selectedIndex = 0;
+            
         }
-
+        
         function checkValidation(userArray, messageArray, isEdit = false) {
-            const [userName, loginID, jobWorker, status] = userArray;
-            const [userMessage, loginMessage, jobWorkerMessage, statusMessage] = messageArray;
+            const [userName, loginID, jobWorker, status, password, confirmpassword] = userArray;
+            const [userMessage, loginMessage, jobWorkerMessage, statusMessage, passwordmsg, confirmpasswordmsg] = messageArray;
 
             const userElement = document.getElementById(userName);
             const loginElement = document.getElementById(loginID);
             const jobWorkerElement = document.getElementById(jobWorker);
             const statusElement = document.getElementById(status);
+            const passwordElement = document.getElementById(password);
+            const confirmpasswordElement = document.getElementById(confirmpassword);
             const userMessageElement = document.getElementById(userMessage);
             const loginMessageElement = document.getElementById(loginMessage);
             const jobWorkerMessageElement = document.getElementById(jobWorkerMessage);
             const statusMessageElement = document.getElementById(statusMessage);
+            const passwordMessageElement = document.getElementById(passwordmsg);
+            const confirmPasswordMessageElement = document.getElementById(confirmpasswordmsg);
 
             let isValid = true;
 
-            if (!userElement || !loginElement || !jobWorkerElement || !statusElement) {
+            if (!userElement || !loginElement || !jobWorkerElement || !statusElement || !passwordElement || !confirmpasswordElement) {
                 console.error('Element not found for validation.');
                 return false;
             }
@@ -1083,17 +1101,19 @@
             const loginIDValue = loginElement.value.trim();
             const jobWorkerValue = jobWorkerElement.value.trim();
             const statusValue = statusElement.value.trim();
+            const passwordValue = passwordElement.value.trim();
+            const confirmPasswordValue = confirmpasswordElement.value.trim();
 
             // Validate User Name
             if (!userNameValue) {
-                userElement.setCustomValidity("Please enter a User Name.");
+                userElement.setCustomValidity("Please enter a User.");
                 userElement.classList.add("is-invalid");
-                $(userMessageElement).html("Please enter a User Name.");
+                $(userMessageElement).html("Please enter a User.");
                 isValid = false;
             } else if (userNameValue.length > 50) {
-                userElement.setCustomValidity("User Name cannot be more than 50 characters.");
+                userElement.setCustomValidity("User cannot be more than 50 characters.");
                 userElement.classList.add("is-invalid");
-                $(userMessageElement).html("User Name cannot be more than 50 characters.");
+                $(userMessageElement).html("User cannot be more than 50 characters.");
                 isValid = false;
             } else {
                 userElement.setCustomValidity("");
@@ -1145,6 +1165,42 @@
                 statusElement.setCustomValidity("");
                 statusElement.classList.remove("is-invalid");
                 $(statusMessageElement).html("");
+            }
+            //validate password
+            if (!isEdit) {
+                // Validate Password
+                if (!passwordValue) {
+                    passwordElement.setCustomValidity("Please enter a Password.");
+                    passwordElement.classList.add("is-invalid");
+                    $(passwordMessageElement).html("Please enter a Password.");
+                    isValid = false;
+                } else if (passwordValue.length < 8) {
+                    passwordElement.setCustomValidity("Password must be at least 8 characters long.");
+                    passwordElement.classList.add("is-invalid");
+                    $(passwordMessageElement).html("Password must be at least 8 characters long.");
+                    isValid = false;
+                } else {
+                    passwordElement.setCustomValidity("");
+                    passwordElement.classList.remove("is-invalid");
+                    $(passwordMessageElement).html("");
+                }
+
+                // Validate Confirm Password
+                if (!confirmPasswordValue) {
+                    confirmpasswordElement.setCustomValidity("Please confirm your Password.");
+                    confirmpasswordElement.classList.add("is-invalid");
+                    $(confirmPasswordMessageElement).html("Please confirm your Password.");
+                    isValid = false;
+                } else if (confirmPasswordValue !== passwordValue) {
+                    confirmpasswordElement.setCustomValidity("Passwords do not match.");
+                    confirmpasswordElement.classList.add("is-invalid");
+                    $(confirmPasswordMessageElement).html("Passwords do not match.");
+                    isValid = false;
+                } else {
+                    confirmpasswordElement.setCustomValidity("");
+                    confirmpasswordElement.classList.remove("is-invalid");
+                    $(confirmPasswordMessageElement).html("");
+                }
             }
 
             // Report validity

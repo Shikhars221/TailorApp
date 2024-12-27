@@ -141,7 +141,7 @@
                         <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         
-                        <a class="collapse-item">Customer</a>
+                        <a class="collapse-item">Customer Tag</a>
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                         <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
@@ -156,7 +156,7 @@
                         <a class="collapse-item" href="user.html">User</a>
                         <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
                         <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
-                        
+                        <a class="collapse-item" href="customeraddress.html">Customer Address</a>
                         <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
                         
                         <a class="collapse-item" href="JobIssue.html">Job Issue</a>
-                        <a class="collapse-item">Job Recieve</a>
+                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
                     </div>
@@ -498,7 +498,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">
-                        Product Charges (<span id="rowCount">0</span>)
+                        Product (<span id="rowCount">0</span>)
 
                     </h1>
                     <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -1517,7 +1517,7 @@
 
             const fieldArray = ['editProductName', 'editProductGroup', 'editHsnSacCode', 'editProductStatus', 'editProductDesc'];
             const messageArray = ['edit_product_message', 'edit_product_group_message', 'edit_hsn_message', 'edit_status_message', 'edit_productDesc_message'];
-
+            const productName = document.getElementById('editProductName').value.trim();
             // Check validation
             if (checkValidation(fieldArray, messageArray) && !isDuplicateValue(productName)) {
 
@@ -1598,9 +1598,9 @@
             }
             if(desccon.length > 1000)
             {
-                descElement.setCustomValidity("Product Descruption cannot be more than 1000 characters.")
+                descElement.setCustomValidity("Product Description cannot be more than 1000 characters.")
                 descElement.classList.add("is-invalid");
-                $(descMessageElement).html("Product Name cannot be more than 1000 characters.");
+                $(descMessageElement).html("Product Description cannot be more than 1000 characters.");
                 isValid = false;
             }
             else {
@@ -1650,7 +1650,7 @@
             let isDuplicate = false;
             $('#dataTable tbody tr').each(function () {
                 const cellValue = $.trim($(this).find('td:first').text());
-                if (cellValue.toLowerCase() === value.toLowerCase()) {
+                if (cellValue.toLowerCase() === value.toLowerCase() && this !== currentRow) {
                     isDuplicate = true;
                     return false; // Exit loop if a duplicate is found
                 }

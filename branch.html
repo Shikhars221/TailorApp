@@ -146,7 +146,7 @@
                         <a class="collapse-item" href="product_group.html">Product Group</a>
                         <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item active" href="branch.html">Branch</a>
-                        <a class="collapse-item">Customer</a>
+                        <a class="collapse-item">Customer Tag</a>
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                         <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
@@ -162,6 +162,7 @@
                         <a class="collapse-item">Style Rate Chart</a> -->
                         <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
                         <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
+                        <a class="collapse-item" href="customeraddress.html">Customer Address</a>
                         <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
                 </div>
@@ -180,7 +181,7 @@
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
                         
                         <a class="collapse-item" href="JobIssue.html">Job Issue</a>
-                        <a class="collapse-item">Job Recieve</a>
+                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
                     </div>
@@ -258,6 +259,9 @@
                     </div>
                 </div>
             </li>
+            <!-- <li class="nav-item">
+                <span id="rowCount" class="collapse-item"></span>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConversation"
@@ -501,7 +505,7 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">
                         Branch
-
+                        (<span id="rowCount">0</span>)
                     </h1>
                     <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                     For more information about DataTables, please visit the <a target="_blank"
@@ -785,8 +789,7 @@
                         </div>
 
                         <!-- Add Modal -->
-                        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -798,229 +801,262 @@
                                     <div class="modal-body">
                                         <form id="addForm">
                                             <div class="form-group">
-                                                <label for="addBranch">Branch Name</label>
+                                                <label for="addBranchName">Branch Name</label>
                                                 <input type="text" class="form-control" id="addBranchName" required>
-                                                <div class="invalid-feedback" id="branch_val">
-
-                                                </div>
+                                                <div class="invalid-feedback" id="addBranchNameValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addStatus">Branch Code</label>
+                                                <label for="addBranchCode">Branch Code</label>
                                                 <input type="text" class="form-control" id="addBranchCode" required>
-                                                <div class="invalid-feedback" id="branchCode_val">
-
-                                                </div>
+                                                <div class="invalid-feedback" id="addBranchCodeValidation"></div>
                                             </div>
-                                            <div>
-                                                <label for="addSSalesPrice">Branch Type</label>
-                                                <select class="form-control" id="addSalesPrice" required>
+                                            <div class="form-group">
+                                                <label for="addBranchType">Branch Type</label>
+                                                <select class="form-control" id="addBranchType" required>
                                                     <option value="" selected disabled>Select</option>
-                                                    <option value="Sales Price 1">Warehouse</option>
-                                                    <option value="Sales Price 2">Retail</option>
-                                                    <option value="Sales Price 3">Retail 1</option>
-                                                    <option value="Sales Price 4">Retail 2</option>
+                                                    <option value="Warehouse">Warehouse</option>
+                                                    <option value="Retail">Retail</option>
+                                                    <option value="Retail 1">Retail 1</option>
+                                                    <option value="Retail 2">Retail 2</option>
                                                 </select>
-                                                <div class="invalid-feedback" id="sales_val">
-
-                                                </div>
+                                                <div class="invalid-feedback" id="addBranchTypeValidation"></div>
                                             </div>
-                                            </br>
                                             <div class="form-group">
-                                                <label for="addemail">Email</label>
+                                                <label for="addCompany">Company</label>
+                                                <select class="form-control" id="addCompany" required>
+                                                    <option value="" selected disabled>Select</option>
+                                                    <option value="Company">Company</option>
+                                                    <option value="Company 1">Company 1</option>
+                                                    <option value="Company 2">Company 2</option>
+                                                    <option value="Company 3">Company 3</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="addCompanyValidation"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="addEmail">Email</label>
                                                 <input type="text" class="form-control" id="addEmail">
-                                                <div class="invalid-feedback" id="email_val">
-
-                                                </div>
+                                                <div class="invalid-feedback" id="addEmailValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addcontact">Contact</label>
-                                                <input type="text" class="form-control" id="addcontact">
-                                                <div class="invalid-feedback" id="contact_val">
-
-                                                </div>
+                                                <label for="addContact">Contact</label>
+                                                <input type="text" class="form-control" id="addContact">
+                                                <div class="invalid-feedback" id="addContactValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addAdd1">Address Line 1</label>
-                                                <input type="text" class="form-control" id="addAdd1">
-                                                <div class="invalid-feedback" id="Add1_val">
-
-                                                </div>
+                                                <label for="addAddress1">Address Line 1</label>
+                                                <input type="text" class="form-control" id="addAddress1" required>
+                                                <div class="invalid-feedback" id="addAddress1Validation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addAdd2">Address Line 2</label>
-                                                <input type="text" class="form-control" id="addAdd2">
-                                                <div class="invalid-feedback" id="Add2_val">
-
-                                                </div>
+                                                <label for="addAddress2">Address Line 2</label>
+                                                <input type="text" class="form-control" id="addAddress2" required>
+                                                <div class="invalid-feedback" id="addAddress2Validation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addcountry">Country</label>
-                                                <input type="text" class="form-control" id="addcountry">
-                                                <div class="invalid-feedback" id="Country_val">
-
-                                                </div>
+                                                <label for="addCountry">Country</label>
+                                                <select class="form-control" id="addCountry" required>
+                                                    <option value="" selected disabled>Select Country</option>
+                                                    <option value="India">India</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="UK">UK</option>
+                                                    <option value="Canada">Canada</option>
+                                                    <option value="Australia">Australia</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="addCountryValidation"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="addState">State</label>
-                                                <input type="text" class="form-control" id="addstate">
-                                                <div class="invalid-feedback" id="state_val">
-
-                                                </div>
+                                                <select class="form-control" id="addState" required>
+                                                    <option value="" selected disabled>Select State</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="addStateValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addcity">City</label>
-                                                <input type="text" class="form-control" id="addcity">
-                                                <div class="invalid-feedback" id="city_val">
-
-                                                </div>
+                                                <label for="addCity">City</label>
+                                                <select class="form-control" id="addCity" required>
+                                                    <option value="" selected disabled>Select City</option>
+                                                    <option value="Ahmedabad">Ahmedabad</option>
+                                                    <option value="Mumbai">Mumbai</option>
+                                                    <option value="Jaipur">Jaipur</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Bangalore">Bangalore</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="addCityValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addpincode">Pincode</label>
-                                                <input type="text" class="form-control" id="addpincode">
-                                                <div class="invalid-feedback" id="pincode_val">
-
-                                                </div>
+                                                <label for="addPincode">Pincode</label>
+                                                <input type="text" class="form-control" id="addPincode" required>
+                                                <div class="invalid-feedback" id="addPincodeValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addgstcode">GST State Code</label>
-                                                <input type="text" class="form-control" id="addgstcode">
-                                                <div class="invalid-feedback" id="gstcode_val">
-                                            </div>
+                                                <label for="addGSTStateCode">GST State Code</label>
+                                                <input type="text" class="form-control" id="addGSTStateCode" required>
+                                                <div class="invalid-feedback" id="addGSTStateCodeValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="addgstNo">GST Number</label>
-                                                <input type="text" class="form-control" id="addgstNo">
-                                                <div class="invalid-feedback" id="gstNo_val">
-
-                                                </div>
+                                                <label for="addGSTNumber">GST Number</label>
+                                                <input type="text" class="form-control" id="addGSTNumber">
+                                                <div class="invalid-feedback" id="addGSTNumberValidation"></div>
                                             </div>
-                                            <div>
+                                            <div class="form-group">
                                                 <label for="addStatus">Status</label>
                                                 <select class="form-control" id="addStatus" required>
                                                     <option value="" selected disabled>Select</option>
                                                     <option value="Active">Active</option>
                                                     <option value="Inactive">Inactive</option>
                                                 </select>
-                                                <div class="invalid-feedback" id="status_val">
-
-                                                </div>
+                                                <div class="invalid-feedback" id="addStatusValidation"></div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary" onclick="addRow()">Add</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
 
                         <!-- Edit Modal -->
-                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="editBranchModal" tabindex="-1" aria-labelledby="editBranchModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel">Edit Branch</h5>
+                                        <h5 class="modal-title" id="editBranchModalLabel">Edit Branch</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="editForm">
+                                        <form id="editBranchForm">
                                             <div class="form-group">
-                                                <label for="editBranch">Branch</label>
-                                                <input type="text" class="form-control" id="editBranch" required>
-                                                <div class="invalid-feedback" id="editbranch_val"></div>
+                                                <label for="editBranchName">Branch</label>
+                                                <input type="text" class="form-control" id="editBranchName" required>
+                                                <div class="invalid-feedback" id="editBranchNameValidation"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="editBranchCode">Branch Code</label>
                                                 <input type="text" class="form-control" id="editBranchCode" required>
-                                                <div class="invalid-feedback" id="editbranchCode_val"></div>
+                                                <div class="invalid-feedback" id="editBranchCodeValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editSalesPrice">Branch Type</label>
-                                                <select class="form-control" id="editSalesPrice" required>
+                                                <label for="editBranchType">Branch Type</label>
+                                                <select class="form-control" id="editBranchType" required>
                                                     <option value="" selected disabled>Select</option>
-                                                    <option value="SalesPrice1">Warehouse</option>
-                                                    <option value="SalesPrice2">Retail</option>
-                                                    <option value="SalesPrice3">Retial 1</option>
-                                                    <option value="SalesPrice4">Retail 2</option>
-                                                    <div class="invalid-feedback" id="editsales_val"></div>
+                                                    <option value="Warehouse">Warehouse</option>
+                                                    <option value="Retail">Retail</option>
+                                                    <option value="Retail1">Retail 1</option>
+                                                    <option value="Retail2">Retail 2</option>
                                                 </select>
+                                                <div class="invalid-feedback" id="editBranchTypeValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editEmail">Email</label>
-                                                <input type="text" class="form-control" id="editEmail">
-                                                <div class="invalid-feedback" id="email_val"></div>
+                                                <label for="editCompanyName">Company</label>
+                                                <select class="form-control" id="editCompanyName" required>
+                                                    <option value="" selected disabled>Select</option>
+                                                    <option value="Company">Company</option>
+                                                    <option value="Company1">Company 1</option>
+                                                    <option value="Company2">Company 2</option>
+                                                    <option value="Company3">Company 3</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="editCompanyNameValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editContact">Contact</label>
-                                                <input type="text" class="form-control" id="editContact">
-                                                <div class="invalid-feedback" id="contact_val"></div>
+                                                <label for="editEmailAddress">Email</label>
+                                                <input type="email" class="form-control" id="editEmailAddress">
+                                                <div class="invalid-feedback" id="editEmailValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editAdd1">Address Line 1</label>
-                                                <input type="text" class="form-control" id="editAdd1">
-                                                <div class="invalid-feedback" id="Add1_val"></div>
+                                                <label for="editContactNumber">Contact</label>
+                                                <input type="text" class="form-control" id="editContactNumber">
+                                                <div class="invalid-feedback" id="editContactValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editAdd2">Address Line 2</label>
-                                                <input type="text" class="form-control" id="editAdd2">
-                                                <div class="invalid-feedback" id="Add2_val"></div>
+                                                <label for="editAddress1">Address Line 1</label>
+                                                <input type="text" class="form-control" id="editAddress1" required>
+                                                <div class="invalid-feedback" id="editAddress1Validation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editCountry">Country</label>
-                                                <input type="text" class="form-control" id="editCountry">
-                                                <div class="invalid-feedback" id="Country_val"></div>
+                                                <label for="editAddress2">Address Line 2</label>
+                                                <input type="text" class="form-control" id="editAddress2" required>
+                                                <div class="invalid-feedback" id="editAddress2Validation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editState">State</label>
-                                                <input type="text" class="form-control" id="editState">
-                                                <div class="invalid-feedback" id="state_val"></div>
+                                                <label for="editCountryName">Country</label>
+                                                <select class="form-control" id="editCountryName" required>
+                                                    <option value="" selected disabled>Select Country</option>
+                                                    <option value="India">India</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="UK">UK</option>
+                                                    <option value="Canada">Canada</option>
+                                                    <option value="Australia">Australia</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="editCountryValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editCity">City</label>
-                                                <input type="text" class="form-control" id="editCity">
-                                                <div class="invalid-feedback" id="city_val"></div>
+                                                <label for="editStateName">State</label>
+                                                <select class="form-control" id="editStateName" required>
+                                                    <option value="" selected disabled>Select State</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="editStateValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editPincode">Pincode</label>
-                                                <input type="text" class="form-control" id="editPincode">
-                                                <div class="invalid-feedback" id="pincode_val"></div>
+                                                <label for="editCityName">City</label>
+                                                <select class="form-control" id="editCityName" required>
+                                                    <option value="" selected disabled>Select City</option>
+                                                    <option value="Ahmedabad">Ahmedabad</option>
+                                                    <option value="Mumbai">Mumbai</option>
+                                                    <option value="Jaipur">Jaipur</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Bangalore">Bangalore</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="editCityValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editGstCode">GST State Code</label>
-                                                <input type="text" class="form-control" id="editGstCode">
-                                                <div class="invalid-feedback" id="gstcode_val"></div>
+                                                <label for="editPincodeValue">Pincode</label>
+                                                <input type="text" class="form-control" id="editPincodeValue" required>
+                                                <div class="invalid-feedback" id="editPincodeValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editGstNo">GST Number</label>
-                                                <input type="text" class="form-control" id="editGstNo">
-                                                <div class="invalid-feedback" id="gstNo_val"></div>
+                                                <label for="editGSTStateCode">GST State Code</label>
+                                                <input type="text" class="form-control" id="editGSTStateCode" required>
+                                                <div class="invalid-feedback" id="editGSTStateCodeValidation"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editStatus">Status</label>
-                                                <select class="form-control" id="editStatus" required>
+                                                <label for="editGSTNumber">GST Number</label>
+                                                <input type="text" class="form-control" id="editGSTNumber">
+                                                <div class="invalid-feedback" id="editGSTNumberValidation"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editBranchStatus">Status</label>
+                                                <select class="form-control" id="editBranchStatus" required>
                                                     <option value="" selected disabled>Select</option>
                                                     <option value="Active">Active</option>
                                                     <option value="Inactive">Inactive</option>
                                                 </select>
-                                                <div class="invalid-feedback" id="editstatus_val"></div>
+                                                <div class="invalid-feedback" id="editBranchStatusValidation"></div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save
-                                            changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
+                        
 
                         <!-- Delete Confirmation Modal -->
                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
@@ -1117,62 +1153,72 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
-        // let currentRow; // Declare currentRow globally
+        let totalRowCount; // Declare currentRow globally
 
         document.addEventListener('DOMContentLoaded', function () {
-            let totalRowCount = document.querySelectorAll('#dataTable tbody tr').length;
-            //let rowCountElement = document.getElementById('rowCount');
+            var table = $('#dataTable').DataTable();
+            var info = table.page.info(); // Get table info
+            totalRowCount =  info.recordsTotal; 
+            console.log(totalRowCount);
+            let rowCountElement = document.getElementById('rowCount');
 
-            //if (rowCountElement) {
-            //    rowCountElement.innerText = totalRowCount;
-            //} else {
-            //    console.error('Element with id "rowCount" not found');
-            //}
+            if (rowCountElement) {
+                rowCountElement.innerText = totalRowCount;
+            } else {
+                console.error('Element with id "rowCount" not found');
+            }
         });
 
         function openAddModal() {
             document.getElementById('addBranchName').value = '';
             document.getElementById('addBranchCode').value = '';
-            document.getElementById('addSalesPrice').selectedIndex = 0;
+            document.getElementById('addBranchType').selectedIndex = 0;
+            document.getElementById('addCompany').selectedIndex = 0;
+            document.getElementById('addEmail').value = '';
+            document.getElementById('addContact').value = '';
+            document.getElementById('addAddress1').value = '';
+            document.getElementById('addAddress2').value = '';
+            document.getElementById('addCountry').selectedIndex = 0;
+            document.getElementById('addState').selectedIndex = 0;
+            document.getElementById('addCity').selectedIndex = 0;
+            document.getElementById('addPincode').value = '';
+            document.getElementById('addGSTStateCode').value = '';
+            document.getElementById('addGSTNumber').value = '';
             document.getElementById('addStatus').selectedIndex = 0;
-            console.log('Shihiar');
 
-            const branchval = document.getElementById('addBranchName');
-            const branchcodeval = document.getElementById('addBranchCode');
-            const salesval = document.getElementById('addSalesPrice');
-            const statusval = document.getElementById('addStatus');
-
-            branchval.setCustomValidity("");
-            branchval.classList.remove("is-invalid");
-
-            branchcodeval.setCustomValidity("");
-            branchcodeval.classList.remove("is-invalid");
-
-            salesval.setCustomValidity("");
-            salesval.classList.remove("is-invalid");
-
-            statusval.setCustomValidity("");
-            statusval.classList.remove("is-invalid");
-
+            const fields = ['addBranchName', 'addBranchCode', 'addBranchType', 'addCompany', 'addEmail', 'addContact', 'addAddress1', 'addAddress2', 'addCountry', 'addState', 'addCity', 'addPincode', 'addGSTStateCode', 'addGSTNumber', 'addStatus'];
+            fields.forEach(field => {
+            const element = document.getElementById(field);
+            element.setCustomValidity("");
+            element.classList.remove("is-invalid");
+            });
 
             $('#addModal').modal('show');
         }
 
         function addRow() {
 
-            const productGroupArray = ['addProductGroup', 'product_val'];
-            const statusArray = ['addStatus', 'status_val'];
-            const BranchArray = ['addBranchName', 'addBranchCode', 'addSalesPrice', 'addStatus'];
-            const MsgArray = ['branch_val', 'branchCode_val', 'sales_val', 'status_val']
+            const BranchArray = ['addBranchName', 'addBranchCode', 'addBranchType', 'addCompany', 'addEmail', 'addContact', 'addAddress1', 'addAddress2', 'addCountry', 'addState', 'addCity', 'addPincode', 'addGSTStateCode', 'addGSTNumber', 'addStatus'];
+            const MsgArray = ['addBranchNameValidation', 'addBranchCodeValidation', 'addBranchTypeValidation', 'addCompanyValidation', 'addEmailValidation', 'addContactValidation', 'addAddress1Validation', 'addAddress2Validation', 'addCountryValidation', 'addStateValidation', 'addCityValidation', 'addPincodeValidation', 'addGSTStateCodeValidation', 'addGSTNumberValidation', 'addStatusValidation'];
 
-            if (!checkValidation(BranchArray, MsgArray)) {
+            if (!checkValidation(BranchArray, MsgArray, false)) {
                 return;
             }
             const branch = document.getElementById('addBranchName').value;
             const branchCode = document.getElementById('addBranchCode').value;
-            const salesPrice = document.getElementById('addSalesPrice').value;
+            const salesPrice = document.getElementById('addBranchType').value;
             const statuss = document.getElementById('addStatus').value;
-
+            const company = document.getElementById('addCompany').value;
+            const email = document.getElementById('addEmail').value;
+            const contact = document.getElementById('addContact').value;
+            const address1 = document.getElementById('addAddress1').value;
+            const address2 = document.getElementById('addAddress2').value;
+            const country = document.getElementById('addCountry').value;
+            const state = document.getElementById('addState').value;
+            const city = document.getElementById('addCity').value;
+            const pincode = document.getElementById('addPincode').value;
+            const gstStateCode = document.getElementById('addGSTStateCode').value;
+            const gstNumber = document.getElementById('addGSTNumber').value;
             const newRow = `<tr>
                 <td>${branch}</td>
                 <td>${branchCode}</td>
@@ -1195,52 +1241,51 @@
             $('#addModal').modal('hide');
             totalRowCount++;
             document.getElementById('rowCount').innerText = totalRowCount;
+            console.log(totalRowCount);
             clearModel();
         }
 
-        function editRow(element) {
-            currentRow = element.closest('tr');
-            var cells = currentRow.getElementsByTagName('td');
+    function editRow(element) {
+        // Get the current row
+        currentRow = element.closest('tr');
+        var cells = currentRow.getElementsByTagName('td');
 
-            document.getElementById('editBranch').value = cells[0].innerText;
-            document.getElementById('editBranchCode').value = cells[1].innerText;
-            document.getElementById('editSalesPrice').value = cells[2].innerText;
-            document.getElementById('editStatus').value = cells[3].innerText;
+        // Populate modal fields with table data
+        document.getElementById('editBranchName').value = cells[0].innerText.trim();
+        document.getElementById('editBranchCode').value = cells[1].innerText.trim();
+        document.getElementById('editBranchType').value = cells[2].innerText.trim();
+        document.getElementById('editBranchStatus').value = cells[3].innerText.trim();
 
-            var salesPriceText = cells[2].innerText.trim(); // Trim to remove any extra spaces
-            var salesPriceDropdown = document.getElementById('editSalesPrice');
-            for (var i = 0; i < salesPriceDropdown.options.length; i++) {
-                if (salesPriceDropdown.options[i].text === salesPriceText) {
-                    salesPriceDropdown.selectedIndex = i;
-                    break;
-                }
-            }
-
-            $('#editModal').modal('show');
-        }
+        // Show the edit modal
+        $('#editBranchModal').modal('show');
+    }
 
         function saveChanges() {
-            const EditBranchArray = ['editBranch', 'editBranchCode', 'editSalesPrice', 'editStatus'];
-            const EditMsgArray = ['editbranch_val', 'editbranchCode_val', 'editsales_val', 'editstatus_val']
+            const EditBranchArray = ['editBranchName', 'editBranchCode', 'editBranchType', 'editCompanyName', 'editEmailAddress', 'editContactNumber', 'editAddress1', 'editAddress2', 'editCountryName', 'editStateName', 'editCityName', 'editPincodeValue', 'editGSTStateCode', 'editGSTNumber', 'editBranchStatus'];
+            const EditMsgArray = ['editBranchNameValidation', 'editBranchCodeValidation', 'editBranchTypeValidation', 'editCompanyNameValidation', 'editEmailValidation', 'editContactValidation', 'editAddress1Validation', 'editAddress2Validation', 'editCountryValidation', 'editStateValidation', 'editCityValidation', 'editPincodeValidation', 'editGSTStateCodeValidation', 'editGSTNumberValidation', 'editBranchStatusValidation'];
 
-            if (!checkValidation(EditBranchArray, EditMsgArray)) {
-                return;
+            if (!checkValidation(EditBranchArray, EditMsgArray, true)) {
+            return;
             }
 
-            else if (!currentRow) {
-                console.error('No row selected for editing.');
-                return;
+            if (!currentRow) {
+            console.error('No row selected for editing.');
+            return;
             }
 
             const cells = currentRow.getElementsByTagName('td');
-            cells[0].innerText = document.getElementById('editBranch').value;
+            cells[0].innerText = document.getElementById('editBranchName').value;
             cells[1].innerText = document.getElementById('editBranchCode').value;
-            cells[2].innerText = document.getElementById('editSalesPrice').value;
-            cells[3].innerText = document.getElementById('editStatus').value;
-
-            $('#editModal').modal('hide');
-            clearModel();
+            cells[2].innerText = document.getElementById('editBranchType').value;
+            cells[3].innerText = document.getElementById('editBranchStatus').value;
+            
+            $('#editBranchModal').modal('hide');
+            
         }
+        $('#editBranchModal').on('hidden.bs.modal', function () {
+            $('.invalid-feedback').text('');
+            $('.is-invalid').removeClass('is-invalid'); 
+        });
 
         function confirmDelete(element) {
             currentRow = element.closest('tr');
@@ -1260,112 +1305,323 @@
         }
 
         function clearModel() {
-            document.getElementById('editBranch').value = '';
+            document.getElementById('editBranchName').value = '';
             document.getElementById('editBranchCode').value = '';
-            document.getElementById('editSalesPrice').value = '';
-            document.getElementById('editStatus').selectedIndex = 0;
+            document.getElementById('editBranchType').selectedIndex = 0;
+            document.getElementById('editCompanyName').selectedIndex = 0;
+            document.getElementById('editEmailAddress').value = '';
+            document.getElementById('editContactNumber').value = '';
+            document.getElementById('editAddress1').value = '';
+            document.getElementById('editAddress2').value = '';
+            document.getElementById('editCountryName').selectedIndex = 0;
+            document.getElementById('editStateName').selectedIndex = 0;
+            document.getElementById('editCityName').selectedIndex = 0;
+            document.getElementById('editPincodeValue').value = '';
+            document.getElementById('editGSTStateCode').value = '';
+            document.getElementById('editGSTNumber').value = '';
+            document.getElementById('editBranchStatus').selectedIndex = 0;
+
+            const fields = ['editBranchName', 'editBranchCode', 'editBranchType', 'editCompanyName', 'editEmailAddress', 'editContactNumber', 'editAddress1', 'editAddress2', 'editCountryName', 'editStateName', 'editCityName', 'editPincodeValue', 'editGSTStateCode', 'editGSTNumber', 'editBranchStatus'];
+            fields.forEach(field => {
+                const element = document.getElementById(field);
+                element.setCustomValidity("");
+                element.classList.remove("is-invalid");
+            });
+            $('.invalid-feedback').text('');
+            $('.is-invalid').removeClass('is-invalid'); 
         }
 
-        function checkValidation(branchArray, messageArray) {
-            const [branchName, branchCode, salesGroup, status] = branchArray;
-            const [branchMessage, branchCodeMessage, salesMessage, statusMessage] = messageArray;
+        function checkValidation(branchArray, messageArray, isEdit = false) {
+            const [branchName, branchCode, branchType, company, email, contact, address1, address2, country, state, city, pincode, gstStateCode, gstNumber, status] = branchArray;
+            const [branchMessage, branchCodeMessage, branchTypeMessage, companyMessage, emailMessage, contactMessage, address1Message, address2Message, countryMessage, stateMessage, cityMessage, pincodeMessage, gstStateCodeMessage, gstNumberMessage, statusMessage] = messageArray;
 
             const branchElement = document.getElementById(branchName);
             const branchCodeElement = document.getElementById(branchCode);
-            const salesGroupElement = document.getElementById(salesGroup);
+            const branchTypeElement = document.getElementById(branchType);
+            const companyElement = document.getElementById(company);
+            const emailElement = document.getElementById(email);
+            const contactElement = document.getElementById(contact);
+            const address1Element = document.getElementById(address1);
+            const address2Element = document.getElementById(address2);
+            const countryElement = document.getElementById(country);
+            const stateElement = document.getElementById(state);
+            const cityElement = document.getElementById(city);
+            const pincodeElement = document.getElementById(pincode);
+            const gstStateCodeElement = document.getElementById(gstStateCode);
+            const gstNumberElement = document.getElementById(gstNumber);
             const statusElement = document.getElementById(status);
+
             const branchMessageElement = document.getElementById(branchMessage);
             const branchCodeMessageElement = document.getElementById(branchCodeMessage);
-            const salesGroupMessageElement = document.getElementById(salesMessage);
+            const branchTypeMessageElement = document.getElementById(branchTypeMessage);
+            const companyMessageElement = document.getElementById(companyMessage);
+            const emailMessageElement = document.getElementById(emailMessage);
+            const contactMessageElement = document.getElementById(contactMessage);
+            const address1MessageElement = document.getElementById(address1Message);
+            const address2MessageElement = document.getElementById(address2Message);
+            const countryMessageElement = document.getElementById(countryMessage);
+            const stateMessageElement = document.getElementById(stateMessage);
+            const cityMessageElement = document.getElementById(cityMessage);
+            const pincodeMessageElement = document.getElementById(pincodeMessage);
+            const gstStateCodeMessageElement = document.getElementById(gstStateCodeMessage);
+            const gstNumberMessageElement = document.getElementById(gstNumberMessage);
             const statusMessageElement = document.getElementById(statusMessage);
 
             let isValid = true;
 
-            if (!branchElement || !branchCodeElement || !salesGroupElement || !statusElement) {
-                console.error('Element not found for validation.');
-                return false;
+            if (!branchElement || !branchCodeElement || !branchTypeElement || !companyElement || !emailElement || !contactElement || !address1Element || !address2Element || !countryElement || !stateElement || !cityElement || !pincodeElement || !gstStateCodeElement || !gstNumberElement || !statusElement) {
+            console.error('Element not found for validation.');
+            return false;
             }
 
             const branchGroupName = branchElement.value.trim();
             const branchCodeName = branchCodeElement.value.trim();
-            const salesName = salesGroupElement.value.trim();
+            const branchTypeName = branchTypeElement.value.trim();
+            const companyName = companyElement.value.trim();
+            const emailName = emailElement.value.trim();
+            const contactName = contactElement.value.trim();
+            const address1Name = address1Element.value.trim();
+            const address2Name = address2Element.value.trim();
+            const countryName = countryElement.value.trim();
+            const stateName = stateElement.value.trim();
+            const cityName = cityElement.value.trim();
+            const pincodeName = pincodeElement.value.trim();
+            const gstStateCodeName = gstStateCodeElement.value.trim();
+            const gstNumberName = gstNumberElement.value.trim();
             const rolestatus = statusElement.value.trim();
 
             // Validate Branch Name
             if (!branchGroupName) {
-                branchElement.setCustomValidity("Please enter a Branch Name.");
-                branchElement.classList.add("is-invalid");
-                $(branchMessageElement).html("Please enter a Branch Name.");
-                isValid = false;
+            branchElement.setCustomValidity("Please enter a Branch Name.");
+            branchElement.classList.add("is-invalid");
+            $(branchMessageElement).html("Please enter a Branch Name.");
+            isValid = false;
             } else if (branchGroupName.length > 50) {
-                branchElement.setCustomValidity("Branch Name cannot be more than 50 characters.");
-                branchElement.classList.add("is-invalid");
-                $(branchMessageElement).html("Branch Name cannot be more than 50 characters.");
-                isValid = false;
-            } else if (isDuplicateValue(branchGroupName)) {
-                branchElement.setCustomValidity("Branch Name already exists in the table.");
-                branchElement.classList.add("is-invalid");
-                $(branchMessageElement).html("Branch Name already exists in the table.");
-                isValid = false;
+            branchElement.setCustomValidity("Branch Name cannot be more than 50 characters.");
+            branchElement.classList.add("is-invalid");
+            $(branchMessageElement).html("Branch Name cannot be more than 50 characters.");
+            isValid = false;
+            } else if (!isEdit && isDuplicateValue(branchGroupName)) {
+            branchElement.setCustomValidity("Branch Name already exists in the table.");
+            branchElement.classList.add("is-invalid");
+            $(branchMessageElement).html("Branch Name already exists in the table.");
+            isValid = false;
             } else {
-                branchElement.setCustomValidity("");
-                branchElement.classList.remove("is-invalid");
-                $(branchMessageElement).html("");
+            branchElement.setCustomValidity("");
+            branchElement.classList.remove("is-invalid");
+            $(branchMessageElement).html("");
             }
 
             // Validate Branch Code
             if (!branchCodeName) {
-                branchCodeElement.setCustomValidity("Please enter a Branch Code.");
-                branchCodeElement.classList.add("is-invalid");
-                $(branchCodeMessageElement).html("Please enter a Branch Code.");
-                isValid = false;
+            branchCodeElement.setCustomValidity("Please enter a Branch Code.");
+            branchCodeElement.classList.add("is-invalid");
+            $(branchCodeMessageElement).html("Please enter a Branch Code.");
+            isValid = false;
             } else if (branchCodeName.length > 3) {
-                branchCodeElement.setCustomValidity("Branch Code cannot be more than 3 characters.");
-                branchCodeElement.classList.add("is-invalid");
-                $(branchCodeMessageElement).html("Branch Code cannot be more than 3 characters.");
-                isValid = false;
-            } else if (isDuplicateValue(branchCodeName)) {
-                branchCodeElement.setCustomValidity("Branch Code already exists in the table.");
-                branchCodeElement.classList.add("is-invalid");
-                $(branchCodeMessageElement).html("Branch Code already exists in the table.");
-                isValid = false;
+            branchCodeElement.setCustomValidity("Branch Code cannot be more than 3 characters.");
+            branchCodeElement.classList.add("is-invalid");
+            $(branchCodeMessageElement).html("Branch Code cannot be more than 3 characters.");
+            isValid = false;
+            } else if (!isEdit && isDuplicateValue(branchCodeName)) {
+            branchCodeElement.setCustomValidity("Branch Code already exists in the table.");
+            branchCodeElement.classList.add("is-invalid");
+            $(branchCodeMessageElement).html("Branch Code already exists in the table.");
+            isValid = false;
             } else {
-                branchCodeElement.setCustomValidity("");
-                branchCodeElement.classList.remove("is-invalid");
-                $(branchCodeMessageElement).html("");
+            branchCodeElement.setCustomValidity("");
+            branchCodeElement.classList.remove("is-invalid");
+            $(branchCodeMessageElement).html("");
             }
 
-            // Validate Sales Group
-            if (!salesName) {
-                salesGroupElement.setCustomValidity("Please select a Sales Group.");
-                salesGroupElement.classList.add("is-invalid");
-                $(salesGroupMessageElement).html("Please select a Sales Group.");
-                isValid = false;
+            // Validate Branch Type
+            if (!branchTypeName) {
+            branchTypeElement.setCustomValidity("Please select a Branch Type.");
+            branchTypeElement.classList.add("is-invalid");
+            $(branchTypeMessageElement).html("Please select a Branch Type.");
+            isValid = false;
             } else {
-                salesGroupElement.setCustomValidity("");
-                salesGroupElement.classList.remove("is-invalid");
-                $(salesGroupMessageElement).html("");
+            branchTypeElement.setCustomValidity("");
+            branchTypeElement.classList.remove("is-invalid");
+            $(branchTypeMessageElement).html("");
+            }
+
+            // Validate Company
+            if (!companyName) {
+            companyElement.setCustomValidity("Please select a Company.");
+            companyElement.classList.add("is-invalid");
+            $(companyMessageElement).html("Please select a Company.");
+            isValid = false;
+            } else {
+            companyElement.setCustomValidity("");
+            companyElement.classList.remove("is-invalid");
+            $(companyMessageElement).html("");
+            }
+
+            // Validate Email
+            if (emailName && !validateEmail(emailName)) {
+            emailElement.setCustomValidity("Please enter a valid Email.");
+            emailElement.classList.add("is-invalid");
+            $(emailMessageElement).html("Please enter a valid Email.");
+            isValid = false;
+            } else {
+            emailElement.setCustomValidity("");
+            emailElement.classList.remove("is-invalid");
+            $(emailMessageElement).html("");
+            }
+
+            // Validate Contact
+            if (contactName && !validateContact(contactName)) {
+            contactElement.setCustomValidity("Please enter a valid Contact.");
+            contactElement.classList.add("is-invalid");
+            $(contactMessageElement).html("Please enter a valid Contact.");
+            isValid = false;
+            } else {
+            contactElement.setCustomValidity("");
+            contactElement.classList.remove("is-invalid");
+            $(contactMessageElement).html("");
+            }
+
+            // Validate Address Line 1
+            if (!address1Name) {
+            address1Element.setCustomValidity("Please enter Address Line 1.");
+            address1Element.classList.add("is-invalid");
+            $(address1MessageElement).html("Please enter Address Line 1.");
+            isValid = false;
+            } else {
+            address1Element.setCustomValidity("");
+            address1Element.classList.remove("is-invalid");
+            $(address1MessageElement).html("");
+            }
+
+            // Validate Address Line 2
+            if (!address2Name) {
+            address2Element.setCustomValidity("Please enter Address Line 2.");
+            address2Element.classList.add("is-invalid");
+            $(address2MessageElement).html("Please enter Address Line 2.");
+            isValid = false;
+            } else {
+            address2Element.setCustomValidity("");
+            address2Element.classList.remove("is-invalid");
+            $(address2MessageElement).html("");
+            }
+
+            // Validate Country
+            if (!countryName) {
+            countryElement.setCustomValidity("Please select a Country.");
+            countryElement.classList.add("is-invalid");
+            $(countryMessageElement).html("Please select a Country.");
+            isValid = false;
+            } else {
+            countryElement.setCustomValidity("");
+            countryElement.classList.remove("is-invalid");
+            $(countryMessageElement).html("");
+            }
+
+            // Validate State
+            if (!stateName) {
+            stateElement.setCustomValidity("Please select a State.");
+            stateElement.classList.add("is-invalid");
+            $(stateMessageElement).html("Please select a State.");
+            isValid = false;
+            } else {
+            stateElement.setCustomValidity("");
+            stateElement.classList.remove("is-invalid");
+            $(stateMessageElement).html("");
+            }
+            // Validate City
+            if (!cityName) {
+            cityElement.setCustomValidity("Please select a City.");
+            cityElement.classList.add("is-invalid");
+            $(cityMessageElement).html("Please select a City.");
+            isValid = false;
+            } else {
+            cityElement.setCustomValidity("");
+            cityElement.classList.remove("is-invalid");
+            $(cityMessageElement).html("");
+            }
+
+            // Validate Pincode
+            if (!pincodeName) {
+            pincodeElement.setCustomValidity("Please enter a Pincode.");
+            pincodeElement.classList.add("is-invalid");
+            $(pincodeMessageElement).html("Please enter a Pincode.");
+            isValid = false;
+            } else {
+            pincodeElement.setCustomValidity("");
+            pincodeElement.classList.remove("is-invalid");
+            $(pincodeMessageElement).html("");
+            }
+
+            // Validate GST State Code
+            if (!gstStateCodeName) {
+            gstStateCodeElement.setCustomValidity("Please enter a GST State Code.");
+            gstStateCodeElement.classList.add("is-invalid");
+            $(gstStateCodeMessageElement).html("Please enter a GST State Code.");
+            isValid = false;
+            } else {
+            gstStateCodeElement.setCustomValidity("");
+            gstStateCodeElement.classList.remove("is-invalid");
+            $(gstStateCodeMessageElement).html("");
+            }
+
+            // Validate GST Number
+            if (gstNumberName && !validateGSTNumber(gstNumberName)) {
+            gstNumberElement.setCustomValidity("Please enter a valid GST Number.");
+            gstNumberElement.classList.add("is-invalid");
+            $(gstNumberMessageElement).html("Please enter a valid GST Number.");
+            isValid = false;
+            } else {
+            gstNumberElement.setCustomValidity("");
+            gstNumberElement.classList.remove("is-invalid");
+            $(gstNumberMessageElement).html("");
             }
 
             // Validate Status
             if (!rolestatus) {
-                statusElement.setCustomValidity("Please select a Status.");
-                statusElement.classList.add("is-invalid");
-                $(statusMessageElement).html("Please select a Status.");
-                isValid = false;
+            statusElement.setCustomValidity("Please select a Status.");
+            statusElement.classList.add("is-invalid");
+            $(statusMessageElement).html("Please select a Status.");
+            isValid = false;
             } else {
-                statusElement.setCustomValidity("");
-                statusElement.classList.remove("is-invalid");
-                $(statusMessageElement).html("");
+            statusElement.setCustomValidity("");
+            statusElement.classList.remove("is-invalid");
+            $(statusMessageElement).html("");
             }
 
             // Report validity
             branchElement.reportValidity();
-            statusElement.reportValidity();
             branchCodeElement.reportValidity();
-            salesGroupElement.reportValidity();
+            branchTypeElement.reportValidity();
+            companyElement.reportValidity();
+            emailElement.reportValidity();
+            contactElement.reportValidity();
+            address1Element.reportValidity();
+            address2Element.reportValidity();
+            countryElement.reportValidity();
+            stateElement.reportValidity();
+            cityElement.reportValidity();
+            pincodeElement.reportValidity();
+            gstStateCodeElement.reportValidity();
+            gstNumberElement.reportValidity();
+            statusElement.reportValidity();
 
             return isValid;
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validateContact(contact) {
+            const re = /^[0-9]{10}$/;
+            return re.test(contact);
+        }
+
+        function validateGSTNumber(gstNumber) {
+            const re = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+            return re.test(gstNumber);
         }
 
         function isDuplicateValue(value) {

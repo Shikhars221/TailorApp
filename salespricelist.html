@@ -25,7 +25,7 @@
 <body id="page-top">
     <style>
         .modal {
-            z-index: 1040;
+            z-index: 1050;
         }
 
         .modal-backdrop {
@@ -324,8 +324,8 @@
                     <a class="collapse-item" href="product_group.html">Product Group</a>
                     <!-- <a class="collapse-item">Area</a> -->
                     <a class="collapse-item" href="branch.html">Branch</a>
-                    
-                    <a class="collapse-item">Customer</a>
+
+                    <a class="collapse-item">Customer Tag</a>
                     <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                     <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                     <a class="collapse-item active" href="salespriceList.html">Sales Price List</a>
@@ -336,11 +336,11 @@
                     <!-- <a class="collapse-item">Designation</a> -->
                     <a class="collapse-item">Process</a>
                     <a class="collapse-item" href="Role.html">Role</a>
-                    
+
                     <a class="collapse-item" href="user.html">User</a>
                     <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
                     <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
-                    
+                    <a class="collapse-item" href="customeraddress.html">Customer Address</a>
                     <!-- <a class="collapse-item">User Rights</a> -->
                 </div>
             </div>
@@ -357,9 +357,9 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
-                    
+
                     <a class="collapse-item" href="JobIssue.html">Job Issue</a>
-                    <a class="collapse-item">Job Recieve</a>
+                    <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
                     <a class="collapse-item">Job Transfer</a>
                     <a class="collapse-item">Order</a>
                 </div>
@@ -814,14 +814,19 @@
                                             <label for="priceListName">Sales Price List Name:</label>
                                             <input type="text" id="priceListName" class="form-control"
                                                 placeholder="Enter price list name" required>
+                                            <div class="invalid-feedback" id="addSalesNameValidation"></div>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="status">Status:</label>
                                             <select id="status" class="form-control" required>
+                                                <option value="" selected disabled>Select</option>
                                                 <option value="active">Active</option>
                                                 <option value="inactive">Inactive</option>
                                             </select>
+                                            <div class="invalid-feedback" id="addStatusValidation"></div>
                                         </div>
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -852,15 +857,9 @@
                                         <div class="form-group">
                                             <label for="editSalesName">Sales Price List Name</label>
                                             <input type="text" class="form-control" id="editSalesName" required>
+                                            <div class="invalid-feedback" id="editSalesNameValidation"></div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="editProduct">Product</label>
-                                            <input type="text" class="form-control" id="editProduct" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="editPrice">Price</label>
-                                            <input type="text" class="form-control" id="editPrice" required>
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="editStatus">Status</label>
                                             <select class="form-control" id="editStatus" required>
@@ -868,7 +867,9 @@
                                                 <option value="Active">Active</option>
                                                 <option value="Inactive">Inactive</option>
                                             </select>
+                                            <div class="invalid-feedback" id="editStatusValidation"></div>
                                         </div>
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -980,6 +981,10 @@
     // Open the modal to add a new price column
     function addPriceColumn() {
         $("#priceListModal").modal('show');
+        $("#addSalesNameValidation").css("display", "none");
+        $("#priceListName").removeClass("is-invalid");
+        $("#addStatusValidation").css("display", "none");
+        $("#status").removeClass("is-invalid");
     }
 
     // Save the new price column data from the modal
@@ -989,8 +994,29 @@
         const priceListName = document.getElementById('priceListName').value.trim();
         const status = document.getElementById('status').value;
 
-        if (!priceListName || !status) {
-            alert("Please enter both a price list name and status.");
+        let isValid = true;
+
+        if (!priceListName) {
+            $("#addSalesNameValidation").text("Please enter a Sales Price List name.");
+            $("#addSalesNameValidation").css("display", "block");
+            $("#priceListName").addClass("is-invalid");
+            isValid = false;
+        } else {
+            $("#addSalesNameValidation").css("display", "none");
+            $("#priceListName").removeClass("is-invalid");
+        }
+
+        if (!status) {
+            $("#addStatusValidation").text("Please select a status.");
+            $("#addStatusValidation").css("display", "block");
+            $("#status").addClass("is-invalid");
+            isValid = false;
+        } else {
+            $("#addStatusValidation").css("display", "none");
+            $("#status").removeClass("is-invalid");
+        }
+
+        if (!isValid) {
             return;
         }
 
@@ -1059,10 +1085,51 @@
         const span = element.closest('th').querySelector('.column-name');
         const input = element.closest('th').querySelector('.edit-column-name-input');
 
-        span.style.display = 'none';
-        input.style.display = 'inline';
-        input.value = span.textContent.trim();
-        input.focus();
+        // span.style.display = 'none';
+        // input.style.display = 'inline';
+        const valnum = span.textContent.trim();
+        // input.focus();
+        $("#editModal").modal('show');
+        $("#editSalesNameValidation").css("display", "none");
+        $("#editSalesName").removeClass("is-invalid");
+        $("#editStatusValidation").css("display", "none");
+        $("#editStatus").removeClass("is-invalid");
+        document.getElementById('editSalesName').value = valnum;
+    }
+
+    function saveChanges() {
+        const newName = document.getElementById('editSalesName').value.trim();
+        const status = document.getElementById('editStatus').value;
+
+        let isValid = true;
+
+        if (!newName) {
+            $("#editSalesNameValidation").text("Please enter a Sales Price List name.");
+            $("#editSalesNameValidation").css("display", "block");
+            $("#editSalesName").addClass("is-invalid");
+            isValid = false;
+        } else {
+            $("#editSalesNameValidation").css("display", "none");
+            $("#editSalesName").removeClass("is-invalid");
+        }
+
+        if (!status) {
+            $("#editStatusValidation").text("Please select a status.");
+            $("#editStatusValidation").css("display", "block");
+            $("#editStatus").addClass("is-invalid");
+            isValid = false;
+        } else {
+            $("#editStatusValidation").css("display", "none");
+            $("#editStatus").removeClass("is-invalid");
+        }
+
+        if (!isValid) {
+            return;
+        }
+        const columnHeader = document.querySelector('.edit-column-name-input').closest('th').querySelector('.column-name');
+        columnHeader.textContent = newName;
+
+        $('#editModal').modal('hide');
     }
 
     function saveColumnName(input) {

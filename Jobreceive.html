@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>RG Admin - Job Issue / Add</title>
+    <title>RG Admin - Job Receive / Add</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -218,8 +218,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
 
-                        <a class="collapse-item active" href="JobIssue.html">Job Issue</a>
-                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
+                        <a class="collapse-item" href="JobIssue.html">Job Issue</a>
+                        <a class="collapse-item active" href="Jobreceive.html">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
                     </div>
@@ -539,7 +539,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Transaction - Job Issue / Add</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Transaction - Job Receive</h1>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -551,40 +551,6 @@
                                     Filter
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item" id="li1">
-                                        Process
-                                        <div class="custom-dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                id="processDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false" style="height:38px">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="processDropdown">
-
-                                                <a class="dropdown-item" href="#">Alter</a>
-                                                <a class="dropdown-item" href="#">Cutting</a>
-                                                <a class="dropdown-item" href="#">Rework</a>
-                                                <a class="dropdown-item" href="#">Stitching</a>
-                                                <a class="dropdown-item" href="#">Trial</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item" id="li2">
-                                        Job Worker
-                                        <div class="custom-dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                id="jobWorkerDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false" style="height:38px">
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="processDropdown">
-
-                                                <a class="dropdown-item" href="#">Haru Safari</a>
-                                                <a class="dropdown-item" href="#">Javed Safari</a>
-                                                <a class="dropdown-item" href="#">Kausar</a>
-                                                <a class="dropdown-item" href="#">Nadir</a>
-                                                <a class="dropdown-item" href="#">Altaf Coat Maker</a>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li class="list-group-item">
                                         BarCode
                                         <div class="custom-dropdown">
@@ -607,71 +573,47 @@
                             <div>
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#jobIssue"
-                                            role="tab" aria-controls="JobIssue" aria-selected="true">Job Issue</a>
+                                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#jobRecieve"
+                                            role="tab" aria-controls="JObReceive" aria-selected="false">Job Receive</a>
                                     </li>
-
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="jobIssue" role="tabpanel"
-                                        aria-labelledby="home-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                Job Issue Details
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" id="dataTable" width="100%"
-                                                        cellspacing="0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>BarCode</th>
-                                                                <th>Apparel</th>
-                                                                <th>Branch</th>
-                                                                <th>Order No.</th>
-                                                                <th>Trial Dt.</th>
-                                                                <th>Makeone Dt.</th>
-                                                                <th>Factory Dt.</th>
-                                                                <th>Job Worker</th>
-                                                                <th>Status</th>
-                                                                <th>Remove</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div style="margin-top:2%">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            Pending Jobs
-                                                            <div class="table-responsive">
-                                                                <table class="table table-bordered" id="dataTable"
-                                                                    width="100%" cellspacing="0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>BarCode</th>
-                                                                            <th>Apparel</th>
-                                                                            <th>Process</th>
-                                                                            <th>Order No.</th>
-                                                                            <th>Created Dt.</th>
-                                                                            <th>Status</th>
 
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                    <div class="tab-pane fade show active" id="jobRecieve" role="tabpanel"
+                                        aria-labelledby="profile-tab">
+                                        <div style="margin-top:2%">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    Pending Jobs
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered" id="dataTable" width="100%"
+                                                            cellspacing="0">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>BarCode</th>
+                                                                    <th>Apparel</th>
+                                                                    <th>Branch</th>
+                                                                    <th>Order No.</th>
+                                                                    <th>Trial Dt.</th>
+                                                                    <th>Makeone Dt.</th>
+                                                                    <th>Factory Dt.</th>
+                                                                    <th>Process</th>
+                                                                    <th>Job Worker</th>
+                                                                    <th>Remove</th>
 
+                                                                </tr>
+                                                            </thead>
 
-                                                        </div>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                </div>
 
+
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
 
                             </div>

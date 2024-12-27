@@ -162,7 +162,7 @@
                         <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
                         
-                        <a class="collapse-item">Customer</a>
+                        <a class="collapse-item">Customer Tag</a>
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                         <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
@@ -177,6 +177,7 @@
                         <a class="collapse-item" href="user.html">User</a>
                         <a class="collapse-item active" href="branchwiserole.html">Branch Wise Role</a>
                         <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
+                        <a class="collapse-item" href="customeraddress.html">Customer Address</a>
                         
                         <!-- <a class="collapse-item">User Rights</a> -->
                     </div>
@@ -196,7 +197,7 @@
                         <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
                         
                         <a class="collapse-item" href="JobIssue.html">Job Issue</a>
-                        <a class="collapse-item">Job Recieve</a>
+                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
                         <a class="collapse-item">Job Transfer</a>
                         <a class="collapse-item">Order</a>
                     </div>
@@ -524,10 +525,10 @@
                         href="https://datatables.net">official DataTables documentation</a>.</p>-->
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <!-- <div class="card-header py-3">
+                        <div class="card-header py-3">
                             <button class="btn btn-primary ml-auto" style="float:right" onclick="openAddModal()">Add
-                                Roles</button>
-                        </div> -->
+                              Branch wise Role Rights</button>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover" id="dataTable" width="100%"
@@ -535,16 +536,14 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>User</th>
-                                            <th>Branch</th>
-                                            <th>Role</th>
+                                            <th>Status</th>
                                             <th style="width:5%">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>User1</td>
-                                            <td>Branch-A</td>
-                                            <td>Admin</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -554,18 +553,16 @@
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
+                                                            onclick="editTableRow(this)">Edit</a>
                                                         <a class="dropdown-item" href="#"
                                                             onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td>User2</td>
-                                            <td>Branch-B</td>
-                                            <td>SuperAdmin</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -575,7 +572,7 @@
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
+                                                            onclick="editTableRow(this)">Edit</a>
                                                         <a class="dropdown-item" href="#"
                                                             onclick="confirmDelete(this)">Delete</a>
                                                     </div>
@@ -584,104 +581,110 @@
                                         </tr>
                                         <tr>
                                             <td>User3</td>
-                                            <td>Branch-B</td>
-                                            <td>Admin</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>User4</td>
-                                            <td>Branch-B</td>
-                                            <td>Editor</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>User5</td>
-                                            <td>Branch-B</td>
-                                            <td>Viewer</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>User6</td>
-                                            <td>Branch-C</td>
-                                            <td>SuperAdmin</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>User7</td>
-                                            <td>Branch-C</td>
-                                            <td>Viewer</td>
+                                            <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>User8</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User9</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -693,7 +696,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addRoleModalLabel">Add Role</h5>
+                                        <h5 class="modal-title" id="addRoleModalLabel">Add Role Rights</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -701,53 +704,8 @@
                                     <div class="modal-body">
                                         <form id="addRoleForm">
                                             <div class="form-group">
-                                                <label for="addRoleName">Role Name</label>
-                                                <input type="text" class="form-control" id="addRoleName" required>
-                                                <div class="invalid-feedback" id="role_val">
-                                                    Role Name cannot be empty.
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="addStatus">Status</label>
-                                                <select class="form-control" id="addStatus" required>
-                                                    <option value="" selected disabled>Select</option>
-                                                    <option value="Active">Active</option>
-                                                    <option value="Inactive">Inactive</option>
-                                                </select>
-                                                <div class="invalid-feedback" id="status_val">
-                                                    Please select a status.
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    onclick="addRole()">Add</button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Edit Modal -->
-                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editRoleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="editRoleForm">
-                                            <div class="form-group">
-                                                <label for="editUser">User</label>
-                                                <select class="form-control" id="editUser" required>
+                                                <label for="addUser">User</label>
+                                                <select class="form-control" id="addUser" required>
                                                     <option value="" selected disabled>Select User</option>
                                                     <option value="User1">User1</option>
                                                     <option value="User2">User2</option>
@@ -757,46 +715,167 @@
                                                     <option value="User6">User6</option>
                                                     <option value="User7">User7</option>
                                                 </select>
-                                                <div class="invalid-feedback" id="edit_user_val">
+                                                <div class="invalid-feedback" id="add_user_val">
                                                     Please select a user.
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="editBranch">Branch</label>
-                                                <select class="form-control" id="editBranch" required>
-                                                    <option value="" selected disabled>Select Branch</option>
-                                                    <option value="Branch-A">Branch-A</option>
-                                                    <option value="Branch-B">Branch-B</option>
-                                                    <option value="Branch-C">Branch-C</option>
-                                                </select>
-                                                <div class="invalid-feedback" id="edit_branch_val">
-                                                    Please select a branch.
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="addBranch">Branch</label>
+                                                    <select class="form-control" id="addBranch" required>
+                                                        <option value="" selected disabled>Select Branch</option>
+                                                        <option value="Branch-A">Branch-A</option>
+                                                        <option value="Branch-B">Branch-B</option>
+                                                        <option value="Branch-C">Branch-C</option>
+                                                    </select>
+                                                    <div class="invalid-feedback" id="add_branch_val">
+                                                        Please select a branch.
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="addRole">Role</label>
+                                                    <select class="form-control" id="addRole" required>
+                                                        <option value="" selected disabled>Select Role</option>
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="SuperAdmin">SuperAdmin</option>
+                                                        <option value="Editor">Editor</option>
+                                                        <option value="Viewer">Viewer</option>
+                                                    </select>
+                                                    <div class="invalid-feedback" id="add_role_val">
+                                                        Please select a role.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="editRole">Role</label>
-                                                <select class="form-control" id="editRole" required>
-                                                    <option value="" selected disabled>Select Role</option>
-                                                    <option value="Admin">Admin</option>
-                                                    <option value="SuperAdmin">SuperAdmin</option>
-                                                    <option value="Editor">Editor</option>
-                                                    <option value="Viewer">Viewer</option>
+                                                <label for="addStatus">Status</label>
+                                                <select class="form-control" id="addStatus" required>
+                                                    <option value="" selected disabled>Select Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
                                                 </select>
-                                                <div class="invalid-feedback" id="edit_role_val">
-                                                    Please select a role.
-                                                </div>
                                             </div>
-                                        </form>
+                                            <div class="invalid-feedback" id="add_status_val">
+                                                Please select a status.
+                                            </div>
                                     </div>
+                                    <!-- Add Role Button -->
+                                    <button type="button" class="btn btn-primary" style="width:20%; margin-left:4%" id="btnaddtblrole">Add Role</button>
+                                    <!-- Table to display added roles -->
+                                    <div class="table-responsive mt-3">
+                                        <table class="table" id="roleTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>User</th>
+                                                    <th>Branch</th>
+                                                    <th>Role</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="roleTableBody">
+                                                <!-- Dynamic rows will be added here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="saveRoleChanges()">Save changes</button>
+                                        <button type="button" class="btn btn-primary" id="btnaddUser">Add</button>
                                     </div>
+                                    </div>
+                                    </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
 
-
+                        <!-- Edit Modal -->
+                        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editRoleModalLabel">Edit Role Rights</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="editRoleForm">
+                                            <div class="form-group">
+                                                <label for="editUser">User</label>
+                                                <input type="text" class="form-control" id="editUser" required>
+                                                <div class="invalid-feedback" id="edit_user_val">
+                                                    Please select a user.
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="editBranch">Branch</label>
+                                                    <select class="form-control" id="editBranch" required>
+                                                        <option value="" selected disabled>Select Branch</option>
+                                                        <option value="Branch-A">Branch-A</option>
+                                                        <option value="Branch-B">Branch-B</option>
+                                                        <option value="Branch-C">Branch-C</option>
+                                                    </select>
+                                                    <div class="invalid-feedback" id="edit_branch_val">
+                                                        Please select a branch.
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="editRole">Role</label>
+                                                    <select class="form-control" id="editRole" required>
+                                                        <option value="" selected disabled>Select Role</option>
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="SuperAdmin">SuperAdmin</option>
+                                                        <option value="Editor">Editor</option>
+                                                        <option value="Viewer">Viewer</option>
+                                                    </select>
+                                                    <div class="invalid-feedback" id="edit_role_val">
+                                                        Please select a role.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editStatus">Status</label>
+                                                <select class="form-control" id="editStatus" required>
+                                                    <option value="" selected disabled>Select Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                                <div class="invalid-feedback" id="edit_status_val">
+                                                    Please select a status.
+                                                </div>
+                                                </div>
+                                    <!-- Add Role Button -->
+                                    <button type="button" class="btn btn-primary" style="width:20%; margin-left:4%" id="btnedittblrole">Add Role</button>
+                                    <!-- Table to display added roles -->
+                                    <div class="table-responsive mt-3">
+                                        <table class="table" id="editroleTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>User</th>
+                                                    <th>Branch</th>
+                                                    <th>Role</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="editroleTableBody">
+                                                <!-- Dynamic rows will be added here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btnedituserrole">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Delete Confirmation Modal -->
                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
@@ -804,7 +883,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Delete Role</h5>
+                                        <h5 class="modal-title" id="deleteModalLabel">Delete Role Right</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -895,6 +974,12 @@
     <script>
         let currentRow; // Variable to store the current row being edited or deleted
 
+        // Prevent the form from submitting and add the role
+        document.getElementById("addRoleForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form submission
+            addRole();  // Call your function to add a role
+        });
+
         document.addEventListener('DOMContentLoaded', function () {
             let totalRowCount = document.querySelectorAll('#dataTable tbody tr').length;
             //    let rowCountElement = document.getElementById('rowCount');
@@ -908,87 +993,395 @@
 
         function openAddModal() {
             $('#addModal').modal('show');
-            const roleInput = document.getElementById('addRoleName');
+            const userInput = document.getElementById('addUser');
+            const branchInput = document.getElementById('addBranch');
+            const roleInput = document.getElementById('addRole');
             const statusInput = document.getElementById('addStatus');
+
+            const userval = document.getElementById("add_user_val");
+            const branchval = document.getElementById("add_branch_val");    
+            const roleval = document.getElementById("add_role_val");
+            const statusval = document.getElementById("add_status_val");
+
+            userInput.setCustomValidity("");
+            userInput.classList.remove("is-invalid");
+            userval.style.display = "none";
+            userval.textContent = "";
+
+            branchInput.setCustomValidity("");
+            branchInput.classList.remove("is-invalid");
+            branchval.style.display = "none";
+            branchval.textContent = "";
+
+            roleInput.setCustomValidity("");
+            roleInput.classList.remove("is-invalid");
+            roleval.style.display = "none";
+            roleval.textContent = "";
+
+            statusInput.setCustomValidity("");
+            statusInput.classList.remove("is-invalid");
+            statusval.style.display = "none";
+            statusval.textContent = "";
+            clearAddRoleForm();
+        }
+       
+        function openEditModal() {
+            $('#editModal').modal('show');
+            const userInput = document.getElementById('editUser');
+            const branchInput = document.getElementById('editBranch');
+            const roleInput = document.getElementById('editRole');
+            const statusInput = document.getElementById('editStatus');
+
+            const userval = document.getElementById("edit_user_val");
+            const branchval = document.getElementById("edit_branch_val");
+            const roleval = document.getElementById("edit_role_val");
+            const statusval = document.getElementById("edit_status_val");
+
+            document.getElementById('editUser').readOnly = true;
+
+
+            userInput.setCustomValidity("");
+            userInput.classList.remove("is-invalid");
+            userval.style.display = "none";
+            userval.textContent = "";
+
+            branchInput.setCustomValidity("");
+            branchInput.classList.remove("is-invalid");
+            branchval.style.display = "none";
+            branchval.textContent = "";
+
+            roleInput.setCustomValidity("");
+            roleInput.classList.remove("is-invalid");
+            roleval.style.display = "none";
+            roleval.textContent = "";   
+
+            statusInput.setCustomValidity("");
+            statusInput.classList.remove("is-invalid");
+            statusval.style.display = "none";
+            statusval.textContent = "";
+            //clearEditRoleForm();
+        }
+
+        function clearEditRoleForm() {
+            document.getElementById('editRoleForm').reset();
+        }
+        
+        $("#btnaddtblrole").click(function () {
+            addRole();
+        });
+
+        $("#btnaddUser").click(function () {
+            if (checkValidation()) {
+                $('#addModal').modal('hide');
+            }
+        });
+
+        $("#btnedittblrole").click(function () {
+            editRole();
+        });
+        
+        function checkeditvalidation() {
+            const userInput = document.getElementById('editUser');
+            const branchInput = document.getElementById('editBranch');
+            const roleInput = document.getElementById('editRole');
+            const statusInput = document.getElementById('editStatus');
+
+            const userval = document.getElementById("edit_user_val");
+            const branchval = document.getElementById("edit_branch_val");
+            const roleval = document.getElementById("edit_role_val");
+            const statusval = document.getElementById("edit_status_val");
+
+            const user = userInput.value;
+            const branch = branchInput.value;
+            const role = roleInput.value;
+            const status = statusInput.value;
+
+            // Basic validation
+            let isValid = true;
+            if (!user) {
+                userInput.setCustomValidity("Please select a user.");
+                userInput.classList.add("is-invalid");
+                userval.textContent = "Please select a user.";
+                userval.style.display = "block";
+                isValid = false;
+            } else {
+                userInput.setCustomValidity("");
+                userInput.classList.remove("is-invalid");
+                userval.textContent = "";
+                userval.style.display = "none";
+            }
+            if (!branch) {
+                branchInput.setCustomValidity("Please select a branch.");
+                branchInput.classList.add("is-invalid");
+                branchval.textContent = "Please select a branch.";
+                branchval.style.display = "block";
+                isValid = false;
+            } else {
+                branchInput.setCustomValidity("");
+                branchInput.classList.remove("is-invalid");
+                branchval.textContent = "";
+                branchval.style.display = "none";
+            }
+            if (!role) {
+                roleInput.setCustomValidity("Please select a role.");
+                roleInput.classList.add("is-invalid");
+                roleval.textContent = "Please select a role.";
+                roleval.style.display = "block";
+                isValid = false;
+            } else {
+                roleInput.setCustomValidity("");
+                roleInput.classList.remove("is-invalid");
+                roleval.textContent = "";
+                roleval.style.display = "none";
+            }
+            if (!status) {
+                statusInput.setCustomValidity("Please select a status.");
+                statusInput.classList.add("is-invalid");
+                statusval.textContent = "Please select a status.";
+                statusval.style.display = "block";
+                isValid = false;
+            } else {
+                statusInput.setCustomValidity("");
+                statusInput.classList.remove("is-invalid");
+                statusval.textContent = "";
+                statusval.style.display = "none";
+            }
+            return isValid;
+        }
+
+        function editRole() {
+            if (!checkeditvalidation()) {
+                return;
+            }
+
+            // Get values from the form
+            const user = document.getElementById('editUser').value;
+            const branch = document.getElementById('editBranch').value;
+            const role = document.getElementById('editRole').value;
+            const status = document.getElementById('editStatus').value;
+
+            // Create a new row for the table
+            const tableBody = document.getElementById('editroleTableBody');
+            const newRow = document.createElement('tr');
+
+            // Create cells for User, Branch, Role, Status, and Actions
+            const userCell = document.createElement('td');
+            userCell.textContent = user;
+
+            const branchCell = document.createElement('td');
+            branchCell.textContent = branch;
+
+            const roleCell = document.createElement('td');
+            roleCell.textContent = role;
+
+            const statusCell = document.createElement('td');
+            statusCell.textContent = status;
+
+            const actionsCell = document.createElement('td');
+            actionsCell.innerHTML = `
+            <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            &#x22EE;
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+            <a class="dropdown-item" href="#" onclick="deleteRow(this)">Delete</a>
+            </div>
+            </div>
+             `;
+
+            // Append the cells to the row
+            newRow.appendChild(userCell);
+            newRow.appendChild(branchCell);
+            newRow.appendChild(roleCell);
+            newRow.appendChild(statusCell);
+            newRow.appendChild(actionsCell);
+
+            // Append the row to the table
+            tableBody.appendChild(newRow);
+
+            // Clear form inputs and validation messages
+            document.getElementById('editUser').value = '';
+            document.getElementById('editBranch').value = '';
+            document.getElementById('editRole').value = '';
+            document.getElementById('editStatus').value = '';
+
+            document.getElementById('editUser').setCustomValidity("");
+            document.getElementById('editUser').classList.remove("is-invalid");
+
+            document.getElementById('editBranch').setCustomValidity("");
+            document.getElementById('editBranch').classList.remove("is-invalid");
+
+            document.getElementById('editRole').setCustomValidity("");
+            document.getElementById('editRole').classList.remove("is-invalid");
+
+            document.getElementById('editStatus').setCustomValidity("");
+            document.getElementById('editStatus').classList.remove("is-invalid");
+        }
+
+        function checkValidation()
+        {
+            const userInput = document.getElementById('addUser');
+            const branchInput = document.getElementById('addBranch');
+            const roleInput = document.getElementById('addRole');
+            const statusInput = document.getElementById('addStatus');
+
+            const userval = document.getElementById("add_user_val");
+            const branchval = document.getElementById("add_branch_val");
+            const roleval = document.getElementById("add_role_val");
+            const statusval = document.getElementById("add_status_val");
+
+            const user = userInput.value;
+            const branch = branchInput.value;
+            const role = roleInput.value;
+            const status = statusInput.value;
+
+            // Basic validation
+            if (!user || !branch || !role || !status) {
+            if (!user) {
+                userInput.setCustomValidity("Please select a users.");
+                userInput.classList.add("is-invalid");
+                userval.style.display = "block";
+            } else {
+                userInput.setCustomValidity("");
+                userInput.classList.remove("is-invalid");
+                userval.style.display = "none";
+            }
+            if (!branch) {
+                branchInput.setCustomValidity("Please select a branch.");
+                branchInput.classList.add("is-invalid");
+                branchval.style.display = "block";
+            } else {
+                branchInput.setCustomValidity("");
+                branchInput.classList.remove("is-invalid");
+                branchval.style.display = "none";
+            }
+            if (!role) {
+                roleInput.setCustomValidity("Please select a role.");
+                roleInput.classList.add("is-invalid");
+                roleval.style.display = "block";
+            } else {
+                roleInput.setCustomValidity("");
+                roleInput.classList.remove("is-invalid");
+                roleval.style.display = "none";
+            }
+            if (!status) {
+                statusInput.setCustomValidity("Please select a status.");
+                statusInput.classList.add("is-invalid");
+                statusval.style.display = "block";
+            } else {
+                statusInput.setCustomValidity("");
+                statusInput.classList.remove("is-invalid");
+                statusval.style.display = "none";
+            }
+            return;
+            }
+        }
+     
+        function addRole() {
+            // Get values from the form
+            const userInput = document.getElementById('addUser');
+            const branchInput = document.getElementById('addBranch');
+            const roleInput = document.getElementById('addRole');
+            const statusInput = document.getElementById('addStatus');
+
+            const user = userInput.value;
+            const branch = branchInput.value;
+            const role = roleInput.value;
+            const status = statusInput.value;
+
+            checkValidation();
+            
+            // Create a new row for the table
+            const tableBody = document.getElementById('roleTableBody');
+            const newRow = document.createElement('tr');
+
+            // Create cells for User, Branch, Role, Status, and Actions
+            const userCell = document.createElement('td');
+            userCell.textContent = user;
+
+            const branchCell = document.createElement('td');
+            branchCell.textContent = branch;
+
+            const roleCell = document.createElement('td');
+            roleCell.textContent = role;
+
+            const statusCell = document.createElement('td');
+            statusCell.textContent = status;
+
+            const actionsCell = document.createElement('td');
+            actionsCell.innerHTML = `
+            <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            &#x22EE;
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+            <a class="dropdown-item" href="#" onclick="deleteRow(this)">Delete</a>
+            </div>
+            </div>
+             `;
+
+            // Append the cells to the row
+            newRow.appendChild(userCell);
+            newRow.appendChild(branchCell);
+            newRow.appendChild(roleCell);
+            newRow.appendChild(statusCell);
+            newRow.appendChild(actionsCell);
+
+            // Append the row to the table
+            tableBody.appendChild(newRow);
+
+            // Clear form inputs and validation messages
+            userInput.value = '';
+            branchInput.value = '';
+            roleInput.value = '';
+            statusInput.value = '';
+
+            userInput.setCustomValidity("");
+            userInput.classList.remove("is-invalid");
+
+            branchInput.setCustomValidity("");
+            branchInput.classList.remove("is-invalid");
 
             roleInput.setCustomValidity("");
             roleInput.classList.remove("is-invalid");
 
             statusInput.setCustomValidity("");
             statusInput.classList.remove("is-invalid");
-            clearAddRoleForm();
         }
 
-        function addRole() {
-            const roleArray = ['addRoleName', 'role_val'];
-            const statusRoleArray = ['addStatus', 'status_val'];
+        // // Function to delete a row
+        // function deleteRow(button) {
+        //     const row = button.closest('tr');
+        //     row.remove();
+        // }
 
-            // Perform validation
-            if (!checkValidation(roleArray, statusRoleArray)) {
-                return; // Exit if validation fails
-            }
+        // Function to edit a row
+        function editRow(button) {
+            const row = button.closest('tr');
+            const cells = row.getElementsByTagName('td');
 
-            const roleName = document.getElementById('addRoleName').value.trim();
-            const status = document.getElementById('addStatus').value.trim();
+            // Populate the form with the current values of the row
+            document.getElementById('editUser').value = cells[0].textContent;
+            document.getElementById('editBranch').value = cells[1].textContent;
+            document.getElementById('editRole').value = cells[2].textContent;
+            document.getElementById('editStatus').value = cells[3].textContent;
 
-            // Add new row to table
-            const newRow = `<tr>
-        <td>${roleName}</td>
-        <td>${status}</td>
-        <td>
-            <div class="dropdown">
-                <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    &#x22EE;
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#" onclick="editRole(this)">Edit</a>
-                    <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
-                </div>
-            </div>
-        </td>
-    </tr>`;
-
-            document.querySelector('#dataTable tbody').insertAdjacentHTML('beforeend', newRow);
-            $('#addModal').modal('hide');
-            clearAddRoleForm(); // Assuming this function resets the form fields
+            // Show the edit modal
+            openEditModal();
         }
 
         function clearAddRoleForm() {
-            document.getElementById('addRoleForm').reset(); // Resets the form fields
-            document.getElementById('role_val').textContent = '';
-            document.getElementById('status_val').textContent = '';
-            document.getElementById('addRoleName').classList.remove('is-invalid');
-            document.getElementById('addStatus').classList.remove('is-invalid');
+            document.getElementById('addRoleForm').reset();
         }
 
-
-        function editRow(element) {
+        function editTableRow(element) {
             currentRow = element.closest('tr');
             const cells = currentRow.getElementsByTagName('td');
 
             document.getElementById('editUser').value = cells[0].innerText;
-            document.getElementById('editBranch').value = cells[1].innerText;
-            document.getElementById('editRole').value = cells[2].innerText;
+            document.getElementById('editStatus').value = cells[1].innerText;
+            openEditModal();
 
-            $('#editModal').modal('show');
-        }
-
-        function saveRoleChanges() {
-            const userArray = ['editUser', 'edit_user_val'];
-            const branchArray = ['editBranch', 'edit_branch_val'];
-            const roleArray = ['editRole', 'edit_role_val'];
-
-            // Perform validation
-            if (!checkValidation(userArray, branchArray, roleArray)) {
-            return; // Exit if validation fails
-            }
-
-            const cells = currentRow.getElementsByTagName('td');
-            cells[0].innerText = document.getElementById('editUser').value;
-            cells[1].innerText = document.getElementById('editBranch').value;
-            cells[2].innerText = document.getElementById('editRole').value;
-            $('#editModal').modal('hide');
-            clearEditRoleForm();
         }
 
         function confirmDelete(element) {
@@ -1004,98 +1397,10 @@
 
             currentRow.remove();
             $('#deleteModal').modal('hide');
-            totalRowCount--;
+            // totalRowCount--;
             document.getElementById('rowCount').innerText = totalRowCount;
         }
 
-        //function clearAddRoleForm() {
-        //    document.getElementById('addRoleName').value = '';
-        //    document.getElementById('addStatus').selectedIndex = 0;
-        //}
-        function clearEditRoleForm() {
-            document.getElementById('addRoleName').value = '';
-            document.getElementById('addStatus').selectedIndex = 0;
-        }
-        
-        function checkValidation(userArray, branchArray, roleArray) {
-            const [userId, userMessage] = userArray;
-            const [branchId, branchMessage] = branchArray;
-            const [roleId, roleMessage] = roleArray;
-
-            // Retrieve the DOM elements
-            const userElement = document.getElementById(userId);
-            const branchElement = document.getElementById(branchId);
-            const roleElement = document.getElementById(roleId);
-
-
-            const userMessageElement = document.getElementById(userMessage);
-            const branchMessageElement = document.getElementById(branchMessage);
-            const roleMessageElement = document.getElementById(roleMessage);
-
-            // Check if elements are found
-            if (!userElement || !branchElement || !roleElement || !userMessageElement || !branchMessageElement || !roleMessageElement) {
-            console.error('One or more validation elements not found.');
-            return false;
-            }
-
-            const userName = userElement.value.trim();
-            const branchName = branchElement.value.trim();
-            const roleName = roleElement.value.trim();
-
-            let isValid = true;
-
-            // Validation for user name
-            if (!userName) {
-            userElement.setCustomValidity("Please select a User.");
-            userElement.classList.add("is-invalid");
-            userMessageElement.textContent = "Please select a User.";
-            isValid = false;
-            } else {
-            userElement.setCustomValidity("");
-            userElement.classList.remove("is-invalid");
-            userMessageElement.textContent = "";
-            }
-
-            // Validation for branch name
-            if (!branchName) {
-            branchElement.setCustomValidity("Please select a Branch.");
-            branchElement.classList.add("is-invalid");
-            branchMessageElement.textContent = "Please select a Branch.";
-            isValid = false;
-            } else {
-            branchElement.setCustomValidity("");
-            branchElement.classList.remove("is-invalid");
-            branchMessageElement.textContent = "";
-            }
-
-            // Validation for role name
-            if (!roleName) {
-            roleElement.setCustomValidity("Please select a Role.");
-            roleElement.classList.add("is-invalid");
-            roleMessageElement.textContent = "Please select a Role.";
-            isValid = false;
-            } else {
-            roleElement.setCustomValidity("");
-            roleElement.classList.remove("is-invalid");
-            roleMessageElement.textContent = "";
-            }
-
-            return isValid;
-        }
-
-
-        function isDuplicateValue(value) {
-            let isDuplicate = false;
-            $('#dataTable tbody tr').each(function () {
-                const cellValue = $.trim($(this).find('td:first').text());
-                if (cellValue.toLowerCase() === value.toLowerCase()) {
-                    isDuplicate = true;
-                    return false; // Exit loop if a duplicate is found
-                }
-            });
-            return isDuplicate;
-        }
-        
         $(document).ready(function () {
             // Function to toggle sidebar visibility
             function toggleSidebar() {
