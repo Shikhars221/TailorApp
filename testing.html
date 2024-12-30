@@ -1002,30 +1002,21 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
-        let currentRow; // Variable to store the current row being edited or deleted
+        let isRoleAdded = false; // Flag to track if a role is added to the dynamic table
 
         // Prevent the form from submitting and add the role
         document.getElementById("addRoleForm").addEventListener("submit", function (event) {
             event.preventDefault();  // Prevent form submission
-            addRole();  // Call your function to add a role
+            if (!isRoleAdded) {
+                addRole();  // Call your function to add a role only if no role is added yet
+            }
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            let totalRowCount = document.querySelectorAll('#dataTable tbody tr').length;
-            //    let rowCountElement = document.getElementById('rowCount');
-
-            //    if (rowCountElement) {
-            //        rowCountElement.innerText = totalRowCount;
-            //    } else {
-            //        console.error('Element with id "rowCount" not found');
-            //    }
-        });
-
-
+        // Function to open Add Modal and reset validation status
         function openAddModal() {
             $('#addModal').modal('show');
 
-            // Clear form inputs
+            // Clear form inputs and validation messages
             const userInput = document.getElementById('addUser');
             const branchInput = document.getElementById('addBranch');
             const roleInput = document.getElementById('addRole');
@@ -1058,15 +1049,17 @@
 
             clearAddRoleForm();
 
-            // Clear the table body (dynamically added rows)
-            const tableBody = document.getElementById('roleTableBody');
-            tableBody.innerHTML = ''; // Clears all rows
+            // Reset the flag after opening the modal
+            isRoleAdded = false;
         }
 
+        // Function to delete a role from the dynamic table
+        function deleteRole(button) {
+            $(button).closest('tr').remove();
+        }
 
-
-        function openEditModal() {
-            $('#editModal').modal('show');
+        // Validation check function for the edit form
+        function checkeditvalidation() {
             const userInput = document.getElementById('editUser');
             const branchInput = document.getElementById('editBranch');
             const roleInput = document.getElementById('editRole');
@@ -1077,48 +1070,332 @@
             const roleval = document.getElementById("edit_role_val");
             const statusval = document.getElementById("edit_status_val");
 
-            document.getElementById('editUser').readOnly = true;
+            const user = userInput.value;
+            const branch = branchInput.value;
+            const role = roleInput.value;
+            const status = statusInput.value;
 
+            // Basic validation
+            let isValid = true;
 
-            userInput.setCustomValidity("");
-            userInput.classList.remove("is-invalid");
-            userval.style.display = "none";
-            userval.textContent = "";
-
-            branchInput.setCustomValidity("");
-            branchInput.classList.remove("is-invalid");
-            branchval.style.display = "none";
-            branchval.textContent = "";
-
-            roleInput.setCustomValidity("");
-            roleInput.classList.remove("is-invalid");
-            roleval.style.display = "none";
-            roleval.textContent = "";
-
-            statusInput.setCustomValidity("");
-            statusInput.classList.remove("is-invalid");
-            statusval.style.display = "none";
-            statusval.textContent = "";
-            //clearEditRoleForm();
-        }
-
-        function clearEditRoleForm() {
-            document.getElementById('editRoleForm').reset();
-        }
-
-        $("#btnaddtblrole").click(function () {
-            addRole();
-        });
-
-        $("#btnaddUser").click(function () {
-            if (checkValidation()) {
-                $('#addModal').modal('hide');
+            // User validation
+            if (!user) {
+                userInput.setCustomValidity("Please select a user.");
+                userInput.classList.add("is-invalid");
+                userval.textContent = "Please select a user.";
+                userval.style.display = "block";
+                isValid = false;
+            } else {
+                userInput.setCustomValidity("");
+                userInput.classList.remove("is-invalid");
+                userval.textContent = "";
+                userval.style.display = "none";
             }
+
+            // Branch validation
+            if (!branch) {
+                branchInput.setCustomValidity("Please select a branch.");
+                branchInput.classList.add("is-invalid");
+                branchval.textContent = "Please select a branch.";
+                branchval.style.display = "block";
+                isValid = false;
+            } else {
+                branchInput.setCustomValidity("");
+                branchInput.classList.remove("is-invalid");
+                branchval.textContent = "";
+                branchval.style.display = "none";
+            }
+
+            // Role validation
+            if (!role) {
+                roleInput.setCustomValidity("Please select a role.");
+                roleInput.classList.add("is-invalid");
+                roleval.textContent = "Please select a role.";
+                roleval.style.display = "block";
+                isValid = false;
+            } else {
+                roleInput.setCustomValidity("");
+                roleInput.classList.remove("is-invalid");
+                roleval.textContent = "";
+                roleval.style.display = "none";
+            }
+
+            // Status validation
+            if (!status) {
+                statusInput.setCustomValidity("Please select a status.");
+                statusInput.classList.add("is-invalid");
+                statusval.textContent = "Please select a status.";
+                statusval.style.display = "block";
+                isValid = false;
+            } else {
+                statusInput.setCustomValidity("");
+                statusInput.classList.remove("is-invalid");
+                statusval.textContent = "";
+                statusval.style.display = "none";
+            }
+
+            return isValid;
+        }
+
+        // Validation check function for the add role form
+        function checkValidation() {
+            const userInput = document.getElementById('addUser');
+            const branchInput = document.getElementById('addBranch');
+            const roleInput = document.getElementById('addRole');
+            const statusInput = document.getElementById('addStatus');
+
+            const userval = document.getElementById("add_user_val");
+            const branchval = document.getElementById("add_branch_val");
+            const roleval = document.getElementById("add_role_val");
+            const statusval = document.getElementById("add_status_val");
+
+            const user = userInput.value;
+            const branch = branchInput.value;
+            const role = roleInput.value;
+            const status = statusInput.value;
+
+            // Basic validation for Add Role
+            if (!user) {
+                userInput.setCustomValidity("Please select a user.");
+                userInput.classList.add("is-invalid");
+                userval.style.display = "block";
+                userval.textContent = "Please select a user.";
+            } else {
+                userInput.setCustomValidity("");
+                userInput.classList.remove("is-invalid");
+                userval.style.display = "none";
+                userval.textContent = "";
+            }
+
+            if (!branch) {
+                branchInput.setCustomValidity("Please select a branch.");
+                branchInput.classList.add("is-invalid");
+                branchval.style.display = "block";
+                branchval.textContent = "Please select a branch.";
+            } else {
+                branchInput.setCustomValidity("");
+                branchInput.classList.remove("is-invalid");
+                branchval.style.display = "none";
+                branchval.textContent = "";
+            }
+
+            if (!role) {
+                roleInput.setCustomValidity("Please select a role.");
+                roleInput.classList.add("is-invalid");
+                roleval.style.display = "block";
+                roleval.textContent = "Please select a role.";
+            } else {
+                roleInput.setCustomValidity("");
+                roleInput.classList.remove("is-invalid");
+                roleval.style.display = "none";
+                roleval.textContent = "";
+            }
+
+            if (!status) {
+                statusInput.setCustomValidity("Please select a status.");
+                statusInput.classList.add("is-invalid");
+                statusval.style.display = "block";
+                statusval.textContent = "Please select a status.";
+            } else {
+                statusInput.setCustomValidity("");
+                statusInput.classList.remove("is-invalid");
+                statusval.style.display = "none";
+                statusval.textContent = "";
+            }
+
+            // Return true if all fields are valid
+            return user && branch && role && status;
+        }
+
+        // Function to add the user (with all roles) to the main table
+        $('#btnaddUser').click(function () {
+            var user = $('#addUser').val();
+            var tableitems = $('#roleTableBody tr').length
+            if (tableitems <= 0) {
+                if (!checkValidation()) {
+                    alert('Please add at least one role');
+                    return;
+                }
+            }
+
+            if (tableitems > 0) {
+
+
+                // Loop through the dynamic table rows and add them to the main table
+                $('#roleTableBody tr').each(function () {
+                    var roleRow = $(this);
+                    var user = roleRow.find('td').eq(0).text();
+                    var branch = roleRow.find('td').eq(1).text();
+                    var role = roleRow.find('td').eq(2).text();
+                    var status = roleRow.find('td').eq(3).text();
+
+                    // Add to the main table (dataTable)
+                    var mainTableRow = `<tr>
+                             <td>${user}</td>
+                             <td>${status}</td>
+                             <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        &#x22EE;
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
+                                    </div>
+                                </div>
+                             </td>
+                            </tr>`;
+                    $('#dataTable tbody').append(mainTableRow);
+                });
+            }
+            else {
+                // If no rows and validation passes, still don't proceed
+                alert('Please add at least one role');
+                return;
+
+            }
+            // Close the modal after adding the user
+            $('#addModal').modal('hide');
         });
 
-        $("#btnedittblrole").click(function () {
-            editRole();
+        // Function to add the selected role to the dynamic table
+        $('#btnaddtblrole').click(function () {
+            // Get values from the modal form
+            var user = $('#addUser').val();
+            var branch = $('#addBranch').val();
+            var role = $('#addRole').val();
+            var status = $('#addStatus').val();
+
+            // Validate inputs
+
+            if (!checkValidation()) {
+                return;
+            }
+
+            // Hide validation messages if they are displayed
+            $('#add_user_val').hide();
+            $('#add_branch_val').hide();
+            $('#add_role_val').hide();
+            $('#add_status_val').hide();
+
+            // Create a new row in the dynamic table
+            var newRow = `<tr>
+                    <td>${user}</td>
+                    <td>${branch}</td>
+                    <td>${role}</td>
+                    <td>${status}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteRole(this)">Delete</button>
+                    </td>
+                  </tr>`;
+
+            // Append the new row to the dynamic table
+            $('#roleTableBody').append(newRow);
+
+            // Clear form inputs after adding
+            //$('#addUser').val('');
+            $('#addBranch').val('');
+            $('#addRole').val('');
+            $('#addStatus').val('');
         });
+
+        // Function to edit a role in the dynamic table
+        $('#btnedittblrole').click(function(){
+        // Get values from the form
+        var user = $('#editUser').val();
+        var branch = $('#editBranch').val();
+        var role = $('#editRole').val();
+        var status = $('#editStatus').val();
+
+        // Validate inputs
+        if (!checkeditvalidation()) {
+            return;
+        }
+
+        // Hide validation messages if they are displayed
+        $('#edit_user_val').hide();
+        $('#edit_branch_val').hide();
+        $('#edit_role_val').hide();
+        $('#edit_status_val').hide();
+
+        // Create a new row in the dynamic table
+        var newRow = `<tr>
+            <td>${user}</td>
+            <td>${branch}</td>
+            <td>${role}</td>
+            <td>${status}</td>
+            <td>
+                <button type="button" class="btn btn-danger btn-sm" onclick="deleteRole(this)">Delete</button>
+            </td>
+        </tr>`;
+
+        // Append the new row to the dynamic table
+        $('#editroleTableBody').append(newRow);
+
+        // Clear form inputs after adding
+        //$('#editUser').val('');
+        $('#editBranch').val('');
+        $('#editRole').val('');
+        $('#editStatus').val('');
+        })
+
+        // Function to edit a role in the dynamic table
+        $('#btnedituserrole').click(function(){
+            // Save changes to the main table
+            var user = $('#editUser').val();
+            var branch = $('#editBranch').val();
+            var role = $('#editRole').val();
+            var status = $('#editStatus').val();
+            var tableitems = $('#editroleTableBody tr').length;
+            if (tableitems <= 0) {
+                if (!checkeditvalidation()) {
+                    alert('Please add at least one role');
+                    return;
+                }
+            }
+            
+            if(tableitems > 0){
+                // Loop through the dynamic table rows and add them to the main table
+                $('#editroleTableBody tr').each(function () {
+                    var roleRow = $(this);
+                    var user = roleRow.find('td').eq(0).text();
+                    var branch = roleRow.find('td').eq(1).text();
+                    var role = roleRow.find('td').eq(2).text();
+                    var status = roleRow.find('td').eq(3).text();
+
+                    // Add to the main table (dataTable)
+                    var mainTableRow = `<tr>
+                             <td>${user}</td>
+                             <td>${status}</td>
+                             <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        &#x22EE;
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#" onclick="editTableRow(this)">Edit</a>
+                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
+                                    </div>
+                                </div>
+                             </td>
+                            </tr>`;
+                    $('#dataTable tbody').append(mainTableRow);
+                });
+            }
+            else {
+                // If no rows and validation passes, still don't proceed
+                alert('Please add at least one role');
+                return;
+
+            }
+            // Update the current row with the new values
+            currentRow.cells[0].innerText = user;
+            currentRow.cells[1].innerText = status;
+
+            // Close the modal after saving changes
+            $('#editModal').modal('hide');
+        })
+
 
         function checkeditvalidation() {
             const userInput = document.getElementById('editUser');
@@ -1189,75 +1466,7 @@
             return isValid;
         }
 
-        function editRole() {
-            if (!checkeditvalidation()) {
-                return;
-            }
-
-            // Get values from the form
-            const user = document.getElementById('editUser').value;
-            const branch = document.getElementById('editBranch').value;
-            const role = document.getElementById('editRole').value;
-            const status = document.getElementById('editStatus').value;
-
-            // Create a new row for the table
-            const tableBody = document.getElementById('editroleTableBody');
-            const newRow = document.createElement('tr');
-
-            // Create cells for User, Branch, Role, Status, and Actions
-            const userCell = document.createElement('td');
-            userCell.textContent = user;
-
-            const branchCell = document.createElement('td');
-            branchCell.textContent = branch;
-
-            const roleCell = document.createElement('td');
-            roleCell.textContent = role;
-
-            const statusCell = document.createElement('td');
-            statusCell.textContent = status;
-
-            const actionsCell = document.createElement('td');
-            actionsCell.innerHTML = `
-            <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            &#x22EE;
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
-            <a class="dropdown-item" href="#" onclick="deleteRow(this)">Delete</a>
-            </div>
-            </div>
-             `;
-
-            // Append the cells to the row
-            newRow.appendChild(userCell);
-            newRow.appendChild(branchCell);
-            newRow.appendChild(roleCell);
-            newRow.appendChild(statusCell);
-            newRow.appendChild(actionsCell);
-
-            // Append the row to the table
-            tableBody.appendChild(newRow);
-
-            // Clear form inputs and validation messages
-            document.getElementById('editUser').value = '';
-            document.getElementById('editBranch').value = '';
-            document.getElementById('editRole').value = '';
-            document.getElementById('editStatus').value = '';
-
-            document.getElementById('editUser').setCustomValidity("");
-            document.getElementById('editUser').classList.remove("is-invalid");
-
-            document.getElementById('editBranch').setCustomValidity("");
-            document.getElementById('editBranch').classList.remove("is-invalid");
-
-            document.getElementById('editRole').setCustomValidity("");
-            document.getElementById('editRole').classList.remove("is-invalid");
-
-            document.getElementById('editStatus').setCustomValidity("");
-            document.getElementById('editStatus').classList.remove("is-invalid");
-        }
-
+        // Validation check function for the add role form
         function checkValidation() {
             const userInput = document.getElementById('addUser');
             const branchInput = document.getElementById('addBranch');
@@ -1275,60 +1484,69 @@
             const status = statusInput.value;
 
             // Basic validation
-            if (!user || !branch || !role || !status) {
-                if (!user) {
-                    userInput.setCustomValidity("Please select a users.");
-                    userInput.classList.add("is-invalid");
-                    userval.style.display = "block";
-                } else {
-                    userInput.setCustomValidity("");
-                    userInput.classList.remove("is-invalid");
-                    userval.style.display = "none";
-                }
-                if (!branch) {
-                    branchInput.setCustomValidity("Please select a branch.");
-                    branchInput.classList.add("is-invalid");
-                    branchval.style.display = "block";
-                } else {
-                    branchInput.setCustomValidity("");
-                    branchInput.classList.remove("is-invalid");
-                    branchval.style.display = "none";
-                }
-                if (!role) {
-                    roleInput.setCustomValidity("Please select a role.");
-                    roleInput.classList.add("is-invalid");
-                    roleval.style.display = "block";
-                } else {
-                    roleInput.setCustomValidity("");
-                    roleInput.classList.remove("is-invalid");
-                    roleval.style.display = "none";
-                }
-                if (!status) {
-                    statusInput.setCustomValidity("Please select a status.");
-                    statusInput.classList.add("is-invalid");
-                    statusval.style.display = "block";
-                } else {
-                    statusInput.setCustomValidity("");
-                    statusInput.classList.remove("is-invalid");
-                    statusval.style.display = "none";
-                }
-                return;
+            if (!user) {
+                userInput.setCustomValidity("Please select a user.");
+                userInput.classList.add("is-invalid");
+                userval.style.display = "block";
+                userval.textContent = "Please select a user.";
+            } else {
+                userInput.setCustomValidity("");
+                userInput.classList.remove("is-invalid");
+                userval.style.display = "none";
+                userval.textContent = "";
             }
+
+            if (!branch) {
+                branchInput.setCustomValidity("Please select a branch.");
+                branchInput.classList.add("is-invalid");
+                branchval.style.display = "block";
+                branchval.textContent = "Please select a branch.";
+            } else {
+                branchInput.setCustomValidity("");
+                branchInput.classList.remove("is-invalid");
+                branchval.style.display = "none";
+                branchval.textContent = "";
+            }
+
+            if (!role) {
+                roleInput.setCustomValidity("Please select a role.");
+                roleInput.classList.add("is-invalid");
+                roleval.style.display = "block";
+                roleval.textContent = "Please select a role.";
+            } else {
+                roleInput.setCustomValidity("");
+                roleInput.classList.remove("is-invalid");
+                roleval.style.display = "none";
+                roleval.textContent = "";
+            }
+
+            if (!status) {
+                statusInput.setCustomValidity("Please select a status.");
+                statusInput.classList.add("is-invalid");
+                statusval.style.display = "block";
+                statusval.textContent = "Please select a status.";
+            } else {
+                statusInput.setCustomValidity("");
+                statusInput.classList.remove("is-invalid");
+                statusval.style.display = "none";
+                statusval.textContent = "";
+            }
+
+            // Return true if all fields are valid
+            return user && branch && role && status;
         }
 
+        // Function to add a role to the dynamic table
         function addRole() {
+            if (!checkValidation()) {
+                return; // Don't add role if validation fails
+            }
+
             // Get values from the form
-            const userInput = document.getElementById('addUser');
-            const branchInput = document.getElementById('addBranch');
-            const roleInput = document.getElementById('addRole');
-            const statusInput = document.getElementById('addStatus');
-
-            const user = userInput.value;
-            const branch = branchInput.value;
-            const role = roleInput.value;
-            const status = statusInput.value;
-
-            checkValidation();
+            const user = document.getElementById('addUser').value;
+            const branch = document.getElementById('addBranch').value;
+            const role = document.getElementById('addRole').value;
+            const status = document.getElementById('addStatus').value;
 
             // Create a new row for the table
             const tableBody = document.getElementById('roleTableBody');
@@ -1349,15 +1567,14 @@
 
             const actionsCell = document.createElement('td');
             actionsCell.innerHTML = `
-            <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             &#x22EE;
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
             <a class="dropdown-item" href="#" onclick="deleteRow(this)">Delete</a>
-            </div>
-            </div>
-             `;
+        </div>
+    `;
 
             // Append the cells to the row
             newRow.appendChild(userCell);
@@ -1369,30 +1586,27 @@
             // Append the row to the table
             tableBody.appendChild(newRow);
 
+            // Set the flag to true after adding the role to the table
+            isRoleAdded = true;
+
             // Clear form inputs and validation messages
-            userInput.value = '';
-            branchInput.value = '';
-            roleInput.value = '';
-            statusInput.value = '';
+            document.getElementById('addUser').value = '';
+            document.getElementById('addBranch').value = '';
+            document.getElementById('addRole').value = '';
+            document.getElementById('addStatus').value = '';
 
-            userInput.setCustomValidity("");
-            userInput.classList.remove("is-invalid");
+            document.getElementById('addUser').setCustomValidity("");
+            document.getElementById('addUser').classList.remove("is-invalid");
 
-            branchInput.setCustomValidity("");
-            branchInput.classList.remove("is-invalid");
+            document.getElementById('addBranch').setCustomValidity("");
+            document.getElementById('addBranch').classList.remove("is-invalid");
 
-            roleInput.setCustomValidity("");
-            roleInput.classList.remove("is-invalid");
+            document.getElementById('addRole').setCustomValidity("");
+            document.getElementById('addRole').classList.remove("is-invalid");
 
-            statusInput.setCustomValidity("");
-            statusInput.classList.remove("is-invalid");
+            document.getElementById('addStatus').setCustomValidity("");
+            document.getElementById('addStatus').classList.remove("is-invalid");
         }
-
-        // // Function to delete a row
-        // function deleteRow(button) {
-        //     const row = button.closest('tr');
-        //     row.remove();
-        // }
 
         // Function to edit a row
         function editRow(button) {
@@ -1400,13 +1614,51 @@
             const cells = row.getElementsByTagName('td');
 
             // Populate the form with the current values of the row
-            document.getElementById('editUser').value = cells[0].textContent;
-            document.getElementById('editBranch').value = cells[1].textContent;
-            document.getElementById('editRole').value = cells[2].textContent;
-            document.getElementById('editStatus').value = cells[3].textContent;
+            document.getElementById('editUser').value = cells[0].textContent.trim();  // Assuming User is in the first column
+            document.getElementById('editBranch').value = cells[1].textContent.trim();  // Assuming Branch is in the second column
+            document.getElementById('editRole').value = cells[2].textContent.trim();  // Assuming Role is in the third column
+            document.getElementById('editStatus').value = cells[3].textContent.trim();  // Assuming Status is in the fourth column
 
             // Show the edit modal
             openEditModal();
+        }
+
+        function openEditModal() {
+            $('#editModal').modal('show');  // Show the modal using Bootstrap modal function
+            const userInput = document.getElementById('editUser');
+            const branchInput = document.getElementById('editBranch');
+            const roleInput = document.getElementById('editRole');
+            const statusInput = document.getElementById('editStatus');
+
+            // Validation error message elements
+            const userval = document.getElementById("edit_user_val");
+            const branchval = document.getElementById("edit_branch_val");
+            const roleval = document.getElementById("edit_role_val");
+            const statusval = document.getElementById("edit_status_val");
+
+            // Set the 'User' field to read-only if needed
+            userInput.readOnly = true;
+
+            // Clear any previous validation messages
+            userInput.setCustomValidity("");
+            userInput.classList.remove("is-invalid");
+            userval.style.display = "none";
+            userval.textContent = "";
+
+            branchInput.setCustomValidity("");
+            branchInput.classList.remove("is-invalid");
+            branchval.style.display = "none";
+            branchval.textContent = "";
+
+            roleInput.setCustomValidity("");
+            roleInput.classList.remove("is-invalid");
+            roleval.style.display = "none";
+            roleval.textContent = "";
+
+            statusInput.setCustomValidity("");
+            statusInput.classList.remove("is-invalid");
+            statusval.style.display = "none";
+            statusval.textContent = "";
         }
 
         function clearAddRoleForm() {
@@ -1441,6 +1693,27 @@
         }
 
         $(document).ready(function () {
+
+            // Clear data when the modal is opened
+            $('#addModal').on('shown.bs.modal', function () {
+                // Reset form inputs
+                $('#addRoleForm')[0].reset();
+                // Clear role table body
+                $('#roleTableBody').empty();
+                // Remove any invalid feedback messages
+                $('.invalid-feedback').hide();
+
+                $('#addUser').prop('disabled', false);   // Enable the user selection field
+            });
+
+            $('#addUser').on('change', function () {
+                // Disable the 'addUser' field and any other fields you want to make inactive
+                $('#addUser').prop('disabled', true);   // Disables the user selection field
+                var user = $("#addUser").val();
+                console.log(user);
+            });
+
+
             // Function to toggle sidebar visibility
             function toggleSidebar() {
                 $('#collapseMaster').toggleClass('show');
