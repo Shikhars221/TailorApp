@@ -536,14 +536,14 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>User</th>
-                                            <th>Status</th>
+                                            
                                             <th style="width:5%">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>User1</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -562,7 +562,7 @@
                                         </tr>
                                         <tr>
                                             <td>User2</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -581,7 +581,7 @@
                                         </tr>
                                         <tr>
                                             <td>User3</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -600,7 +600,7 @@
                                         </tr>
                                         <tr>
                                             <td>User4</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -619,7 +619,7 @@
                                         </tr>
                                         <tr>
                                             <td>User5</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -638,7 +638,7 @@
                                         </tr>
                                         <tr>
                                             <td>User6</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -657,7 +657,7 @@
                                         </tr>
                                         <tr>
                                             <td>User7</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -676,7 +676,7 @@
                                         </tr>
                                         <tr>
                                             <td>User8</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -695,7 +695,7 @@
                                         </tr>
                                         <tr>
                                             <td>User9</td>
-                                            <td>Active</td>
+                                            
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button"
@@ -774,17 +774,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="addStatus">Status</label>
-                                                <select class="form-control" id="addStatus" required>
-                                                    <option value="" selected disabled>Select Status</option>
-                                                    <option value="Active">Active</option>
-                                                    <option value="Inactive">Inactive</option>
-                                                </select>
-                                            </div>
-                                            <div class="invalid-feedback" id="add_status_val">
-                                                Please select a status.
-                                            </div>
+                                            
                                     </div>
                                     <!-- Add Role Button -->
                                     <button type="button" class="btn btn-primary" style="width:20%; margin-left:4%"
@@ -797,7 +787,7 @@
                                                     <th>User</th>
                                                     <th>Branch</th>
                                                     <th>Role</th>
-                                                    <th>Status</th>
+                                            
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -867,17 +857,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="editStatus">Status</label>
-                                        <select class="form-control" id="editStatus" required>
-                                            <option value="" selected disabled>Select Status</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                        </select>
-                                        <div class="invalid-feedback" id="edit_status_val">
-                                            Please select a status.
-                                        </div>
-                                    </div>
+                               
                                     <!-- Add Role Button -->
                                     <button type="button" class="btn btn-primary" style="width:20%; margin-left:4%"
                                         id="btnedittblrole">Add Role</button>
@@ -889,7 +869,7 @@
                                                     <th>User</th>
                                                     <th>Branch</th>
                                                     <th>Role</th>
-                                                    <th>Status</th>
+                               
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -1042,10 +1022,7 @@
             roleval.style.display = "none";
             roleval.textContent = "";
 
-            statusInput.setCustomValidity("");
-            statusInput.classList.remove("is-invalid");
-            statusval.style.display = "none";
-            statusval.textContent = "";
+        
 
             clearAddRoleForm();
 
@@ -1063,17 +1040,17 @@
             const userInput = document.getElementById('editUser');
             const branchInput = document.getElementById('editBranch');
             const roleInput = document.getElementById('editRole');
-            const statusInput = document.getElementById('editStatus');
+            
 
             const userval = document.getElementById("edit_user_val");
             const branchval = document.getElementById("edit_branch_val");
             const roleval = document.getElementById("edit_role_val");
-            const statusval = document.getElementById("edit_status_val");
+            
 
             const user = userInput.value;
             const branch = branchInput.value;
             const role = roleInput.value;
-            const status = statusInput.value;
+            
 
             // Basic validation
             let isValid = true;
@@ -1119,20 +1096,7 @@
                 roleval.textContent = "";
                 roleval.style.display = "none";
             }
-
-            // Status validation
-            if (!status) {
-                statusInput.setCustomValidity("Please select a status.");
-                statusInput.classList.add("is-invalid");
-                statusval.textContent = "Please select a status.";
-                statusval.style.display = "block";
-                isValid = false;
-            } else {
-                statusInput.setCustomValidity("");
-                statusInput.classList.remove("is-invalid");
-                statusval.textContent = "";
-                statusval.style.display = "none";
-            }
+            
 
             return isValid;
         }
@@ -1142,17 +1106,17 @@
             const userInput = document.getElementById('addUser');
             const branchInput = document.getElementById('addBranch');
             const roleInput = document.getElementById('addRole');
-            const statusInput = document.getElementById('addStatus');
+            
 
             const userval = document.getElementById("add_user_val");
             const branchval = document.getElementById("add_branch_val");
             const roleval = document.getElementById("add_role_val");
-            const statusval = document.getElementById("add_status_val");
+            
 
             const user = userInput.value;
             const branch = branchInput.value;
             const role = roleInput.value;
-            const status = statusInput.value;
+            
 
             // Basic validation for Add Role
             if (!user) {
@@ -1190,21 +1154,9 @@
                 roleval.style.display = "none";
                 roleval.textContent = "";
             }
-
-            if (!status) {
-                statusInput.setCustomValidity("Please select a status.");
-                statusInput.classList.add("is-invalid");
-                statusval.style.display = "block";
-                statusval.textContent = "Please select a status.";
-            } else {
-                statusInput.setCustomValidity("");
-                statusInput.classList.remove("is-invalid");
-                statusval.style.display = "none";
-                statusval.textContent = "";
-            }
-
             // Return true if all fields are valid
-            return user && branch && role && status;
+            return user && branch && role;
+
         }
 
         // Function to add the user (with all roles) to the main table
@@ -1264,7 +1216,7 @@
             var user = $('#addUser').val();
             var branch = $('#addBranch').val();
             var role = $('#addRole').val();
-            var status = $('#addStatus').val();
+            
 
             // Validate inputs
 
@@ -1276,14 +1228,14 @@
             $('#add_user_val').hide();
             $('#add_branch_val').hide();
             $('#add_role_val').hide();
-            $('#add_status_val').hide();
+            
 
             // Create a new row in the dynamic table
             var newRow = `<tr>
                     <td>${user}</td>
                     <td>${branch}</td>
                     <td>${role}</td>
-                    <td>${status}</td>
+            
                     <td>
                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteRole(this)">Delete</button>
                     </td>
@@ -1296,7 +1248,7 @@
             //$('#addUser').val('');
             $('#addBranch').val('');
             $('#addRole').val('');
-            $('#addStatus').val('');
+            
         });
 
         // Function to edit a role in the dynamic table
@@ -1305,8 +1257,7 @@
         var user = $('#editUser').val();
         var branch = $('#editBranch').val();
         var role = $('#editRole').val();
-        var status = $('#editStatus').val();
-
+        
         // Validate inputs
         if (!checkeditvalidation()) {
             return;
@@ -1316,14 +1267,13 @@
         $('#edit_user_val').hide();
         $('#edit_branch_val').hide();
         $('#edit_role_val').hide();
-        $('#edit_status_val').hide();
 
         // Create a new row in the dynamic table
         var newRow = `<tr>
             <td>${user}</td>
             <td>${branch}</td>
             <td>${role}</td>
-            <td>${status}</td>
+            
             <td>
                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteRole(this)">Delete</button>
             </td>
@@ -1336,7 +1286,7 @@
         //$('#editUser').val('');
         $('#editBranch').val('');
         $('#editRole').val('');
-        $('#editStatus').val('');
+        
         })
 
         // Function to edit a role in the dynamic table
@@ -1345,7 +1295,7 @@
             var user = $('#editUser').val();
             var branch = $('#editBranch').val();
             var role = $('#editRole').val();
-            var status = $('#editStatus').val();
+        
             var tableitems = $('#editroleTableBody tr').length;
             if (tableitems <= 0) {
                 if (!checkeditvalidation()) {
@@ -1361,12 +1311,12 @@
                     var user = roleRow.find('td').eq(0).text();
                     var branch = roleRow.find('td').eq(1).text();
                     var role = roleRow.find('td').eq(2).text();
-                    var status = roleRow.find('td').eq(3).text();
+        
 
                     // Add to the main table (dataTable)
                     var mainTableRow = `<tr>
                              <td>${user}</td>
-                             <td>${status}</td>
+        
                              <td>
                                 <div class="dropdown">
                                     <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1390,7 +1340,7 @@
             }
             // Update the current row with the new values
             currentRow.cells[0].innerText = user;
-            currentRow.cells[1].innerText = status;
+            
 
             // Close the modal after saving changes
             $('#editModal').modal('hide');
@@ -1401,17 +1351,17 @@
             const userInput = document.getElementById('editUser');
             const branchInput = document.getElementById('editBranch');
             const roleInput = document.getElementById('editRole');
-            const statusInput = document.getElementById('editStatus');
+            
 
             const userval = document.getElementById("edit_user_val");
             const branchval = document.getElementById("edit_branch_val");
             const roleval = document.getElementById("edit_role_val");
-            const statusval = document.getElementById("edit_status_val");
+            
 
             const user = userInput.value;
             const branch = branchInput.value;
             const role = roleInput.value;
-            const status = statusInput.value;
+            
 
             // Basic validation
             let isValid = true;
@@ -1451,17 +1401,20 @@
                 roleval.textContent = "";
                 roleval.style.display = "none";
             }
-            if (!status) {
-                statusInput.setCustomValidity("Please select a status.");
-                statusInput.classList.add("is-invalid");
-                statusval.textContent = "Please select a status.";
-                statusval.style.display = "block";
-                isValid = false;
-            } else {
-                statusInput.setCustomValidity("");
-                statusInput.classList.remove("is-invalid");
-                statusval.textContent = "";
-                statusval.style.display = "none";
+            
+
+            //check validation for unique entry in table
+            var table = document.getElementById('editroleTableBody');
+            var rows = table.getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var cols = rows[i].getElementsByTagName('td');
+                if (cols.length > 0) {
+                    if (cols[0].innerText == user && cols[1].innerText == branch && cols[2].innerText == role) {
+                        alert('This role already exists in the table');
+                        isValid = false;
+                        break;
+                    }
+                }
             }
             return isValid;
         }
@@ -1471,24 +1424,25 @@
             const userInput = document.getElementById('addUser');
             const branchInput = document.getElementById('addBranch');
             const roleInput = document.getElementById('addRole');
-            const statusInput = document.getElementById('addStatus');
+            
 
             const userval = document.getElementById("add_user_val");
             const branchval = document.getElementById("add_branch_val");
             const roleval = document.getElementById("add_role_val");
-            const statusval = document.getElementById("add_status_val");
+            
 
             const user = userInput.value;
             const branch = branchInput.value;
             const role = roleInput.value;
-            const status = statusInput.value;
-
+            
+            let isValid = true;
             // Basic validation
             if (!user) {
                 userInput.setCustomValidity("Please select a user.");
                 userInput.classList.add("is-invalid");
                 userval.style.display = "block";
                 userval.textContent = "Please select a user.";
+                isValid = false;
             } else {
                 userInput.setCustomValidity("");
                 userInput.classList.remove("is-invalid");
@@ -1501,6 +1455,7 @@
                 branchInput.classList.add("is-invalid");
                 branchval.style.display = "block";
                 branchval.textContent = "Please select a branch.";
+                isValid = false;
             } else {
                 branchInput.setCustomValidity("");
                 branchInput.classList.remove("is-invalid");
@@ -1513,27 +1468,29 @@
                 roleInput.classList.add("is-invalid");
                 roleval.style.display = "block";
                 roleval.textContent = "Please select a role.";
+                isValid = false;
             } else {
                 roleInput.setCustomValidity("");
                 roleInput.classList.remove("is-invalid");
                 roleval.style.display = "none";
                 roleval.textContent = "";
             }
-
-            if (!status) {
-                statusInput.setCustomValidity("Please select a status.");
-                statusInput.classList.add("is-invalid");
-                statusval.style.display = "block";
-                statusval.textContent = "Please select a status.";
-            } else {
-                statusInput.setCustomValidity("");
-                statusInput.classList.remove("is-invalid");
-                statusval.style.display = "none";
-                statusval.textContent = "";
+            
+                 //check validation for unique entry in table
+                 var table = document.getElementById('roleTableBody');
+            var rows = table.getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var cols = rows[i].getElementsByTagName('td');
+                if (cols.length > 0) {
+                    if (cols[0].innerText == user && cols[1].innerText == branch && cols[2].innerText == role) {
+                        alert('This role already exists in the table');
+                        isValid = false;
+                        break;
+                    }
+                }
             }
-
-            // Return true if all fields are valid
-            return user && branch && role && status;
+            return isValid;
+            
         }
 
         // Function to add a role to the dynamic table
@@ -1604,8 +1561,7 @@
             document.getElementById('addRole').setCustomValidity("");
             document.getElementById('addRole').classList.remove("is-invalid");
 
-            document.getElementById('addStatus').setCustomValidity("");
-            document.getElementById('addStatus').classList.remove("is-invalid");
+            
         }
 
         // Function to edit a row
@@ -1617,7 +1573,7 @@
             document.getElementById('editUser').value = cells[0].textContent.trim();  // Assuming User is in the first column
             document.getElementById('editBranch').value = cells[1].textContent.trim();  // Assuming Branch is in the second column
             document.getElementById('editRole').value = cells[2].textContent.trim();  // Assuming Role is in the third column
-            document.getElementById('editStatus').value = cells[3].textContent.trim();  // Assuming Status is in the fourth column
+            
 
             // Show the edit modal
             openEditModal();
@@ -1628,13 +1584,13 @@
             const userInput = document.getElementById('editUser');
             const branchInput = document.getElementById('editBranch');
             const roleInput = document.getElementById('editRole');
-            const statusInput = document.getElementById('editStatus');
+            
 
             // Validation error message elements
             const userval = document.getElementById("edit_user_val");
             const branchval = document.getElementById("edit_branch_val");
             const roleval = document.getElementById("edit_role_val");
-            const statusval = document.getElementById("edit_status_val");
+            
 
             // Set the 'User' field to read-only if needed
             userInput.readOnly = true;
@@ -1655,10 +1611,7 @@
             roleval.style.display = "none";
             roleval.textContent = "";
 
-            statusInput.setCustomValidity("");
-            statusInput.classList.remove("is-invalid");
-            statusval.style.display = "none";
-            statusval.textContent = "";
+            
         }
 
         function clearAddRoleForm() {
@@ -1670,7 +1623,7 @@
             const cells = currentRow.getElementsByTagName('td');
 
             document.getElementById('editUser').value = cells[0].innerText;
-            document.getElementById('editStatus').value = cells[1].innerText;
+            
             openEditModal();
 
         }
