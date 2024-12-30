@@ -854,6 +854,7 @@
                                                             <div class="invalid-feedback" id="lastName_val">First
                                                                 Name is required.</div>
                                                             </div>
+                                                            
                                                             <div class="form-group">
                                                                 <label for="customerTag">Customer Tag</label>
                                                                 <select class="form-control" id="customerTag"
@@ -1247,7 +1248,8 @@
                         </div>
                     </div>
                     <!-- Edit Modal -->
-                    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+                    <div class="modal fade" id="
+                    Modal" tabindex="-1" aria-labelledby="editUserModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -2365,7 +2367,12 @@
             $(window).on('resize', function () {
                 initSidebar();
             });
+       
         });
+
+
+
+        
 
         document.addEventListener('DOMContentLoaded', function () {
             var today = new Date();
@@ -2376,6 +2383,8 @@
             var maxDate = year + '-' + month + '-' + day;
             document.getElementById('dateOfBirth').setAttribute('max', maxDate);
             document.getElementById('anniversaryDate').setAttribute('max', maxDate);
+
+            
         });
 
     </script>
