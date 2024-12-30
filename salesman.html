@@ -26,6 +26,7 @@
     <style>
         .dataTables_wrapper {
             width: 99% !important;
+            }
         }
 
         /* Adjust the position of the search box */
@@ -146,7 +147,7 @@
                         <a class="collapse-item" href="product_group.html">Product Group</a>
                         <!-- <a class="collapse-item">Area</a> -->
                         <a class="collapse-item" href="branch.html">Branch</a>
-                        <a class="collapse-item  active" href="customertag.html">Customer Tag</a>
+                        <a class="collapse-item  active" href="salesman.html">Salesman</a>
                         <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
                         <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
                         <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
@@ -504,7 +505,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">
-                        Customer Tag
+                        Salesman
                         (<span id="rowCount">0</span>)
                     </h1>
                     <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -514,7 +515,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <button class="btn btn-primary ml-auto" style="float:right" onclick="openAddModal()">Add
-                                Customer Tag</button>
+                                Salesman</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -522,14 +523,16 @@
                                     cellspacing="0">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Customer Tag</th>
+                                            <th>Salesman Name</th>
+                                            <th>Salesman Code</th>
                                             <th>Status</th>
                                             <th style="width:5%">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Customer 1</td>
+                                            <td>Salesman 1</td>
+                                            <td>SM-001</td>
                                             <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
@@ -548,215 +551,117 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 2</td>
+                                            <td>Salesman 2</td>
+                                            <td>SM-002</td>
                                             <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 3</td>
-                                            <td>Active</td>
+                                            <td>Salesman 3</td>
+                                            <td>SM-003</td>
+                                            <td>Inactive</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 4</td>
+                                            <td>Salesman 4</td>
+                                            <td>SM-004</td>
                                             <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 5</td>
-                                            <td>Active</td>
+                                            <td>Salesman 5</td>
+                                            <td>SM-005</td>
+                                            <td>Inactive</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 6</td>
+                                            <td>Salesman 6</td>
+                                            <td>SM-006</td>
                                             <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 7</td>
-                                            <td>Active</td>
+                                            <td>Salesman 7</td>
+                                            <td>SM-007</td>
+                                            <td>Inactive</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Customer 8</td>
+                                            <td>Salesman 8</td>
+                                            <td>SM-008</td>
                                             <td>Active</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         &#x22EE;
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
+                                                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Customer 9</td>
-                                            <td>Active</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        &#x22EE;
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Customer 10</td>
-                                            <td>Active</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        &#x22EE;
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Customer 11</td>
-                                            <td>Active</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        &#x22EE;
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Customer 12</td>
-                                            <td>Active</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        &#x22EE;
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="editRow(this)">Edit</a>
-                                                        <a class="dropdown-item" href="#"
-                                                            onclick="confirmDelete(this)">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -768,7 +673,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addModalLabel">Add Customer Tag</h5>
+                                        <h5 class="modal-title" id="addModalLabel">Add Salesman</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -776,10 +681,16 @@
                                     <div class="modal-body">
                                         <form id="addForm">
                                             <div class="form-group">
-                                                <label for="addCustomerTag">Customer Tag</label>
-                                                <input type="text" class="form-control" id="addCustomerTag"
+                                                <label for="addSalesmanName">Salesman Name</label>
+                                                <input type="text" class="form-control" id="addSalesmanName"
                                                     maxlength="30" required>
-                                                <div class="invalid-feedback" id="addCustomerTagValidation"></div>
+                                                <div class="invalid-feedback" id="addSalesmanNameValidation"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="addSalesmanCode">Salesman Code</label>
+                                                <input type="text" class="form-control" id="addSalesmanCode"
+                                                    maxlength="30" required>
+                                                <div class="invalid-feedback" id="addSalesmanCodeValidation"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="addStatus">Status</label>
@@ -808,7 +719,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editModalLabel">Edit Customer Tag</h5>
+                                        <h5 class="modal-title" id="editModalLabel">Edit Salesman</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -816,9 +727,14 @@
                                     <div class="modal-body">
                                         <form id="editBranchForm">
                                             <div class="form-group">
-                                                <label for="editCustomerTag">Customer Tag</label>
-                                                <input type="text" class="form-control" id="editCustomerTag" required>
-                                                <div class="invalid-feedback" id="editCustomerTagValidation"></div>
+                                                <label for="editSalesman">Salesman</label>
+                                                <input type="text" class="form-control" id="editSalesman" required>
+                                                <div class="invalid-feedback" id="editSalesmanValidation"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="editSalesmanCode">Salesman Code</label>
+                                                <input type="text" class="form-control" id="editSalesmanCode" required>
+                                                <div class="invalid-feedback" id="editSalesmanCodeValidation"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="editStatus">Status</label>
@@ -854,7 +770,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete this Branch?
+                                        Are you sure you want to delete this Salesman?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -937,7 +853,7 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script>
-        let totalRowCount; // Declare currentRow globally
+        let currentRow // Declare currentRow globally
 
         document.addEventListener('DOMContentLoaded', function () {
             var table = $('#dataTable').DataTable();
@@ -954,67 +870,68 @@
         });
 
         function openAddModal() {
-            document.getElementById('addCustomerTag').value = '';
+            document.getElementById('addSalesmanName').value = '';
+            document.getElementById('addSalesmanCode').value = '';
             document.getElementById('addStatus').selectedIndex = 0;
 
-            const fields = ['addCustomerTag', 'addStatus'];
+            const fields = ['addSalesmanName', 'addSalesmanCode', 'addStatus'];
             fields.forEach(field => {
-                const element = document.getElementById(field);
-                element.setCustomValidity("");
-                element.classList.remove("is-invalid");
+            const element = document.getElementById(field);
+            element.setCustomValidity("");
+            element.classList.remove("is-invalid");
             });
 
             $('#addModal').modal('show');
         }
 
-        function addRow() {
-            const branchArray = ["addStatus", "addCustomerTag"];
-            const msgArray = ["addStatusValidation", "addCustomerTagValidation"];
+    function addRow() {
+    const salesManArray = ["addStatus", "addSalesmanName", "addSalesmanCode"];
+    const messageArray = ["addStatusValidation", "addSalesmanNameValidation", "addSalesmanCodeValidation"];
 
-            if (!checkValidation(branchArray, msgArray)) {
-                return;
-            }
+    if (checkValidation(salesManArray, messageArray, isEdit = false)) {
+        const status = document.getElementById("addStatus").value;
+        const name = document.getElementById("addSalesmanName").value.trim();
+        const code = document.getElementById("addSalesmanCode").value.trim();
 
-            const statuss = document.getElementById("addStatus").value;
-            const customerTag = document.getElementById("addCustomerTag").value;
-
-            const newRow = `
-        <tr>
-            <td>${customerTag}</td>
-            <td>${statuss}</td>
+        const newRow = `
+            <tr>
+                <td>${name}</td>
+                <td>${code}</td>
+                <td>${status}</td>
             <td>
-                <div class="dropdown">
-                    <button
-                        class="btn btn-light btn-sm dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >
-                        &#x22EE;
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
-                        <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
-                    </div>
+            <div class="dropdown">
+                <button
+                class="btn btn-light btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >
+                &#x22EE;
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
                 </div>
+            </div>
             </td>
         </tr>
-    `;
+        `;
 
             const tableBody = document.querySelector("#dataTable tbody");
             if (tableBody) {
-                tableBody.insertAdjacentHTML("beforeend", newRow);
-                $("#addModal").modal("hide");
-                clearModel();
-                totalRowCount++;
-                document.getElementById("rowCount").innerText = totalRowCount;
-                console.log(totalRowCount);
+            tableBody.insertAdjacentHTML("beforeend", newRow);
+            $("#addModal").modal("hide");
+            clearModel();
+           // totalRowCount++;
+            document.getElementById("rowCount").innerText = totalRowCount;
+           // console.log(totalRowCount);
             } else {
-                console.error("Table body not found.");
+            console.error("Table body not found.");
             }
         }
+    }
 
         function editRow(element) {
             // Get the current row
@@ -1022,37 +939,37 @@
             var cells = currentRow.getElementsByTagName('td');
 
             // Populate modal fields with table data
-            document.getElementById('editCustomerTag').value = cells[0].innerText.trim();
-            document.getElementById('editStatus').value = cells[1].innerText.trim();
+            document.getElementById('editSalesman').value = cells[0].innerText.trim();
+            document.getElementById('editSalesmanCode').value = cells[1].innerText.trim();
+            document.getElementById('editStatus').value = cells[2].innerText.trim();
 
             // Show the edit modal
             $('#editModal').modal('show');
         }
 
         function saveChanges() {
-            const EditBranchArray = ['editStatus', 'editCustomerTag'];
-            const EditMsgArray = ['editStatusValidation', 'editCustomerTagValidation'];
+            const EditSalesmanArray = ['editStatus', 'editSalesman', 'editSalesmanCode'];
+            const EditMsgArray = ['editStatusValidation', 'editSalesmanValidation', 'editSalesmanCodeValidation'];
 
-            if (!checkValidation(EditBranchArray, EditMsgArray)) {
-                return;
+            if (!checkValidation(EditSalesmanArray, EditMsgArray, currentRow)) {
+            return;
             }
 
             if (!currentRow) {
-                console.error('No row selected for editing.');
-                return;
+            console.error('No row selected for editing.');
+            return;
             }
 
             const cells = currentRow.getElementsByTagName('td');
             
-            cells[0].innerText = document.getElementById('editCustomerTag').value;
-            cells[1].innerText = document.getElementById('editStatus').value;
+            cells[0].innerText = document.getElementById('editSalesman').value;
+            cells[1].innerText = document.getElementById('editSalesmanCode').value;
+            cells[2].innerText = document.getElementById('editStatus').value;
 
             $('#editModal').modal('hide');
-
         }
         
-        
-        $('#editBranchModal').on('hidden.bs.modal', function () {
+        $('#editModal').on('hidden.bs.modal', function () {
             $('.invalid-feedback').text('');
             $('.is-invalid').removeClass('is-invalid');
         });
@@ -1076,80 +993,137 @@
 
         function clearModel() {
             document.getElementById("addForm").reset();
-            $("#addCustomerTagValidation, #addStatusValidation").html("");
-            document.getElementById("addCustomerTag").classList.remove("is-invalid");
+            $("#addSalesmanNameValidation, #addSalesmanCodeValidation, #addStatusValidation").html("");
+            document.getElementById("addSalesmanName").classList.remove("is-invalid");
+            document.getElementById("addSalesmanCode").classList.remove("is-invalid");
             document.getElementById("addStatus").classList.remove("is-invalid");
         }
 
-        function checkValidation(customerTagArray, messageArray) {
-            const [status, customerTag] = customerTagArray;
-            const [statusMessage, customerMessage] = messageArray;
+            function checkValidation(salesManArray, messageArray, currentRow = null) {
+        const [status, salesmanName, salesmanCode] = salesManArray;
+        const [statusMessage, salesmanNamemsg, salesmanCodemsg] = messageArray;
 
-            const statusElement = document.getElementById(status);
-            const customerTagElement = document.getElementById(customerTag);
-            const statusMessageElement = document.getElementById(statusMessage);
-            const customerTagMessageElement = document.getElementById(customerMessage);
+        const statusElement = document.getElementById(status);
+        const salesmanNameElement = document.getElementById(salesmanName);
+        const salesmanCodeElement = document.getElementById(salesmanCode);
+        const statusMessageElement = document.getElementById(statusMessage);
+        const salesmanNameMessageElement = document.getElementById(salesmanNamemsg);
+        const salesmanCodeMessageElement = document.getElementById(salesmanCodemsg);
 
-            let isValid = true;
+        let isValid = true;
 
-            // Helper function for setting validation
-            const setValidation = (element, messageElement, message, isValidField) => {
-                if (isValidField) {
-                    element.setCustomValidity("");
-                    element.classList.remove("is-invalid");
-                    $(messageElement).html("");
-                } else {
-                    element.setCustomValidity(message);
-                    element.classList.add("is-invalid");
-                    $(messageElement).html(message);
-                    isValid = false;
-                }
-            };
+        // Helper function for setting validation
+        const setValidation = (element, messageElement, message, isValidField) => {
+            if (isValidField) {
+                element.setCustomValidity("");
+                element.classList.remove("is-invalid");
+                $(messageElement).html("");
+            } else {
+                element.setCustomValidity(message);
+                element.classList.add("is-invalid");
+                $(messageElement).html(message);
+                isValid = false;
+            }
+        };
 
-            // Validate Customer Tag
-            const customerTagName = customerTagElement.value.trim();
-            const isDuplicate = isDuplicateValue(customerTagName, currentRow); // Check duplicates, excluding current row if editing
+        // Validate Salesman Name
+        const salesmanNameValue = salesmanNameElement.value.trim();
+        const salesmanCodeValue = salesmanCodeElement.value.trim();
+        const isDuplicateName = isDuplicateValue(salesmanNameValue, currentRow, 0); // Check duplicates, excluding current row if editing
+        const isDuplicateCode = isDuplicateValue(salesmanCodeValue, currentRow, 1); // Check duplicates, excluding current row if editing
+        if (!salesmanNameValue) {
             setValidation(
-                customerTagElement,
-                customerTagMessageElement,
-                !customerTagName
-                    ? "Please enter a Customer Tag."
-                    : customerTagName.length > 30
-                        ? "Customer Tag should not exceed 30 characters."
-                        : isDuplicate
-                            ? "Customer Tag already exists."
-                            : "",
-                customerTagName && customerTagName.length <= 30 && (!isDuplicate)
+                salesmanNameElement,
+                salesmanNameMessageElement,
+                "Please enter a Salesman Name.",
+                false
             );
-
-            // Validate Status
-            const rolestatus = statusElement.value.trim();
+        } else if (salesmanNameValue.length > 100) {
             setValidation(
-                statusElement,
-                statusMessageElement,
-                !rolestatus ? "Please select a Status." : "",
-                rolestatus
+                salesmanNameElement,
+                salesmanNameMessageElement,
+                "Salesman Name should not exceed 100 characters.",
+                false
             );
-
-            // Report validity
-            customerTagElement.reportValidity();
-            statusElement.reportValidity();
-
-            return isValid;
+        } else if (isDuplicateName) {
+            setValidation(
+                salesmanNameElement,
+                salesmanNameMessageElement,
+                "Salesman Name already exists.",
+                false
+            );
+        } else {
+            setValidation(
+                salesmanNameElement,
+                salesmanNameMessageElement,
+                "",
+                true
+            );
         }
 
-        function isDuplicateValue(value, excludeRow = null) {
-            let isDuplicate = false;
-            $('#dataTable tbody tr').each(function () {
-                if (this === excludeRow) return; // Skip the current row being edited
-                const cellValue = $.trim($(this).find('td:first').text());
-                if (cellValue.toLowerCase() === value.toLowerCase()) {
-                    isDuplicate = true;
-                    return false; // Exit loop if a duplicate is found
-                }
-            });
-            return isDuplicate;
+        // Validate Status
+        const statusValue = statusElement.value.trim();
+        setValidation(
+            statusElement,
+            statusMessageElement,
+            !statusValue ? "Please select a Status." : "",
+            !!statusValue
+        );
+
+        // Validate Salesman Code
+        //const salesmanCodeValue = salesmanCodeElement.value.trim();
+        //const isDuplicateCode = isDuplicateValue(salesmanCodeValue, currentRow); // Check duplicates, excluding current row if editing
+        if (!salesmanCodeValue) {
+            setValidation(
+                salesmanCodeElement,
+                salesmanCodeMessageElement,
+                "Please enter a Salesman Code.",
+                false
+            );
+        } else if (salesmanCodeValue.length > 6) {
+            setValidation(
+                salesmanCodeElement,
+                salesmanCodeMessageElement,
+                "Salesman Code should not exceed 6 characters.",
+                false
+            );
+        } else if (isDuplicateCode) {
+            setValidation(
+                salesmanCodeElement,
+                salesmanCodeMessageElement,
+                "Salesman Code already exists.",
+                false
+            );
+        } else {
+            setValidation(
+                salesmanCodeElement,
+                salesmanCodeMessageElement,
+                "",
+                true
+            );
         }
+
+        // Report validity
+        salesmanNameElement.reportValidity();
+        salesmanCodeElement.reportValidity();
+        statusElement.reportValidity();
+
+        return isValid;
+    }
+
+    function isDuplicateValue(value, currentRow = null, columnIndex = 0) {
+        let isDuplicate = false;
+        $('#dataTable tbody tr').each(function () {
+            if (this === currentRow) return; // Skip the current row
+            const cellValue = $.trim($(this).find(`td:eq(${columnIndex})`).text());
+            if (cellValue.toLowerCase() === value.toLowerCase()) {
+                isDuplicate = true;
+                return false; // Exit loop if a duplicate is found
+            }
+        });
+        return isDuplicate;
+    }
+
 
         $(document).ready(function () {
             function toggleSidebar() {
