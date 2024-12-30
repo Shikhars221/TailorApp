@@ -694,9 +694,8 @@
                                     <tr>
                                         <th style="width:50px">Product</th>
                                         <th>
-                                            <span class="column-name" ondblclick="editColumnName(this)">SalesPrice
-                                                1</span>
-                                            <input type="text" class="edit-column-name-input" style="display: none;"
+                                            <span class="column-name" ondblclick="editColumnName(this)">SalesPrice 1</span>
+                                            <!-- <input type="text" class="edit-column-name-input" style="display: none;"
                                                 onblur="saveColumnName(this)"
                                                 onkeydown="handleColumnNameKey(event, this)">
                                             <i class="fas fa-edit ml-2 edit-icon"
@@ -704,7 +703,16 @@
                                                 onclick="editColumnName(this)"></i>
                                             <button class="delete-column-btn"
                                                 style="vertical-align: middle; font-size:10px; margin-left:2px"
-                                                onclick="removePriceColumn(1)">X</button>
+                                                onclick="removePriceColumn(1)">X</button> -->
+                                            <div class="dropdown" style="display: inline-block;">
+                                                <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    &#x22EE;
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#" onclick="editColumnName(this)">Edit</a>
+                                                    <a class="dropdown-item" href="#" onclick="removePriceColumn(1)">Delete</a>
+                                                </div>
+                                            </div>
                                         </th>
                                     </tr>
                                 </thead>
