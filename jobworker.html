@@ -1,0 +1,2609 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RG Admin 2 - View Details</title>
+    <!-- Include DataTables CSS from CDN -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include DataTables JS from CDN -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body id="page-top">
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .dataTables_wrapper {
+            width: 99% !important;
+        }
+
+        /* Adjust the position of the search box */
+        .dataTables_filter {
+            float: right !important;
+            text-align: right !important;
+            margin-right: 20px !important;
+            /* Adjust margin as needed */
+        }
+
+        /* Ensure the table container is responsive */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        /* Adjust the spacing in pagination controls */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.3em 0.1em !important;
+            /* Reduce padding */
+            margin: 0 0.1em !important;
+            /* Reduce margin between buttons */
+            border: 1px solid transparent;
+            /* Remove border by default */
+            border-color: white !important;
+            box-shadow: none !important;
+            background: none !important;
+        }
+
+        /* Remove border on hover and focus of pagination controls */
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+        .dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+            border: none !important;
+            /* Remove border on hover and focus */
+            outline: none !important;
+            /* Remove outline on focus */
+            background-color: white !important;
+            /* Optional: Adjust background color on hover */
+            box-shadow: none !important;
+            background: none !important;
+        }
+
+        /* Ensure active pagination button does not have border */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            border: none !important;
+            /* Remove border from active button */
+            background: none !important;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .dropdown-menu {
+            min-width: auto;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        /* Adjust text size for table headers */
+        #dataTable thead th {
+            font-size: 14px;
+            /* Adjust the font size as needed */
+        }
+
+        /* Adjust text size for table body cells */
+        #dataTable tbody td {
+            font-size: 12px;
+            /* Adjust the font size as needed */
+        }
+    </style>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-user-lock"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">RG Admin</div>
+                <!--<div class="header_toggle"><i id="MenubarToggle" class="fas fa-bars text-white"></i> </div>-->
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <!--<div class="sidebar-heading">
+                Master
+            </div>-->
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster"
+                    aria-expanded="true" aria-controls="collapseMaster">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Master</span>
+                </a>
+                <div id="collapseMaster" class="collapse" aria-labelledby="headingMaster"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!--<h6 class="collapse-header">Custom Components:</h6>-->
+                        <a class="collapse-item" href="product.html">Product</a>
+                        <a class="collapse-item" href="product_group.html">Product Group</a>
+                        <!-- <a class="collapse-item">Area</a> -->
+                        <a class="collapse-item" href="branch.html">Branch</a>
+
+                        <a class="collapse-item" href="customertag.html">Customer Tag</a>
+                        <a class="collapse-item" href="jobworkergroup.html">Job Worker Group</a>
+                        <a class="collapse-item" href="jobworkrate.html">Job Work Rate</a>
+                        <a class="collapse-item" href="salespricelist.html">Sales Price List</a>
+                        <a class="collapse-item" href="hsn.html">HSN/SAC Code</a>
+                        <a class="collapse-item" href="tables.html">Orders</a>
+                        <a class="collapse-item" href="customergroup.html">Customer Group</a>
+                        <a class="collapse-item" href="salesman.html">Salesman</a>
+                        <!-- <a class="collapse-item">Designation</a> -->
+                        <a class="collapse-item">Process</a>
+                        <a class="collapse-item" href="Role.html">Role</a>
+
+                        <a class="collapse-item" href="user.html">User</a>
+                        <a class="collapse-item" href="branchwiserole.html">Branch Wise Role</a>
+                        <a class="collapse-item" href="rolewisemenu.html">Role Wise Menu Rights</a>
+                        <a class="collapse-item" href="customeraddress.html">Customer</a>
+                        <a class="collapse-item active" href="Jobwroker.html">Job Worker</a>
+                        <!-- <a class="collapse-item">User Rights</a> -->
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransaction"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-money-bill"></i>
+                    <span>Transaction</span>
+                </a>
+                <div id="collapseTransaction" class="collapse" aria-labelledby="headingTransactions"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!--<h6 class="collapse-header">Custom Utilities:</h6>-->
+
+                        <a class="collapse-item" href="JobIssue.html">Job Issue</a>
+                        <a class="collapse-item" href="Jobreceive.html">Job Recieve</a>
+                        <a class="collapse-item">Job Transfer</a>
+                        <a class="collapse-item">Order</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKarigar"
+                    aria-expanded="true" aria-controls="collapseKarigar">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Karigar</span>
+                </a>
+                <div id="collapseKarigar" class="collapse" aria-labelledby="headingKarigar"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Karigar Hisab</a>
+                        <a class="collapse-item">Karigar View</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVoucher"
+                    aria-expanded="true" aria-controls="collapseVoucher">
+                    <i class="fas fa-scroll"></i>
+                    <span>Voucher</span>
+                </a>
+                <div id="collapseVoucher" class="collapse" aria-labelledby="headingVoucher"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Payment</a>
+                        <a class="collapse-item">Reciept</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTransfer"
+                    aria-expanded="true" aria-controls="collapseTransfer">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Transfer</span>
+                </a>
+                <div id="collapseTransfer" class="collapse" aria-labelledby="headingTransfer"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Inward</a>
+                        <a class="collapse-item">Outward</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+                    aria-expanded="true" aria-controls="collapseReport">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Report</span>
+                </a>
+                <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Branch Wise Order</a>
+                        <a class="collapse-item">Customer Ledger</a>
+                        <a class="collapse-item">Customer Outstanding</a>
+                        <a class="collapse-item">Daily Transaction</a>
+                        <a class="collapse-item">Group Summary</a>
+                        <a class="collapse-item">Karigar Ledger</a>
+                        <a class="collapse-item">Order Planning</a>
+                        <a class="collapse-item">Order Summary</a>
+                        <a class="collapse-item">Production Pending</a>
+                        <a class="collapse-item">Production Report</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConversation"
+                    aria-expanded="true" aria-controls="collapseConversation">
+                    <i class="fas fa-comment"></i>
+                    <span>Conversation</span>
+                </a>
+                <div id="collapseConversation" class="collapse" aria-labelledby="headingConversation"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">BarCode Conversation</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Divider -->
+            <!-- Sidebar Toggler (Sidebar) shikhar -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">
+                                            Hi there! I am wondering if you can help me with a
+                                            problem I've been having.
+                                        </div>
+                                        <div class="small text-gray-500">Emily Fowler � 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">
+                                            I have the photos that you ordered last month, how
+                                            would you like them sent to you?
+                                        </div>
+                                        <div class="small text-gray-500">Jae Chun � 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">
+                                            Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!
+                                        </div>
+                                        <div class="small text-gray-500">Morgan Alvarez � 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">
+                                            Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...
+                                        </div>
+                                        <div class="small text-gray-500">Chicken the Dog � 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nirav Shah</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">
+                        Job Worker
+
+                    </h1>
+                    <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                    For more information about DataTables, please visit the <a target="_blank"
+                        href="https://datatables.net">official DataTables documentation</a>.</p>-->
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <button class="btn btn-primary ml-auto" style="float:right" onclick="openAddModal()">Add
+                                Job Worker</button>
+
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%"
+                                    cellspacing="0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Job worker Name</th>
+                                            <th>Contact (Mobile)</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Status</th>
+                                            <th style="width:5%">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Job Worker 1</td>
+                                            <td>1112221111</td>
+                                            <td>India</td>
+                                            <td>Maharashtra</td>
+                                            <td>Mumbai</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 2</td>
+                                            <td>2223332222</td>
+                                            <td>India</td>
+                                            <td>Gujarat</td>
+                                            <td>Ahmedabad</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 3</td>
+                                            <td>3334443333</td>
+                                            <td>India</td>
+                                            <td>Karnataka</td>
+                                            <td>Bangalore</td>
+                                            <td>Inactive</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 4</td>
+                                            <td>4445554444</td>
+                                            <td>India</td>
+                                            <td>Tamil Nadu</td>
+                                            <td>Chennai</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 5</td>
+                                            <td>5556665555</td>
+                                            <td>India</td>
+                                            <td>West Bengal</td>
+                                            <td>Kolkata</td>
+                                            <td>Inactive</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 6</td>
+                                            <td>6667776666</td>
+                                            <td>India</td>
+                                            <td>Rajasthan</td>
+                                            <td>Jaipur</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 7</td>
+                                            <td>7778887777</td>
+                                            <td>India</td>
+                                            <td>Punjab</td>
+                                            <td>Amritsar</td>
+                                            <td>Inactive</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 8</td>
+                                            <td>8889998888</td>
+                                            <td>India</td>
+                                            <td>Uttar Pradesh</td>
+                                            <td>Lucknow</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 9</td>
+                                            <td>9990009999</td>
+                                            <td>India</td>
+                                            <td>Haryana</td>
+                                            <td>Gurgaon</td>
+                                            <td>Inactive</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job Worker 10</td>
+                                            <td>0001110001</td>
+                                            <td>India</td>
+                                            <td>Kerala</td>
+                                            <td>Kochi</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        &#x22EE;
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="editRow(this)">Edit</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="confirmDelete(this)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Add Modal -->
+                        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addModalLabel">Add Job Worker Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="accordion">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link" id="btnCustGeneralInfo"
+                                                            data-toggle="collapse" data-target="#collapseOne"
+                                                            aria-expanded="false" aria-controls="collapseOne">
+                                                            General Information
+                                                        </button>
+                                                        <span id="valGenInfo"
+                                                            style="color:red; padding:1rem; display:none"></span>
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addJwGenInfoForm">
+                                                            <div class="form-group">
+                                                                <label for="jobworkerName">Job Worker Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="jobworkerName" name="jobworkerName" required>
+                                                                <div class="invalid-feedback" id="jobworkerName_val">
+                                                                    First
+                                                                    Name is required.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="jobWorkerShortCode">Job Worker Short
+                                                                    Code</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="jobWorkerShortCode" name="jobWorkerShortCode"
+                                                                    required maxlength="10">
+                                                                <div class="invalid-feedback"
+                                                                    id="jobWorkerShortCode_val">Job Worker Short Code is
+                                                                    required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="photo">Photo</label>
+                                                                <input type="file" class="form-control" id="photoPicker"
+                                                                    name="photoPicker" accept="image/*">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="dob">Date of Birth</label>
+                                                                <input type="date" class="form-control" id="dob"
+                                                                    name="dob" required>
+                                                                <div class="invalid-feedback" id="dob_val">Date of Birth
+                                                                    is required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="doj">Date of Joining</label>
+                                                                <input type="date" class="form-control" id="doj"
+                                                                    name="doj" required>
+                                                                <div class="invalid-feedback" id="doj_val">Date of
+                                                                    Joining is required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="status">Status</label>
+                                                                <select class="form-control" id="status" name="status"
+                                                                    required>
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="Inactive">Inactive</option>
+                                                                </select>
+                                                                <div class="invalid-feedback" id="status_val">Status is
+                                                                    required.</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="additionalNotes">Additional Notes</label>
+                                                                <textarea class="form-control" id="additionalNotes"
+                                                                    name="additionalNotes" rows="4" maxlength="500"
+                                                                    required></textarea>
+                                                                <div class="invalid-feedback" id="additionalNotes_val">
+                                                                    Additional Notes are required and must not exceed
+                                                                    500 characters.</div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingTwo">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                            data-target="#collapseTwo" aria-expanded="false"
+                                                            aria-controls="collapseTwo">
+                                                            Job Worker Proof
+                                                        </button>
+                                                        <span id="valContactDtls"
+                                                            style="color:red; padding:1rem; display:none"></span>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addJobWorkerForm">
+                                                            <div class="form-group">
+                                                                <label for="aadhaarNumber">Aadhaar Number</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="aadhaarNumber" name="aadhaarNumber"
+                                                                    maxlength="12" pattern="^\d{12}$" required>
+                                                                <div class="invalid-feedback" id="aadhaarNumber_val">
+                                                                    Aadhaar Number must be exactly 12 digits.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="aadhaarImage">Aadhaar Image</label>
+                                                                <input type="file" class="form-control"
+                                                                    id="aadhaarImage" name="aadhaarImage"
+                                                                    accept="image/*">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="panNumber">PAN Number</label>
+                                                                <input type="text" class="form-control" id="panNumber"
+                                                                    name="panNumber" maxlength="10"
+                                                                    pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required>
+                                                                <div class="invalid-feedback" id="panNumber_val">PAN
+                                                                    Number must follow the format: XXXXX1234X.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="panImage">PAN Image</label>
+                                                                <input type="file" class="form-control" id="panImage"
+                                                                    name="panImage" accept="image/*">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="gstNumber">GST Number</label>
+                                                                <input type="text" class="form-control" id="gstNumber"
+                                                                    name="gstNumber" maxlength="15"
+                                                                    pattern="^([0-9]{2})([A-Z]){5}([0-9]{4})([A-Z]){1}([A-Z0-9]){1}([A-Z]){1}([0-9A-Z]){1}$"
+                                                                    required>
+                                                                <div class="invalid-feedback" id="gstNumber_val">GST
+                                                                    Number must follow the valid format.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="gstImage">GST Image</label>
+                                                                <input type="file" class="form-control" id="gstImage"
+                                                                    name="gstImage" accept="image/*">
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingThree">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                            data-target="#collapseThree" aria-expanded="false"
+                                                            aria-controls="collapseThree">
+                                                            Contact Details
+                                                        </button>
+                                                    </h5>
+                                                    <span id="valCustAdd"
+                                                        style="color:red; padding:1rem; display:none"></span>
+                                                </div>
+
+                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addConctactDtlsForm">
+                                                            <div class="form-group">
+                                                                <label for="contactPersonName">Contact Person
+                                                                    Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="contactPersonName" name="contactPersonName"
+                                                                    maxlength="100" required>
+                                                                <div class="invalid-feedback"
+                                                                    id="contactPersonName_val">Contact Person Name is
+                                                                    required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="contactNo1Mobile">Contact No 1
+                                                                    (Mobile)</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="contactNo1Mobile" name="contactNo1Mobile"
+                                                                    maxlength="15" pattern="^\d{10}$" required>
+                                                                <div class="invalid-feedback" id="contactNo1Mobile_val">
+                                                                    Contact No 1 must be a valid 10-digit mobile number.
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="contactNo2Additional">Contact No 2
+                                                                    (Additional)</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="contactNo2Additional"
+                                                                    name="contactNo2Additional" maxlength="15"
+                                                                    pattern="^\d{10}$">
+                                                                <div class="invalid-feedback"
+                                                                    id="contactNo2Additional_val">Contact No 2 must be a
+                                                                    valid 10-digit mobile number.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="contactNo3Additional">Contact No 3
+                                                                    (Additional)</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="contactNo3Additional"
+                                                                    name="contactNo3Additional" maxlength="15"
+                                                                    pattern="^\d{10}$">
+                                                                <div class="invalid-feedback"
+                                                                    id="contactNo3Additional_val">Contact No 3 must be a
+                                                                    valid 10-digit mobile number.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="emailAddress">Email Address</label>
+                                                                <input type="email" class="form-control"
+                                                                    id="emailAddress" name="emailAddress"
+                                                                    maxlength="100" required>
+                                                                <div class="invalid-feedback" id="emailAddress_val">
+                                                                    Please enter a valid email address.</div>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingFour">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                            data-target="#collapseFour" aria-expanded="false"
+                                                            aria-controls="collapseFour">
+                                                            Correspondence Address
+                                                        </button>
+                                                    </h5>
+                                                    <span id="valSubPre"
+                                                        style="color:red; padding:1rem; display:none"></span>
+                                                </div>
+                                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addCorrAddForm">
+                                                            <div class="form-group">
+                                                                <label for="addressLine1">Address Line 1</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="addressLine1" name="addressLine1"
+                                                                    maxlength="200" required>
+                                                                <div class="invalid-feedback" id="addressLine1_val">
+                                                                    Address Line 1 is required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="addressLine2">Address Line 2</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="addressLine2" name="addressLine2"
+                                                                    maxlength="200">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="country">Country</label>
+                                                                <select class="form-control" id="country" name="country"
+                                                                    required>
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="India">India</option>
+                                                                    <option value="U.S.A.">U.S.A.</option>
+                                                                    <option value="Japan">Japan</option>
+                                                                    <option value="U.K.">U.K.</option>
+                                                                </select>
+                                                                <div class="invalid-feedback" id="country_val">Country
+                                                                    is required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="state">State</label>
+                                                                <select class="form-control" id="state" name="state"
+                                                                    required>
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Andhra Pradesh">Delhi</option>
+                                                                    <option value="Goa">Goa</option>
+                                                                    <option value="Gujarat">Gujarat</option>
+                                                                    <option value="Haryana">Haryana</option>
+                                                                    <option value="Himachal Pradesh">Himachal Pradesh
+                                                                    </option>
+                                                                    <option value="Kerala">Kerala</option>
+                                                                    <option value="Maharashtra">Maharashtra</option>
+                                                                    <option value="Punjab">Punjab</option>
+                                                                    <option value="Rajasthan">Rajasthan</option>
+                                                                    <option value="Uttarakhand">Uttarakhand</option>
+
+                                                                </select>
+                                                                <div class="invalid-feedback" id="state_val">State is
+                                                                    required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="city">City</label>
+                                                                <select class="form-control" id="city" name="city"
+                                                                    required>
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Mumbai">Mumbai</option>
+                                                                    <option value="Delhi">Delhi</option>
+                                                                    <option value="Bangalore">Bangalore</option>
+                                                                    <option value="Hyderabad">Hyderabad</option>
+                                                                    <option value="Chennai">Chennai</option>
+                                                                    <option value="Kolkata">Kolkata</option>
+                                                                    <option value="Ahmedabad">Ahmedabad</option>
+                                                                    <option value="Pune">Pune</option>
+
+                                                                </select>
+                                                                <div class="invalid-feedback" id="city_val">City is
+                                                                    required.</div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="pinCode">Pin Code</label>
+                                                                <input type="text" class="form-control" id="pinCode"
+                                                                    name="pinCode" maxlength="6" pattern="^\d{6}$"
+                                                                    required>
+                                                                <div class="invalid-feedback" id="pinCode_val">Pin Code
+                                                                    must be a valid 6-digit number.</div>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingFive">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                            data-target="#collapseFive" aria-expanded="false"
+                                                            aria-controls="collapseFive">
+                                                            Permanent / Registered Address
+                                                        </button>
+                                                        <span id="valUpdPass"
+                                                            style="color:red; padding:1rem; display:none"></span>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addAddRegForm">
+                                                            <div class="form-group">
+                                                                <label for="addressLineOne">Address Line 1</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="addressLineOne" name="addressLineOne"
+                                                                    maxlength="200">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="sameAsAddressLineOne">
+                                                                    <label class="form-check-label"
+                                                                        for="sameAsAddressLineOne">Same as above</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="addressLineTwo">Address Line 2</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="addressLineTwo" name="addressLineTwo"
+                                                                    maxlength="200">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="sameAsAddressLineTwo">
+                                                                    <label class="form-check-label"
+                                                                        for="sameAsAddressLineTwo">Same as above</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="countrySelect">Country</label>
+                                                                <select class="form-control" id="countrySelect"
+                                                                    name="country">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="India">India</option>
+                                                                    <option value="USA">USA</option>
+                                                                    <option value="UK">UK</option>
+                                                                </select>
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="sameAsCountry">
+                                                                    <label class="form-check-label"
+                                                                        for="sameAsCountry">Same as above</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="stateSelect">State</label>
+                                                                <select class="form-control" id="stateSelect"
+                                                                    name="state">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Maharashtra">Maharashtra</option>
+                                                                    <option value="Karnataka">Karnataka</option>
+                                                                    <option value="Delhi">Delhi</option>
+                                                                </select>
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="sameAsState">
+                                                                    <label class="form-check-label"
+                                                                        for="sameAsState">Same as above</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="citySelect">City</label>
+                                                                <select class="form-control" id="citySelect"
+                                                                    name="city">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Mumbai">Mumbai</option>
+                                                                    <option value="Bangalore">Bangalore</option>
+                                                                    <option value="Delhi">Delhi</option>
+                                                                </select>
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="sameAsCity">
+                                                                    <label class="form-check-label"
+                                                                        for="sameAsCity">Same as above</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="pinCodeInput">Pin Code</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="pinCodeInput" name="pinCode" maxlength="6">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input"
+                                                                        id="sameAsPinCode">
+                                                                    <label class="form-check-label"
+                                                                        for="sameAsPinCode">Same as above</label>
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingSix">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                            data-target="#collapseSix" aria-expanded="false"
+                                                            aria-controls="collapseSix">
+                                                            Bank Details
+                                                        </button>
+                                                        <span id="valUpdPass"
+                                                            style="color:red; padding:1rem; display:none"></span>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addBankDetails">
+                                                            <div class="form-group">
+                                                                <label for="bankName">Bank Name</label>
+                                                                <input type="text" class="form-control" id="bankName"
+                                                                    name="bankName" maxlength="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="bankBranch">Bank Branch</label>
+                                                                <input type="text" class="form-control" id="bankBranch"
+                                                                    name="bankBranch" maxlength="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="ifscCode">IFSC Code</label>
+                                                                <input type="text" class="form-control" id="ifscCode"
+                                                                    name="ifscCode" maxlength="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="accountName">Account Name</label>
+                                                                <input type="text" class="form-control" id="accountName"
+                                                                    name="accountName" maxlength="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="accountNumber">Account Number</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="accountNumber" name="accountNumber"
+                                                                    maxlength="">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingSeven">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                            data-target="#collapseSeven" aria-expanded="false"
+                                                            aria-controls="collapseSeven">
+                                                            Job Profile
+                                                        </button>
+                                                        <span id="valUpdPass"
+                                                            style="color:red; padding:1rem; display:none"></span>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+                                                    data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form id="addJobProfile">
+                                                            <div class="form-group">
+                                                                <label for="jobWorkerGroup">Job Worker Group</label>
+                                                                <select class="form-control" id="jobWorkerGroup"
+                                                                    name="jobWorkerGroup">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="JobWorker1" selected disabled>
+                                                                        JobWorker 1</option>
+                                                                    <option value="JobWorker2" selected disabled>
+                                                                        JobWorker 2</option>
+                                                                    <option value="JobWorker3" selected disabled>
+                                                                        JobWorker 3</option>
+                                                                    <option value="JobWorker4" selected disabled>
+                                                                        JobWorker 4</option>
+
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="process">Process</label>
+                                                                <select class="form-control" id="process"
+                                                                    name="process">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Process1">Process 1</option>
+                                                                    <option value="Process2">Process 2</option>
+                                                                    <option value="Process3">Process 3</option>
+                                                                    <option value="Process4">Process 4</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="productGroup">Product Group</label>
+                                                                <select class="form-control" id="productGroup"
+                                                                    name="productGroup">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="ProductGroup1">Product Group 1
+                                                                    </option>
+                                                                    <option value="ProductGroup2">Product Group 2
+                                                                    </option>
+                                                                    <option value="ProductGroup3">Product Group 3
+                                                                    </option>
+                                                                    <option value="ProductGroup4">Product Group 4
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="incorrectJobIssueAlert">Incorrect Job Issue
+                                                                    Alert</label>
+                                                                <select class="form-control" id="incorrectJobIssueAlert"
+                                                                    name="incorrectJobIssueAlert">
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="Yes">Yes</option>
+                                                                    <option value="No">No</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="avgDailyOutput">Avg Daily Output</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="avgDailyOutput" name="avgDailyOutput"
+                                                                    maxlength="">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="jobWorkRateList">Job Work Rate List</label>
+                                                                <select class="form-control" id="jobWorkRateList"
+                                                                    name="jobWorkRateList" required>
+                                                                    <option value="" selected disabled>Select</option>
+                                                                    <option value="None">None</option>
+                                                                    <option value="JobWorkRate1">Job Work Rate 1
+                                                                    </option>
+                                                                    <option value="JobWorkRate2">Job Work Rate 2
+                                                                    </option>
+                                                                    <option value="JobWorkRate3">Job Work Rate 3
+                                                                    </option>
+                                                                    <option value="JobWorkRate4">Job Work Rate 4
+                                                                    </option>
+                                                                </select>
+                                                                <div class="invalid-feedback">
+                                                                    Please select a Job Work Rate List.
+                                                                </div>
+                                                            </div>
+
+
+                                                        </form>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="addRow()">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Edit Modal -->
+                        <div class="modal fade" id="editUserModal" tabindex="-1"
+                        aria-labelledby="editUserModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editUserModalLabel">Edit Customer Address
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="accordionEdit">
+                                        <div class="card">
+                                            <div class="card-header" id="editHeadingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" id="btnCustGeneralInfoEdit" data-toggle="collapse" data-target="#editCollapseOne" aria-expanded="true" aria-controls="editCollapseOne">
+                                                        Edit General Information
+                                                    </button>
+                                                    <span id="valGenInfoEdit" style="color:red; padding:1rem; display:none"></span>
+                                                </h5>
+                                            </div>
+                                        
+                                            <div id="editCollapseOne" class="collapse" aria-labelledby="editHeadingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <form id="editJwGenInfoForm">
+                                                <div class="form-group">
+                                                    <label for="editJobworkerName">Job Worker Name</label>
+                                                    <input type="text" class="form-control"
+                                                        id="editJobworkerName" name="editJobworkerName"
+                                                        required>
+                                                    <div class="invalid-feedback"
+                                                        id="editJobworkerName_val">Job Worker Name is
+                                                        required.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="editJobWorkerShortCode">Job Worker Short
+                                                        Code</label>
+                                                    <input type="text" class="form-control"
+                                                        id="editJobWorkerShortCode"
+                                                        name="editJobWorkerShortCode" required
+                                                        maxlength="10">
+                                                    <div class="invalid-feedback"
+                                                        id="editJobWorkerShortCode_val">Job Worker Short
+                                                        Code is required.</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="editPhoto">Photo</label>
+                                                    <input type="file" class="form-control"
+                                                        id="editPhotoPicker" name="editPhotoPicker"
+                                                        accept="image/*">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="editDob">Date of Birth</label>
+                                                    <input type="date" class="form-control" id="editDob"
+                                                        name="editDob" required>
+                                                    <div class="invalid-feedback" id="editDob_val">Date of
+                                                        Birth is required.</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="editDoj">Date of Joining</label>
+                                                    <input type="date" class="form-control" id="editDoj"
+                                                        name="editDoj" required>
+                                                    <div class="invalid-feedback" id="editDoj_val">Date of
+                                                        Joining is required.</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="editStatus">Status</label>
+                                                    <select class="form-control" id="editStatus"
+                                                        name="editStatus" required>
+                                                        <option value="" selected disabled>Select</option>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
+                                                    </select>
+                                                    <div class="invalid-feedback" id="editStatus_val">Status
+                                                        is required.</div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                            </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed"
+                                                        data-toggle="collapse" data-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo">
+                                                        Job Worker Proof
+                                                    </button>
+                                                    <span id="editValContactDtls"
+                                                        style="color:red; padding:1rem; display:none"></span>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse"
+                                                aria-labelledby="headingTwo" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <form id="editJobWorkerForm">
+                                                        <div class="form-group">
+                                                            <label for="editAadhaarNumber">Aadhaar
+                                                                Number</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAadhaarNumber"
+                                                                name="editAadhaarNumber" maxlength="12"
+                                                                pattern="^\d{12}$" required>
+                                                            <div class="invalid-feedback"
+                                                                id="editAadhaarNumber_val">Aadhaar Number
+                                                                must be exactly 12 digits.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editAadhaarImage">Aadhaar
+                                                                Image</label>
+                                                            <input type="file" class="form-control"
+                                                                id="editAadhaarImage"
+                                                                name="editAadhaarImage" accept="image/*">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editPanNumber">PAN Number</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editPanNumber" name="editPanNumber"
+                                                                maxlength="10"
+                                                                pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required>
+                                                            <div class="invalid-feedback"
+                                                                id="editPanNumber_val">PAN Number must
+                                                                follow the format: XXXXX1234X.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editPanImage">PAN Image</label>
+                                                            <input type="file" class="form-control"
+                                                                id="editPanImage" name="editPanImage"
+                                                                accept="image/*">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editGstNumber">GST Number</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editGstNumber" name="editGstNumber"
+                                                                maxlength="15"
+                                                                pattern="^([0-9]{2})([A-Z]){5}([0-9]{4})([A-Z]){1}([A-Z0-9]){1}([A-Z]){1}([0-9A-Z]){1}$"
+                                                                required>
+                                                            <div class="invalid-feedback"
+                                                                id="editGstNumber_val">GST Number must
+                                                                follow the valid format.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editGstImage">GST Image</label>
+                                                            <input type="file" class="form-control"
+                                                                id="editGstImage" name="editGstImage"
+                                                                accept="image/*">
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed"
+                                                        data-toggle="collapse" data-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        Contact Details
+                                                    </button>
+                                                </h5>
+                                                <span id="editValCustAdd"
+                                                    style="color:red; padding:1rem; display:none"></span>
+                                            </div>
+
+                                            <div id="collapseThree" class="collapse"
+                                                aria-labelledby="headingThree" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <form id="editConctactDtlsForm">
+                                                        <div class="form-group">
+                                                            <label for="editContactPersonName">Contact
+                                                                Person Name</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editContactPersonName"
+                                                                name="editContactPersonName" maxlength="100"
+                                                                required>
+                                                            <div class="invalid-feedback"
+                                                                id="editContactPersonName_val">Contact
+                                                                Person Name is required.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editContactNo1Mobile">Contact No 1
+                                                                (Mobile)</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editContactNo1Mobile"
+                                                                name="editContactNo1Mobile" maxlength="15"
+                                                                pattern="^\d{10}$" required>
+                                                            <div class="invalid-feedback"
+                                                                id="editContactNo1Mobile_val">Contact No 1
+                                                                must be a valid 10-digit mobile number.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editContactNo2Additional">Contact No
+                                                                2 (Additional)</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editContactNo2Additional"
+                                                                name="editContactNo2Additional"
+                                                                maxlength="15" pattern="^\d{10}$">
+                                                            <div class="invalid-feedback"
+                                                                id="editContactNo2Additional_val">Contact No
+                                                                2 must be a valid 10-digit mobile number.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editContactNo3Additional">Contact No
+                                                                3 (Additional)</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editContactNo3Additional"
+                                                                name="editContactNo3Additional"
+                                                                maxlength="15" pattern="^\d{10}$">
+                                                            <div class="invalid-feedback"
+                                                                id="editContactNo3Additional_val">Contact No
+                                                                3 must be a valid 10-digit mobile number.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editEmailAddress">Email
+                                                                Address</label>
+                                                            <input type="email" class="form-control"
+                                                                id="editEmailAddress"
+                                                                name="editEmailAddress" maxlength="100"
+                                                                required>
+                                                            <div class="invalid-feedback"
+                                                                id="editEmailAddress_val">Please enter a
+                                                                valid email address.</div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingFour">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed"
+                                                        data-toggle="collapse" data-target="#collapseFour"
+                                                        aria-expanded="false" aria-controls="collapseFour">
+                                                        Correspondence Address
+                                                    </button>
+                                                </h5>
+                                                <span id="editValSubPre"
+                                                    style="color:red; padding:1rem; display:none"></span>
+                                            </div>
+                                            <div id="collapseFour" class="collapse"
+                                                aria-labelledby="headingFour" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <form id="editCorrAddForm">
+                                                        <div class="form-group">
+                                                            <label for="editAddressLine1">Address Line
+                                                                1</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAddressLine1"
+                                                                name="editAddressLine1" maxlength="200"
+                                                                required>
+                                                            <div class="invalid-feedback"
+                                                                id="editAddressLine1_val">Address Line 1 is
+                                                                required.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editAddressLine2">Address Line
+                                                                2</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAddressLine2"
+                                                                name="editAddressLine2" maxlength="200">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editCountry">Country</label>
+                                                            <select class="form-control" id="editCountry"
+                                                                name="editCountry" required>
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="India">India</option>
+                                                                <option value="U.S.A.">U.S.A.</option>
+                                                                <option value="Japan">Japan</option>
+                                                                <option value="U.K.">U.K.</option>
+                                                            </select>
+                                                            <div class="invalid-feedback"
+                                                                id="editCountry_val">Country is required.
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editState">State</label>
+                                                            <select class="form-control" id="editState"
+                                                                name="editState" required>
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="Andhra Pradesh">Delhi
+                                                                </option>
+                                                                <option value="Goa">Goa</option>
+                                                                <option value="Gujarat">Gujarat</option>
+                                                                <option value="Haryana">Haryana</option>
+                                                                <option value="Himachal Pradesh">Himachal
+                                                                    Pradesh</option>
+                                                                <option value="Kerala">Kerala</option>
+                                                                <option value="Maharashtra">Maharashtra
+                                                                </option>
+                                                                <option value="Punjab">Punjab</option>
+                                                                <option value="Rajasthan">Rajasthan</option>
+                                                                <option value="Uttarakhand">Uttarakhand
+                                                                </option>
+                                                            </select>
+                                                            <div class="invalid-feedback"
+                                                                id="editState_val">State is required.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editCity">City</label>
+                                                            <select class="form-control" id="editCity"
+                                                                name="editCity" required>
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="Mumbai">Mumbai</option>
+                                                                <option value="Delhi">Delhi</option>
+                                                                <option value="Bangalore">Bangalore</option>
+                                                                <option value="Hyderabad">Hyderabad</option>
+                                                                <option value="Chennai">Chennai</option>
+                                                                <option value="Kolkata">Kolkata</option>
+                                                                <option value="Ahmedabad">Ahmedabad</option>
+                                                                <option value="Pune">Pune</option>
+                                                            </select>
+                                                            <div class="invalid-feedback" id="editCity_val">
+                                                                City is required.</div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editPinCode">Pin Code</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editPinCode" name="editPinCode"
+                                                                maxlength="6" pattern="^\d{6}$" required>
+                                                            <div class="invalid-feedback"
+                                                                id="editPinCode_val">Pin Code must be a
+                                                                valid 6-digit number.</div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingFive">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed"
+                                                        data-toggle="collapse" data-target="#collapseFive"
+                                                        aria-expanded="false" aria-controls="collapseFive">
+                                                        Permanent / Registered Address
+                                                    </button>
+                                                    <span id="valUpdPass"
+                                                        style="color:red; padding:1rem; display:none"></span>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseFive" class="collapse"
+                                                aria-labelledby="headingFive" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <form id="editAddRegForm">
+                                                        <div class="form-group">
+                                                            <label for="addressLineOne">Address Line
+                                                                1</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAddressLineOne"
+                                                                name="addressLineOne" maxlength="200">
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input"
+                                                                    id="editSameAsAddressLineOne">
+                                                                <label class="form-check-label"
+                                                                    for="editSameAsAddressLineOne">Same as
+                                                                    above</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="addressLineTwo">Address Line
+                                                                2</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAddressLineTwo"
+                                                                name="addressLineTwo" maxlength="200">
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input"
+                                                                    id="editSameAsAddressLineTwo">
+                                                                <label class="form-check-label"
+                                                                    for="editSameAsAddressLineTwo">Same as
+                                                                    above</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="countrySelect">Country</label>
+                                                            <select class="form-control"
+                                                                id="editCountrySelect" name="country">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="India">India</option>
+                                                                <option value="USA">USA</option>
+                                                                <option value="UK">UK</option>
+                                                            </select>
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input"
+                                                                    id="editSameAsCountry">
+                                                                <label class="form-check-label"
+                                                                    for="editSameAsCountry">Same as
+                                                                    above</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="stateSelect">State</label>
+                                                            <select class="form-control"
+                                                                id="editStateSelect" name="state">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="Maharashtra">Maharashtra
+                                                                </option>
+                                                                <option value="Karnataka">Karnataka</option>
+                                                                <option value="Delhi">Delhi</option>
+                                                            </select>
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input"
+                                                                    id="editSameAsState">
+                                                                <label class="form-check-label"
+                                                                    for="editSameAsState">Same as
+                                                                    above</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="citySelect">City</label>
+                                                            <select class="form-control" id="editCitySelect"
+                                                                name="city">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="Mumbai">Mumbai</option>
+                                                                <option value="Bangalore">Bangalore</option>
+                                                                <option value="Delhi">Delhi</option>
+                                                            </select>
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input"
+                                                                    id="editSameAsCity">
+                                                                <label class="form-check-label"
+                                                                    for="editSameAsCity">Same as
+                                                                    above</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="pinCodeInput">Pin Code</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editPinCodeInput" name="pinCode"
+                                                                maxlength="6">
+                                                            <div class="form-check">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input"
+                                                                    id="editSameAsPinCode">
+                                                                <label class="form-check-label"
+                                                                    for="editSameAsPinCode">Same as
+                                                                    above</label>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingSix">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed"
+                                                        data-toggle="collapse" data-target="#collapseSix"
+                                                        aria-expanded="false" aria-controls="collapseSix">
+                                                        Bank Details
+                                                    </button>
+                                                    <span id="valUpdPass"
+                                                        style="color:red; padding:1rem; display:none"></span>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseSix" class="collapse"
+                                                aria-labelledby="headingSix" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <form id="editBankDetails">
+                                                        <div class="form-group">
+                                                            <label for="editBankName">Bank Name</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editBankName" name="bankName"
+                                                                maxlength="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editBankBranch">Bank Branch</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editBankBranch" name="bankBranch"
+                                                                maxlength="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editIfscCode">IFSC Code</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editIfscCode" name="ifscCode"
+                                                                maxlength="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editAccountName">Account
+                                                                Name</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAccountName" name="accountName"
+                                                                maxlength="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editAccountNumber">Account
+                                                                Number</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAccountNumber" name="accountNumber"
+                                                                maxlength="">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingSeven">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed"
+                                                        data-toggle="collapse" data-target="#collapseSeven"
+                                                        aria-expanded="false" aria-controls="collapseSeven">
+                                                        Job Profile
+                                                    </button>
+                                                    <span id="valUpdPass"
+                                                        style="color:red; padding:1rem; display:none"></span>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseSeven" class="collapse"
+                                                aria-labelledby="headingSeven" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <form id="editJobProfile">
+                                                        <div class="form-group">
+                                                            <label for="editJobWorkerGroup">Job Worker
+                                                                Group</label>
+                                                            <select class="form-control"
+                                                                id="editJobWorkerGroup"
+                                                                name="jobWorkerGroup">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="JobWorker1">JobWorker 1
+                                                                </option>
+                                                                <option value="JobWorker2">JobWorker 2
+                                                                </option>
+                                                                <option value="JobWorker3">JobWorker 3
+                                                                </option>
+                                                                <option value="JobWorker4">JobWorker 4
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editProcess">Process</label>
+                                                            <select class="form-control" id="editProcess"
+                                                                name="process">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="Process1">Process 1</option>
+                                                                <option value="Process2">Process 2</option>
+                                                                <option value="Process3">Process 3</option>
+                                                                <option value="Process4">Process 4</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editProductGroup">Product
+                                                                Group</label>
+                                                            <select class="form-control"
+                                                                id="editProductGroup" name="productGroup">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="ProductGroup1">Product Group
+                                                                    1</option>
+                                                                <option value="ProductGroup2">Product Group
+                                                                    2</option>
+                                                                <option value="ProductGroup3">Product Group
+                                                                    3</option>
+                                                                <option value="ProductGroup4">Product Group
+                                                                    4</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="editIncorrectJobIssueAlert">Incorrect
+                                                                Job Issue Alert</label>
+                                                            <select class="form-control"
+                                                                id="editIncorrectJobIssueAlert"
+                                                                name="incorrectJobIssueAlert">
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editAvgDailyOutput">Avg Daily
+                                                                Output</label>
+                                                            <input type="text" class="form-control"
+                                                                id="editAvgDailyOutput"
+                                                                name="avgDailyOutput" maxlength="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="editJobWorkRateList">Job Work Rate
+                                                                List</label>
+                                                            <select class="form-control"
+                                                                id="editJobWorkRateList"
+                                                                name="jobWorkRateList" required>
+                                                                <option value="" selected disabled>Select
+                                                                </option>
+                                                                <option value="None">None</option>
+                                                                <option value="JobWorkRate1">Job Work Rate 1
+                                                                </option>
+                                                                <option value="JobWorkRate2">Job Work Rate 2
+                                                                </option>
+                                                                <option value="JobWorkRate3">Job Work Rate 3
+                                                                </option>
+                                                                <option value="JobWorkRate4">Job Work Rate 4
+                                                                </option>
+                                                            </select>
+                                                            <div class="invalid-feedback">
+                                                                Please select a Job Work Rate List.
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="saveUserChanges()">Save
+                                        changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1"
+                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Delete Branch</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this Job Worker?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger"
+                                    onclick="deleteRow()">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+
+                        <!--<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">�</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script>
+        let currentRow; // Declare currentRow globally
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let totalRowCount = document.querySelectorAll('#dataTable tbody tr').length;
+        });
+
+        function openAddModal() {
+
+            // Reset all fields and validation classes when opening the modal
+            $('#addModal').on('show.bs.modal', function () {
+                // Reset all form fields in the modal
+                $(this).find('form').trigger('reset');
+
+                // Remove validation classes and hide feedback
+                $(this).find('input, select, textarea')
+                    .removeClass('is-invalid is-valid')
+                    .val(''); // Clear all values
+
+                $(this).find('.invalid-feedback').hide(); // Hide invalid feedback
+                $(this).find('.valid-feedback').hide(); // Hide valid feedback
+            });
+
+            $('#addModal').modal('show');
+
+        }
+
+        function addRow() {
+
+            const addModalArray = [
+                'jobworkerName', 'jobWorkerShortCode', 'status',
+                'additionalNotes',
+                'aadhaarNumber', 'panNumber', 'gstNumber', 'contactPersonName',
+                'contactNo1Mobile', 'emailAddress', 'addressLine1',
+                'pinCode', 'bankName', 'bankBranch', 'ifscCode',
+                'accountName', 'accountNumber', 'jobWorkerGroup', 'process',
+                'productGroup', 'incorrectJobIssueAlert', 'avgDailyOutput',
+                'jobWorkRateList'
+            ];
+            const addModalMsgArray = [
+                'jobworkerName_val', 'jobWorkerShortCode_val',
+                'status_val', 'additionalNotes_val', 'aadhaarNumber_val', 'panNumber_val', 'gstNumber_val',
+                'contactPersonName_val', 'contactNo1Mobile_val', 'emailAddress_val',
+                'addressLine1_val', 'pinCode_val', 'bankName_val', 'bankBranch_val', 'ifscCode_val',
+                'accountName_val', 'accountNumber_val', 'jobWorkerGroup_val',
+                'process_val', 'productGroup_val', 'incorrectJobIssueAlert_val',
+                'avgDailyOutput_val', 'jobWorkRateList_val'
+            ];
+
+
+            // if (!checkValidation(addModalArray, addModalMsgArray, false)) {
+            //     //console.log(addUserArray, addMsgArray);
+            //     return;
+            // }
+
+
+            const newRow = `<tr>
+                <td>${document.getElementById('jobworkerName').value}</td>
+                <td>${document.getElementById('contactNo1Mobile').value}</td>
+                <td>${document.getElementById('country').value}</td>
+                <td>${document.getElementById('state').value}</td>
+                <td>${document.getElementById('city').value}</td>
+                <td>${document.getElementById('status').value}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            &#x22EE;
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#" onclick="editRow(this)">Edit</a>
+                            <a class="dropdown-item" href="#" onclick="confirmDelete(this)">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>`;
+
+            document.querySelector('#dataTable tbody').insertAdjacentHTML('beforeend', newRow);
+            $('#addModal').modal('hide');
+            //clearAddModel();
+        }
+
+
+        function editRow(element) {
+             currentRow = element.closest('tr');
+             var cells = currentRow.getElementsByTagName('td');
+            document.getElementById('editJobworkerName').value = cells[0].innerText;
+            document.getElementById('editContactNo1Mobile').value = cells[1].innerText;
+            document.getElementById('editCountry').value = cells[2].innerText;
+            document.getElementById('editState').value = cells[3].innerText;
+            document.getElementById('editCity').value = cells[4].innerText;
+            document.getElementById('editStatus').value = cells[5].innerText;
+
+
+
+            //var myModal = new bootstrap.Modal(document.getElementById('editUserModal'));
+            //myModal.show();
+            console.log('clicked');
+            $('#editUserModal').modal('show');
+        }
+
+        
+
+        function saveUserChanges() {
+            const editUserArray = ['editName', 'editGST', 'editContact', 'editAdd1', 'editAdd2', 'editCountry', 'editState', 'editCity', 'editPincode', 'editStatus', 'editFirstName', 'editLastName', 'editStatus1', 'editContactPersonName', 'editContactNo1Mobile', 'editEmailAddress', 'editPassword', 'editPassword_val'];
+            const editMsgArray = ['editname_val', 'editGST_val', 'editContact_val', 'editAdd1_val', 'editAdd2_val', 'editCountry_val', 'editState_val', 'editCity_val', 'editPincode_val', 'editStatus_val', 'editFirstName_val', 'editLastName_val', 'editStatus1_val', 'editContactPersonName_val', 'editContactNo1Mobile_val', 'editEmailAddress_val', 'editPassword_val', 'editConfirmPassword_val'];
+
+            const editModalArray = [
+                'editJobworkerName', 'editJobWorkerShortCode', 'editStatus',
+                'editAdditionalNotes',
+                'editAadhaarNumber', 'editPanNumber', 'editGstNumber', 'editContactPersonName',
+                'editContactNo1Mobile', 'editEmailAddress', 'editAddressLine1',
+                'editPinCode', 'editBankName', 'editBankBranch', 'editIfscCode',
+                'editAccountName', 'editAccountNumber', 'editJobWorkerGroup', 'editProcess',
+                'editProductGroup', 'editIncorrectJobIssueAlert', 'editAvgDailyOutput',
+                'editJobWorkRateList'
+            ];
+            const editModalMsgArray = [
+                'editJobworkerName_val', 'editJobWorkerShortCode_val',
+                'editStatus_val', 'editAdditionalNotes_val', 'editAadhaarNumber_val', 'editPanNumber_val', 'editGstNumber_val',
+                'editContactPersonName_val', 'editContactNo1Mobile_val', 'editEmailAddress_val',
+                'editAddressLine1_val', 'editPinCode_val', 'editBankName_val', 'editBankBranch_val', 'editIfscCode_val',
+                'editAccountName_val', 'editAccountNumber_val', 'editJobWorkerGroup_val',
+                'editProcess_val', 'editProductGroup_val', 'editIncorrectJobIssueAlert_val',
+                'editAvgDailyOutput_val', 'editJobWorkRateList_val'
+            ];
+
+            if (!checkValidation(editModalArray, editModalMsgArray, true)) {
+                return;
+            }
+
+            if (!currentRow) {
+                console.error('No row selected for editing.');
+                return;
+            }
+
+            const cells = currentRow.getElementsByTagName('td');
+            cells[0].innerText = document.getElementById('editName').value;
+            cells[1].innerText = document.getElementById('editContact').value;
+            cells[2].innerText = document.getElementById('editCountry').value;
+            cells[3].innerText = document.getElementById('editState').value;
+            cells[4].innerText = document.getElementById('editCity').value;
+            cells[5].innerText = document.getElementById('editStatus').value;
+
+            $('#editUserModal').modal('hide');
+            clearModel();
+        }
+
+        function confirmDelete(element) {
+            currentRow = element.closest('tr');
+            $('#deleteModal').modal('show');
+        }
+
+        function deleteRow() {
+            if (!currentRow) {
+                console.error('No row selected for deletion.');
+                return;
+            }
+
+            currentRow.remove();
+            $('#deleteModal').modal('hide');
+        }
+
+        function clearModel() {
+            document.getElementById('editName').value = '';
+            document.getElementById('editGST').value = '';
+            document.getElementById('editContact').value = '';
+            document.getElementById('editAdd1').value = '';
+            document.getElementById('editAdd2').value = '';
+            document.getElementById('editCountry').selectedIndex = 0;
+            document.getElementById('editState').selectedIndex = 0;
+            document.getElementById('editCity').selectedIndex = 0;
+            document.getElementById('editPincode').value = '';
+            document.getElementById('editDefaultAddress').checked = false;
+            document.getElementById('editStatus').selectedIndex = 0;
+        }
+
+        function checkValidation(fieldsArray, msgArray, isEdit) {
+            let isValid = true;
+
+            fieldsArray.forEach((field, index) => {
+                const inputElement = document.getElementById(field);
+                const msgElement = document.getElementById(msgArray[index]);
+
+                if (inputElement && msgElement) {
+                    if (!inputElement.checkValidity()) {
+                        inputElement.classList.add('is-invalid');
+                        msgElement.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        inputElement.classList.remove('is-invalid');
+                        msgElement.style.display = 'none';
+                    }
+
+                    // Additional validation for specific fields
+                    if (field === 'contactNo1Mobile' || field === 'contactNo2Additional' || field === 'contactNo3Additional') {
+                        const phonePattern = /^\d{10}$/;
+                        if (inputElement.value && !phonePattern.test(inputElement.value)) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'gstNumber') {
+                        const gstPattern = /^([0-9]{2})([A-Z]){5}([0-9]{4})([A-Z]){1}([A-Z0-9]){1}([A-Z]){1}([0-9A-Z]){1}$/;
+                        if (inputElement.value && (!gstPattern.test(inputElement.value) || inputElement.value.length > 15)) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'aadhaarNumber') {
+                        const aadhaarPattern = /^\d{12}$/;
+                        if (inputElement.value && !aadhaarPattern.test(inputElement.value)) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'emailAddress') {
+                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (inputElement.value && !emailPattern.test(inputElement.value)) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'jobworkerName' || field === 'contactPersonName') {
+                        if (inputElement.value.length > 100) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'jobWorkerShortCode') {
+                        if (inputElement.value.length > 10) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'additionalNotes') {
+                        if (inputElement.value.length > 1000) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'panNumber') {
+                        if (inputElement.value.length > 10) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'addressLine1' || field === 'addressLine2' || field === 'bankBranch' || field === 'bankName') {
+                        if (inputElement.value.length > 150) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'ifscCode') {
+                        const ifscPattern = /^[A-Z]{4}\d{1}[A-Z0-9]{6}$/;
+                        if (inputElement.value && (!ifscPattern.test(inputElement.value) || inputElement.value.length > 11)) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'accountNumber') {
+                        if (inputElement.value.length > 18) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'process' || field === 'jobworkerName' || field === 'jobWorkerShortCode') {
+                        if (inputElement.value === '') {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'avgDailyOutput') {
+                        if (inputElement.value.length > 4) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+
+                    if (field === 'pinCode') {
+                        const pinCodePattern = /^[A-Za-z0-9\s-]+$/;
+                        if (inputElement.value && (!pinCodePattern.test(inputElement.value) || inputElement.value.length > 15)) {
+                            inputElement.classList.add('is-invalid');
+                            msgElement.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            inputElement.classList.remove('is-invalid');
+                            msgElement.style.display = 'none';
+                        }
+                    }
+                }
+            });
+
+            return isValid;
+        }
+
+        $(document).ready(function () {
+            function toggleSidebar() {
+                $('#collapseMaster').toggleClass('show');
+            }
+
+            // Click event handler for sidebar toggle button
+            $('.navbar-toggler').on('click', function () {
+                toggleSidebar();
+            });
+
+            // Click event handler for document
+            $(document).on('click', function (e) {
+                // Check if sidebar is open and click is outside sidebar on smaller screens
+                if ($(window).width() < 768 && $('#collapseMaster').hasClass('show') && !$(e.target).closest('#collapseMaster').length) {
+                    toggleSidebar(); // Close sidebar if open and clicked outside
+                }
+            });
+
+            // Function to initialize sidebar state
+            function initSidebar() {
+                if ($(window).width() < 768) {
+                    $('#collapseMaster').removeClass('show'); // Hide sidebar on small screens initially
+                } else {
+                    $('#collapseMaster').addClass('show'); // Show sidebar on larger screens initially
+                }
+            }
+
+            // Initialize sidebar state on page load
+            initSidebar();
+
+            // Handle window resize events to adjust sidebar behavior
+            $(window).on('resize', function () {
+                initSidebar();
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = (today.getMonth() + 1).toString().padStart(2, '0'); // Ensure 2 digits
+            var day = today.getDate().toString().padStart(2, '0'); // Ensure 2 digits
+
+            var maxDate = year + '-' + month + '-' + day;
+            // document.getElementById('dob').setAttribute('max', maxDate);
+            // document.getElementById('doj').setAttribute('max', maxDate);
+        });
+
+    </script>
+</body>
+
+</html>
